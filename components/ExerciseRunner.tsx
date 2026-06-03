@@ -5,6 +5,7 @@ import MockTerminal, { type RunResult } from "./MockTerminal";
 import XpToast from "./XpToast";
 import { gradeCommand } from "@/lib/winGrader";
 import { run as interpRun, sameOutput, type RunResult as IResult } from "@/lib/winInterpreter";
+import { syncIfJoined } from "@/lib/leaderboardSync";
 import { useProgress } from "@/lib/store";
 import { useMounted } from "@/lib/useMounted";
 import { nextExercise, type Exercise, type Step } from "@/lib/exercises";
@@ -73,6 +74,7 @@ export default function ExerciseRunner({ exercise: ex }: { exercise: Exercise })
         const gained = store.recordAttempt({ exerciseId: ex.id, correct: true, command, difficulty: ex.difficulty });
         if (gained > 0) setXp({ amount: gained, t: Date.now() });
         setFeedback({ ok: true, msg: isMulti ? "Alle stappen voltooid! 🎉" : "Correct! 🎉" });
+        void syncIfJoined(); // werk online leaderboard bij (no-op zonder naam/Upstash)
       } else {
         setFeedback({ ok: true, msg: `Stap ${stageIndex + 1} klopt — door naar stap ${stageIndex + 2}.` });
         setStageIndex((i) => i + 1);

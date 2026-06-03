@@ -4,7 +4,9 @@ import { getJson, setJson, isConfigured } from "@/lib/upstash";
 export const runtime = "edge";
 export const dynamic = "force-dynamic";
 
-const KEY = "lb:v1";
+// App-specifieke namespace — voorkomt botsing met andere projecten (bv. je SQL-trainer)
+// die mogelijk dezelfde Upstash-database delen onder de generieke sleutel "lb:v1".
+const KEY = "wincmd:lb:v1";
 const MAX_ENTRIES = 500;
 const MAX_NAME_LEN = 24;
 

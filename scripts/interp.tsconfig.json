@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "incremental": false,
+    "outDir": "../.selftest",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es2020",
+    "baseUrl": "..",
+    "paths": { "@/*": ["./*"] }
+  },
+  "include": ["interp_selftest.ts"]
+}

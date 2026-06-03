@@ -27,9 +27,9 @@ export default function Home() {
             <br />door écht te typen.
           </h1>
           <p className="mt-4 text-fg-muted text-[15px] leading-relaxed max-w-lg">
-            Schrijf commando&apos;s in een realistische Windows-terminal, krijg meteen
-            feedback en gesimuleerde uitvoer. Veilig in je browser — geen installatie,
-            niks dat je toestel raakt.
+            Schrijf commando&apos;s in een realistische Windows-terminal die ze
+            <span className="text-fg"> écht uitvoert</span> op voorbeelddata — meteen feedback,
+            echte filtering &amp; sortering. Veilig in je browser, niks dat je toestel raakt.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link href="/oefeningen" className="btn-primary h-9 px-4">▸ Start met oefenen</Link>

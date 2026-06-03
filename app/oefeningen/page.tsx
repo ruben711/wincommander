@@ -181,7 +181,7 @@ function ExerciseCard({ ex, mounted }: { ex: Exercise; mounted: boolean }) {
   return (
     <Link
       href={`/oefeningen/${ex.id}`}
-      className="card card-pad block hover:border-line-strong hover:shadow-fluent-md transition-all group relative"
+      className={`card card-pad block hover:border-line-strong hover:shadow-fluent-md transition-all group relative ${solved ? "ring-1 ring-ok/45 bg-ok/[0.05]" : ""}`}
     >
       <button
         onClick={(ev) => { ev.preventDefault(); store.toggleFavorite(ex.id); }}
@@ -192,13 +192,11 @@ function ExerciseCard({ ex, mounted }: { ex: Exercise; mounted: boolean }) {
         {fav ? "⭐" : "☆"}
       </button>
 
-      <h3 className="font-medium pr-6 group-hover:text-brand transition-colors">
-        {solved && <span className="text-ok mr-1">✓</span>}
-        {ex.title}
-      </h3>
+      <h3 className="font-medium pr-6 group-hover:text-brand transition-colors">{ex.title}</h3>
       <p className="mt-1 text-2xs text-fg-muted line-clamp-2">{ex.prompt}</p>
 
       <div className="mt-3 flex items-center gap-1.5 flex-wrap">
+        {solved && <span className="chip-ok">✓ Opgelost</span>}
         <span className={`diff-${ex.difficulty}`}>{DIFF_LABEL[ex.difficulty]}</span>
         <span className={`shell-badge shell-${ex.shell}`}>{ex.shell === "powershell" ? "⌨ PowerShell" : "⬛ CMD"}</span>
         {ex.type === "script" && <span className="chip">script</span>}

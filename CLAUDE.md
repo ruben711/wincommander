@@ -76,6 +76,10 @@ Theorie: **PowerShell concepten** + **ITIL 4 Foundation** (study-mode quiz).
   cursus via 7 parallelle agents. Cmdlet-bibliotheek, theorie-quiz, examensimulatie en cheat-sheet werken.
 - ✅ Data-kwaliteit: `scripts/grader_selftest.ts` beoordeelt elke oefening's eigen modeloplossing →
   **124/124 groen** (elke oefening is oplosbaar).
+- ✅ Fase 5 (Optie B): echte mini-PowerShell-interpreter (`lib/winInterpreter.ts` + `lib/winMockData.ts`) die
+  pipelines · Where/Select/Sort/Measure/ForEach/Group · variabelen · operatoren · member-access · if/for/foreach/while
+  ÉCHT uitvoert op mock-data. Geïntegreerd in de oefening-terminal (toont echte uitvoer + output-gebaseerde grading,
+  met automatische fallback naar de pattern-grader) en in een vrije **/sandbox**-tab. `scripts/interp_selftest.ts` valideert de motor.
 - ⏳ Nog te doen (server-features, optioneel): leaderboard, verborgen /admin (HMAC), notificaties,
   Discord-logging. Werkt nu 100% client-side zonder env vars.
 - `data/` is nu de bron van waarheid (handmatig bewerkbaar). De `.source/`-extracten en

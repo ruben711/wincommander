@@ -1,0 +1,1027 @@
+[
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Wat is de vaste naamstructuur van een PowerShell cmdlet?",
+    "choices": [
+      "Zelfstandig naamwoord-Werkwoord (bijv. Service-Get)",
+      "Werkwoord-Zelfstandig naamwoord (bijv. Get-Service)",
+      "Hoofdletter-Kleine letter (bijv. GETservice)",
+      "Module-Functie (bijv. PS.GetService)"
+    ],
+    "answer": "Werkwoord-Zelfstandig naamwoord (bijv. Get-Service)",
+    "explanation": "PowerShell gebruikt altijd de volgorde Werkwoord-Zelfstandig naamwoord, zoals Get-Service, Stop-Process of New-LocalUser. Dit zorgt voor consistentie en voorspelbaarheid."
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Wat doet de pipeline (het pipe-teken |) in PowerShell?",
+    "choices": [
+      "Het laat je twee bestanden samenvoegen.",
+      "Het stuurt de uitvoer van het ene commando als invoer door naar het volgende commando.",
+      "Het opent een nieuw PowerShell-venster.",
+      "Het slaat de uitvoer op in een bestand."
+    ],
+    "answer": "Het stuurt de uitvoer van het ene commando als invoer door naar het volgende commando.",
+    "explanation": "De pipeline (|) is de ruggengraat van PowerShell. In tegenstelling tot tekstgebaseerde shells worden volledige objecten doorgegeven, inclusief al hun eigenschappen en methoden."
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Hoe begin je altijd een variabelenaam in PowerShell?",
+    "choices": [
+      "Met een &-teken",
+      "Met een @-teken",
+      "Met een $-teken",
+      "Met een %-teken"
+    ],
+    "answer": "Met een $-teken",
+    "explanation": "In PowerShell beginnen alle variabelen met $, bijv. $naam, $getal of $env:ComputerName. Dit onderscheidt ze van cmdlet-namen en andere elementen."
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "PowerShell is 'dynamisch getypeerd'. Wat betekent dit?",
+    "choices": [
+      "Je moet altijd het datatype vooraf opgeven.",
+      "Het datatype wordt bepaald door de naam van de variabele.",
+      "Het datatype wordt automatisch bepaald op basis van de toegekende waarde.",
+      "Variabelen kunnen maar één type gedurende hun hele levensduur hebben."
+    ],
+    "answer": "Het datatype wordt automatisch bepaald op basis van de toegekende waarde.",
+    "explanation": "PowerShell kijkt naar de inhoud van een variabele om het type te bepalen. $getal = 4 is een Int32, maar $woord = 4 ook — want er zijn geen aanhalingstekens. Pas $woord = '4' maakt er een String van."
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Welk cmdlet gebruik je om alle eigenschappen en methoden van een object in de pipeline te ontdekken?",
+    "choices": [
+      "Get-Command",
+      "Get-Help",
+      "Get-Member",
+      "Select-Object"
+    ],
+    "answer": "Get-Member",
+    "explanation": "Get-Member (alias: gm) is het primaire gereedschap voor 'discovery'. Het toont het TypeName van het object en alle beschikbare Properties en Methods."
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Wat is het verschil tussen Format-Table en Format-List?",
+    "choices": [
+      "Format-Table toont meer eigenschappen dan Format-List.",
+      "Format-Table toont properties als kolommen; Format-List toont elke property op een aparte regel.",
+      "Format-List is enkel beschikbaar in PowerShell 7.",
+      "Er is geen functioneel verschil, alleen een andere naam."
+    ],
+    "answer": "Format-Table toont properties als kolommen; Format-List toont elke property op een aparte regel.",
+    "explanation": "Format-Table geeft een compacte kolomweergave; Format-List geeft een verticale lijst per eigenschap. Met Format-List * zie je ook verborgen eigenschappen."
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Wat doet de parameter -WhatIf bij een destructief cmdlet zoals Remove-Item?",
+    "choices": [
+      "Het voert het commando uit en toont daarna een logboek.",
+      "Het vraagt om bevestiging voordat de actie wordt uitgevoerd.",
+      "Het toont wat er zou gebeuren zonder de actie daadwerkelijk uit te voeren.",
+      "Het slaat het commando op als favoriet voor later gebruik."
+    ],
+    "answer": "Het toont wat er zou gebeuren zonder de actie daadwerkelijk uit te voeren.",
+    "explanation": "-WhatIf is essentieel voor risicobeheersing: je ziet de geplande acties beschreven zonder dat er iets gewijzigd wordt. Cruciaal bij destructieve operaties zoals Remove-Item."
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Welke haakjes gebruik je in PowerShell voor een scriptblock (bijv. bij Where-Object)?",
+    "choices": [
+      "Ronde haakjes ()",
+      "Rechte haakjes []",
+      "Accolades {}",
+      "Hoekige haakjes <>"
+    ],
+    "answer": "Accolades {}",
+    "explanation": "Accolades {} omvatten een scriptblock: één of meerdere instructies die als functionele eenheid worden behandeld. Ze worden veel gebruikt in lussen en filters zoals Where-Object { $_.Status -eq 'Running' }."
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Welk .NET-datatype gebruikt PowerShell voor de gehele getallen die de meeste alledaagse waarden bevatten (ca. -2 miljard tot +2 miljard)?",
+    "choices": [
+      "System.Int16",
+      "System.Int32",
+      "System.Int64",
+      "System.Byte"
+    ],
+    "answer": "System.Int32",
+    "explanation": "System.Int32 (Int) slaat gehele getallen op van ca. -2 miljard tot +2 miljard en gebruikt 4 bytes geheugen. Dit is het standaard integer-type in PowerShell."
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "open",
+    "question": "Hoe controleer je het datatype van een variabele $test in PowerShell?",
+    "choices": [],
+    "answer": "$test.GetType()",
+    "explanation": "Door .GetType() aan te roepen op een variabele zie je de .NET-klasse, bijv. Int32 of String. Dit is de standaardmanier om het actuele datatype te verifiëren in PowerShell."
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Wat is het standaard Execution Policy in PowerShell op een verse Windows-installatie?",
+    "choices": [
+      "RemoteSigned",
+      "AllSigned",
+      "Unrestricted",
+      "Restricted"
+    ],
+    "answer": "Restricted",
+    "explanation": "De standaardinstelling is Restricted: er mogen geen scripts worden uitgevoerd. Dit is een veiligheidsvoorzorgsmaatregel, al is het geen ondoordringbare barrière."
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Wat is een 'terminating error' in PowerShell?",
+    "choices": [
+      "Een fout waarbij de cmdlet de verwerking van de overige items voortzet.",
+      "Een fout die zo kritiek is dat de uitvoering van de cmdlet onmiddellijk stopt.",
+      "Een fout die enkel een waarschuwingsbericht toont.",
+      "Een fout die automatisch wordt opgelost door PowerShell."
+    ],
+    "answer": "Een fout die zo kritiek is dat de uitvoering van de cmdlet onmiddellijk stopt.",
+    "explanation": "Bij een terminating error stopt de cmdlet direct. Een voorbeeld is het aanroepen van een niet-bestaande parameter. Bij een non-terminating error vervolgt de cmdlet de verwerking van de overige items."
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "open",
+    "question": "Leg in eigen woorden uit wat de omgevingsvariabele $env:ComputerName doet en hoe je die opvraagt.",
+    "choices": [],
+    "answer": "$env:ComputerName geeft de naam van de computer terug. Je vraagt hem op door gewoon $env:ComputerName te typen in de console.",
+    "explanation": "Systeemvariabelen zijn bereikbaar via de env: provider. $env:ComputerName is één van de meest gebruikte: het geeft de NetBIOS-naam van het systeem terug."
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Waarom mag je een wachtwoord NOOIT rechtstreeks als plaintext in een PowerShell-script zetten?",
+    "choices": [
+      "A. PowerShell aanvaardt geen strings als wachtwoord.",
+      "B. Iedereen die het script ziet, kent het wachtwoord; het kan in versiebeheer terechtkomen.",
+      "C. Plaintext-wachtwoorden werken alleen op Linux.",
+      "D. Get-Credential versleutelt automatisch alle strings in een script."
+    ],
+    "answer": "B",
+    "explanation": "Hardcoded wachtwoorden zijn zichtbaar voor iedereen die het scriptbestand kan lezen en kunnen per ongeluk in versiebeheer (zoals Git) terechtkomen. Gebruik altijd Get-Credential of SecureString.",
+    "subtopic": "Credentials & rechten"
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Welke twee parameters zijn VERPLICHT wanneer je ConvertTo-SecureString gebruikt om een plaintext-wachtwoord om te zetten?",
+    "choices": [
+      "A. -Encrypt en -Safe",
+      "B. -AsPlainText en -Force",
+      "C. -PlainText en -Confirm",
+      "D. -Secure en -Force"
+    ],
+    "answer": "B",
+    "explanation": "Zonder -AsPlainText weet PowerShell niet dat de invoer letterlijke tekst is. -Force is verplicht als extra bevestiging dat je bewust een onversleutelde string doorgeeft.",
+    "subtopic": "Credentials & rechten"
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Welke parameter van Out-File zorgt ervoor dat nieuwe inhoud wordt toegevoegd aan een bestaand bestand, in plaats van het te overschrijven?",
+    "choices": [
+      "A. -NoClobber",
+      "B. -Width",
+      "C. -Append",
+      "D. -Add"
+    ],
+    "answer": "C",
+    "explanation": "-Append voegt de nieuwe uitvoer toe aan het einde van een bestaand bestand. Zonder deze parameter wordt de volledige inhoud van het bestand vervangen.",
+    "subtopic": "Bestanden & data-opslag"
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Je maakt een PSDrive aan met New-PSDrive en de parameter -Persist. Wat is het gevolg van -Persist?",
+    "choices": [
+      "A. De PSDrive is alleen beschikbaar in de huidige PowerShell-sessie.",
+      "B. De PSDrive wordt ook als schijf zichtbaar in Windows Verkenner.",
+      "C. De PSDrive wordt bij elke opstart automatisch verwijderd.",
+      "D. De PSDrive kan enkel worden verwijderd door de computer te herstarten."
+    ],
+    "answer": "B",
+    "explanation": "Met -Persist wordt de PSDrive (voor FileSystem-providers) als een gekoppelde netwerkschijf toegevoegd aan Windows Verkenner. Zonder -Persist bestaat de drive alleen zolang de PowerShell-sessie actief is.",
+    "subtopic": "Bestanden & data-opslag"
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Je wilt een message box tonen met Ja/Nee-knoppen en de keuze van de gebruiker opslaan. Welke code is correct?",
+    "choices": [
+      "A. $keuze = [System.Windows.MessageBox]::Show(\"Doorgaan?\", \"Keuze\", \"YesNo\")",
+      "B. $keuze = Show-MessageBox \"Doorgaan?\" -Buttons YesNo",
+      "C. $keuze = New-Object MessageBox -Text \"Doorgaan?\" -Buttons YesNo",
+      "D. $keuze = [System.Windows.Forms.MessageBox]::Create(\"Doorgaan?\", \"YesNo\")"
+    ],
+    "answer": "A",
+    "explanation": "De correcte aanroep is via de statische methode ::Show() van [System.Windows.MessageBox]. De returnwaarde (\"Yes\" of \"No\") wordt opgeslagen in $keuze. Vergeet ook Add-Type -AssemblyName PresentationFramework niet vóór deze regel.",
+    "subtopic": "GUI & message boxes"
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "open",
+    "question": "Wat is het verschil tussen `$cred.UserName` en `$cred.Password` in een PSCredential-object dat je hebt verkregen via Get-Credential?",
+    "choices": [],
+    "answer": "$cred.UserName is een gewone string met de ingevoerde gebruikersnaam. $cred.Password is een SecureString: het wachtwoord is versleuteld opgeslagen in het geheugen en kan niet zomaar als plaintext worden uitgelezen.",
+    "explanation": "PSCredential beschermt het wachtwoord als SecureString zodat het nooit onversleuteld in het geheugen staat of zichtbaar is in uitvoer. De gebruikersnaam heeft geen extra beveiliging nodig.",
+    "subtopic": "Credentials & rechten"
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Key Concepts",
+    "type": "mc",
+    "question": "Wat staat de afkorting ITIL voor?",
+    "choices": [
+      "A. Information Technology Infrastructure Library",
+      "B. Integrated Technology Implementation Library",
+      "C. International Technology Infrastructure Layer",
+      "D. Information Transfer and Integration Library"
+    ],
+    "answer": "A. Information Technology Infrastructure Library",
+    "explanation": "ITIL staat voor Information Technology Infrastructure Library, een verzameling best practices voor IT Service Management."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Key Concepts",
+    "type": "mc",
+    "question": "Hoeveel leidende principes (Guiding Principles) telt ITIL 4?",
+    "choices": [
+      "A. 4",
+      "B. 5",
+      "C. 7",
+      "D. 34"
+    ],
+    "answer": "C. 7",
+    "explanation": "ITIL 4 bevat precies 7 leidende principes die altijd van toepassing zijn, ongeacht de context of situatie."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Key Concepts",
+    "type": "mc",
+    "question": "Welke moderne werkwijzen houdt ITIL 4 rekening mee?",
+    "choices": [
+      "A. Waterfall, PRINCE2 en COBIT",
+      "B. Lean, Agile en DevOps",
+      "C. Six Sigma, Scrum en SAFe",
+      "D. TOGAF, COBIT en PMBOK"
+    ],
+    "answer": "B. Lean, Agile en DevOps",
+    "explanation": "ITIL 4 is de nieuwste versie en houdt expliciet rekening met moderne werkwijzen zoals Lean, Agile en DevOps, naast klantervaring en digitale transformatie."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Guiding Principles",
+    "type": "mc",
+    "question": "Een team onderzoekt eerst wat de klant nodig heeft voordat ze beginnen te bouwen. Welk Guiding Principle past hierbij?",
+    "choices": [
+      "A. Start where you are",
+      "B. Focus on value",
+      "C. Keep it simple and practical",
+      "D. Progress iteratively with feedback"
+    ],
+    "answer": "B. Focus on value",
+    "explanation": "Focus on value betekent dat alle activiteiten waarde moeten opleveren voor klanten, gebruikers en de organisatie. Beginnen met begrijpen wat de klant nodig heeft is de kern van dit principe."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Guiding Principles",
+    "type": "mc",
+    "question": "Een organisatie hergebruikt bestaande processen en tools in plaats van alles opnieuw te bouwen. Welk Guiding Principle is dit?",
+    "choices": [
+      "A. Focus on value",
+      "B. Optimize and automate",
+      "C. Start where you are",
+      "D. Think and work holistically"
+    ],
+    "answer": "C. Start where you are",
+    "explanation": "Start where you are houdt in dat je eerst evalueert wat er al bestaat en dat hergebruikt, in plaats van alles opnieuw te starten. Dit vermijdt verspilling van tijd en middelen."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Guiding Principles",
+    "type": "mc",
+    "question": "Een project wordt uitgevoerd in kleine stappen met feedbackmomenten tussendoor. Welk Guiding Principle past hierbij?",
+    "choices": [
+      "A. Collaborate and promote visibility",
+      "B. Keep it simple and practical",
+      "C. Start where you are",
+      "D. Progress iteratively with feedback"
+    ],
+    "answer": "D. Progress iteratively with feedback",
+    "explanation": "Progress iteratively with feedback betekent verbeteringen in kleine, haalbare stappen uitvoeren en na elke iteratie feedback verzamelen om bij te sturen."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Guiding Principles",
+    "type": "mc",
+    "question": "Teams werken samen en delen informatie via dashboards zodat iedereen de voortgang kan volgen. Welk Guiding Principle is dit?",
+    "choices": [
+      "A. Focus on value",
+      "B. Think and work holistically",
+      "C. Collaborate and promote visibility",
+      "D. Optimize and automate"
+    ],
+    "answer": "C. Collaborate and promote visibility",
+    "explanation": "Collaborate and promote visibility richt zich op samenwerking en het vermijden van silo's door informatie zichtbaar en toegankelijk te maken voor alle betrokken partijen."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Guiding Principles",
+    "type": "mc",
+    "question": "Een probleem wordt bekeken vanuit meerdere perspectieven: IT, business én gebruiker. Welk Guiding Principle past hier het best bij?",
+    "choices": [
+      "A. Start where you are",
+      "B. Think and work holistically",
+      "C. Collaborate and promote visibility",
+      "D. Focus on value"
+    ],
+    "answer": "B. Think and work holistically",
+    "explanation": "Think and work holistically vereist dat je altijd het gehele systeem begrijpt: processen, mensen, technologie en partners. Diensten werken nooit op zichzelf."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Guiding Principles",
+    "type": "mc",
+    "question": "Een wachtwoordresetproces bestaat uit 8 schermen en is onnodig ingewikkeld. Welk Guiding Principle wordt hier geschonden?",
+    "choices": [
+      "A. Optimize and automate",
+      "B. Progress iteratively with feedback",
+      "C. Keep it simple and practical",
+      "D. Start where you are"
+    ],
+    "answer": "C. Keep it simple and practical",
+    "explanation": "Keep it simple and practical stelt dat eenvoud kracht is. Alles wat niet bijdraagt aan waarde moet worden weggelaten of vereenvoudigd."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Guiding Principles",
+    "type": "mc",
+    "question": "Een inefficiënt e-mailproces wordt meteen geautomatiseerd zonder het eerst te verbeteren. Welk Guiding Principle wordt hiermee genegeerd?",
+    "choices": [
+      "A. Focus on value",
+      "B. Optimize and automate",
+      "C. Keep it simple and practical",
+      "D. Collaborate and promote visibility"
+    ],
+    "answer": "B. Optimize and automate",
+    "explanation": "Optimize and automate vereist dat je eerst begrijpt wat je wil verbeteren en het proces optimaliseert, vóór je automatiseert. Slechte processen automatiseren vergroot de chaos."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Guiding Principles",
+    "type": "mc",
+    "question": "Welke stelling over de ITIL Guiding Principles is CORRECT?",
+    "choices": [
+      "A. Elk principe geldt alleen voor grote organisaties",
+      "B. Je kiest per project welke principes van toepassing zijn",
+      "C. De principes gelden altijd, ongeacht situatie of managementstructuur",
+      "D. De principes vervangen alle andere frameworks zoals Agile en Lean"
+    ],
+    "answer": "C. De principes gelden altijd, ongeacht situatie of managementstructuur",
+    "explanation": "Een leidend principe geldt altijd — ongeacht het project, de situatie of de managementstructuur. Dat is precies wat ze 'leidend' maakt."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Guiding Principles",
+    "type": "open",
+    "question": "Leg uit wat het Guiding Principle 'Start where you are' inhoudt en geef een concreet voorbeeld.",
+    "answer": "Start where you are betekent dat je niet alles opnieuw bouwt, maar eerst evalueert wat er al bestaat en dat hergebruikt of verbetert. Je observeert hoe processen écht lopen (niet alleen op papier) en gebruikt bestaande tools, processen en kennis. Voorbeeld: een helpdesk die al een Excel gebruikt voor meldingen hoeft niet meteen een duur ticketsysteem te kopen — eerst bekijk je of de Excel kan worden uitgebreid met extra kolommen of automatische filters."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Guiding Principles",
+    "type": "mc",
+    "question": "Een IT-team kijkt bij het oplossen van een probleem uitsluitend naar hun eigen afdeling zonder andere teams te betrekken. Welk principe wordt hier genegeerd?",
+    "choices": [
+      "A. Keep it simple and practical",
+      "B. Think and work holistically",
+      "C. Start where you are",
+      "D. Progress iteratively with feedback"
+    ],
+    "answer": "B. Think and work holistically",
+    "explanation": "Think and work holistically vereist dat je alle betrokken onderdelen bekijkt: processen, mensen, technologie en partners. Een team dat alleen naar de eigen afdeling kijkt, ziet het grotere plaatje niet."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Guiding Principles",
+    "type": "mc",
+    "question": "Een team wil alles perfect hebben vóór de oplevering en rolt niets uit totdat alles 100% klaar is. Welk principe wordt hier geschonden?",
+    "choices": [
+      "A. Focus on value",
+      "B. Optimize and automate",
+      "C. Collaborate and promote visibility",
+      "D. Progress iteratively with feedback"
+    ],
+    "answer": "D. Progress iteratively with feedback",
+    "explanation": "Progress iteratively with feedback stimuleert kleine, frequente stappen met tussentijdse feedback. Wachten tot alles perfect is vertraagt verbeteringen en verhoogt het risico."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "4 Dimensions",
+    "type": "mc",
+    "question": "Welke zijn de vier dimensies van service management in ITIL 4?",
+    "choices": [
+      "A. Strategie, Ontwerp, Transitie, Productie",
+      "B. Organisaties en mensen, Informatie en technologie, Partners en leveranciers, Waardestromen en processen",
+      "C. Plan, Engage, Deliver, Improve",
+      "D. Governance, Principes, Praktijken, Waardeketen"
+    ],
+    "answer": "B. Organisaties en mensen, Informatie en technologie, Partners en leveranciers, Waardestromen en processen",
+    "explanation": "De vier dimensies van service management zijn: (1) Organisaties en mensen, (2) Informatie en technologie, (3) Partners en leveranciers, en (4) Waardestromen en processen."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "4 Dimensions",
+    "type": "mc",
+    "question": "Welke dimensie gaat over het bijhouden van netwerkdiagrammen, configuratiebestanden en monitoringtools?",
+    "choices": [
+      "A. Organisaties en mensen",
+      "B. Partners en leveranciers",
+      "C. Informatie en technologie",
+      "D. Waardestromen en processen"
+    ],
+    "answer": "C. Informatie en technologie",
+    "explanation": "De dimensie 'Informatie en technologie' omvat alle tools, technologieën en informatie die nodig zijn om IT-diensten te leveren, zoals monitoringtools, configuratiebestanden en kennisbanken."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "4 Dimensions",
+    "type": "mc",
+    "question": "Microsoft (Office 365), een ISP en een securitybedrijf voor audits vallen onder welke dimensie van service management?",
+    "choices": [
+      "A. Organisaties en mensen",
+      "B. Waardestromen en processen",
+      "C. Informatie en technologie",
+      "D. Partners en leveranciers"
+    ],
+    "answer": "D. Partners en leveranciers",
+    "explanation": "De dimensie 'Partners en leveranciers' betreft alle externe partijen waarop een organisatie steunt voor hardware, software, cloudservices of support."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "4 Dimensions",
+    "type": "open",
+    "question": "Wat is een 'waardestroom' binnen de dimensie 'Waardestromen en processen'? Geef een voorbeeld.",
+    "answer": "Een waardestroom is het geheel van stappen dat nodig is om een dienst te leveren. Voorbeeld: het klaarzetten van een nieuwe laptop voor een medewerker omvat stappen zoals ticket aanmaken, hardware kiezen, laptop installeren (OS, updates), security configureren, software installeren, gebruiker informeren, documenteren en ticket afsluiten. Al deze stappen samen vormen de waardestroom."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Service Value System",
+    "type": "mc",
+    "question": "Uit hoeveel onderdelen bestaat het ITIL Service Value System (SVS)?",
+    "choices": [
+      "A. 4",
+      "B. 5",
+      "C. 6",
+      "D. 7"
+    ],
+    "answer": "B. 5",
+    "explanation": "Het SVS bestaat uit vijf onderdelen: (1) Guiding Principles, (2) Governance, (3) Practices, (4) Service Value Chain, en (5) Continual Improvement."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Service Value System",
+    "type": "mc",
+    "question": "Wat is de verhouding tussen het Service Value System (SVS) en de Service Value Chain (SVC)?",
+    "choices": [
+      "A. SVS en SVC zijn twee namen voor hetzelfde concept",
+      "B. De SVC is het geheel; de SVS is de motor daarbinnen",
+      "C. De SVS is het geheel; de SVC is de motor (6 activiteiten) daarbinnen",
+      "D. De SVS vervangt de SVC in ITIL 4"
+    ],
+    "answer": "C. De SVS is het geheel; de SVC is de motor (6 activiteiten) daarbinnen",
+    "explanation": "Het SVS is het overkoepelende systeem dat alles omvat. De SVC zit in het hart van het SVS en beschrijft via 6 activiteiten hoe vraag wordt omgezet in waarde."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Service Value System",
+    "type": "mc",
+    "question": "Welk onderdeel van het SVS bepaalt wie beslist, hoe risico's worden beheerd en wie welke verantwoordelijkheden heeft?",
+    "choices": [
+      "A. Guiding Principles",
+      "B. Continual Improvement",
+      "C. Service Value Chain",
+      "D. Governance"
+    ],
+    "answer": "D. Governance",
+    "explanation": "Governance bepaalt de sturing en controle van de organisatie: wie beslist, hoe risico's worden beheerd, wie welke verantwoordelijkheden heeft en hoe prioriteiten worden gesteld."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Service Value System",
+    "type": "mc",
+    "question": "Wat is een 'practice' in ITIL 4?",
+    "choices": [
+      "A. Uitsluitend een beschreven proces zonder tools of mensen",
+      "B. Een set organisatorische middelen (mensen, processen, tools, kennis) voor een bepaald soort werk",
+      "C. Een stap in de Service Value Chain",
+      "D. Een leidend principe dat altijd van toepassing is"
+    ],
+    "answer": "B. Een set organisatorische middelen (mensen, processen, tools, kennis) voor een bepaald soort werk",
+    "explanation": "Een ITIL practice is breder dan een proces: het combineert mensen, processen, tools, vaardigheden en documentatie om een bepaald soort werk te doen, zoals Incident Management of Change Enablement."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Service Value System",
+    "type": "mc",
+    "question": "Hoeveel practices telt ITIL 4, verdeeld over hoeveel categorieën?",
+    "choices": [
+      "A. 26 practices, 3 categorieën",
+      "B. 34 practices, 3 categorieën",
+      "C. 34 practices, 5 categorieën",
+      "D. 26 practices, 5 categorieën"
+    ],
+    "answer": "B. 34 practices, 3 categorieën",
+    "explanation": "ITIL 4 telt 34 practices, verdeeld over 3 categorieën: 14 General Management practices, 17 Service Management practices en 3 Technical Management practices."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Service Value Chain",
+    "type": "mc",
+    "question": "Hoeveel activiteiten telt de Service Value Chain (SVC)?",
+    "choices": [
+      "A. 4",
+      "B. 5",
+      "C. 6",
+      "D. 7"
+    ],
+    "answer": "C. 6",
+    "explanation": "De Service Value Chain bestaat uit 6 activiteiten: Plan, Improve, Engage, Design & Transition, Obtain/Build en Deliver & Support."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Service Value Chain",
+    "type": "mc",
+    "question": "Welke SVC-activiteit zorgt voor alle interacties met gebruikers, klanten en leveranciers, en vangt meldingen en wensen op?",
+    "choices": [
+      "A. Plan",
+      "B. Deliver & Support",
+      "C. Engage",
+      "D. Improve"
+    ],
+    "answer": "C. Engage",
+    "explanation": "Engage gaat over communicatie, verwachtingen en relaties. Het is het aanspreekpunt voor alle stakeholders: gebruikers die melden, klanten die wensen hebben en leveranciers die leveren."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Service Value Chain",
+    "type": "mc",
+    "question": "Een WiFi-storing wordt gemeld, een technicus lost het op en gebruikers ontvangen bevestiging. Dit is een voorbeeld van welke SVC-activiteit?",
+    "choices": [
+      "A. Plan",
+      "B. Design & Transition",
+      "C. Obtain/Build",
+      "D. Deliver & Support"
+    ],
+    "answer": "D. Deliver & Support",
+    "explanation": "Deliver & Support omvat de dagelijkse werking: incidenten oplossen, gebruikers ondersteunen, monitoring opvolgen en services draaiende houden."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Service Value Chain",
+    "type": "mc",
+    "question": "Een hogeschool plant een datacentermigratie: inventaris, budget, testfases en risicoanalyse worden opgesteld. Dit is een voorbeeld van welke SVC-activiteit?",
+    "choices": [
+      "A. Engage",
+      "B. Plan",
+      "C. Improve",
+      "D. Obtain/Build"
+    ],
+    "answer": "B. Plan",
+    "explanation": "Plan zorgt dat iedereen op één lijn staat over waar de organisatie naartoe wil, waar ze vandaag staat, wat prioritair is en welke middelen beschikbaar zijn."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Service Value Chain",
+    "type": "mc",
+    "question": "Een nieuwe Windows-image wordt ontworpen, getest en klaargezet voor productie, inclusief compatibiliteitscontrole. Welke SVC-activiteit is dit?",
+    "choices": [
+      "A. Obtain/Build",
+      "B. Deliver & Support",
+      "C. Design & Transition",
+      "D. Improve"
+    ],
+    "answer": "C. Design & Transition",
+    "explanation": "Design & Transition is verantwoordelijk voor het ontwerpen van nieuwe of gewijzigde diensten en het veilig in productie brengen ervan, met garanties voor kwaliteit, kost en compatibiliteit."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Service Value Chain",
+    "type": "open",
+    "question": "Zijn de activiteiten van de Service Value Chain lineair? Leg uit.",
+    "answer": "Nee, de activiteiten van de SVC zijn niet lineair. Ze worden gecombineerd tot een 'value stream' die past bij elke specifieke situatie. Dezelfde activiteit kan meerdere keren voorkomen in één value stream en de volgorde varieert per situatie. Bijvoorbeeld: bij een incident met e-mail doorloop je Engage → Deliver & Support → Obtain/Build → Design & Transition → Deliver & Support → Improve, waarbij Deliver & Support twee keer voorkomt."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Practices",
+    "type": "mc",
+    "question": "Wat is het doel van Incident Management?",
+    "choices": [
+      "A. De onderliggende oorzaak van terugkerende storingen permanent wegnemen",
+      "B. Wijzigingen veilig en gecontroleerd doorvoeren",
+      "C. Een onderbroken dienst zo snel mogelijk herstellen",
+      "D. Standaardaanvragen van gebruikers efficiënt afhandelen"
+    ],
+    "answer": "C. Een onderbroken dienst zo snel mogelijk herstellen",
+    "explanation": "Incident Management richt zich op het zo snel mogelijk herstellen van de dienst na een ongeplande onderbreking — het zoeken naar de grondoorzaak is de taak van Problem Management."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Practices",
+    "type": "mc",
+    "question": "Twintig gebruikers melden elke maandag dat het internet traag is. Een analyse toont dat een switch poortflapping heeft. Welke practice lost dit structureel op?",
+    "choices": [
+      "A. Incident Management",
+      "B. Service Request Management",
+      "C. Change Enablement",
+      "D. Problem Management"
+    ],
+    "answer": "D. Problem Management",
+    "explanation": "Problem Management zoekt de onderliggende oorzaak (root cause) van terugkerende incidenten. De Known Error Database (KEDB) wordt hier bijgehouden."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Practices",
+    "type": "mc",
+    "question": "Een nieuwe versie van Office 365 wordt getest, goedgekeurd via een Change Advisory Board en uitgerold met een terugvalplan. Welke practice is dit?",
+    "choices": [
+      "A. Release Management",
+      "B. Deployment Management",
+      "C. Change Enablement",
+      "D. Service Configuration Management"
+    ],
+    "answer": "C. Change Enablement",
+    "explanation": "Change Enablement (voorheen Change Management) zorgt dat wijzigingen aan de IT-omgeving veilig en gecontroleerd worden doorgevoerd, inclusief risicoanalyse en goedkeuring via CAB."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Practices",
+    "type": "mc",
+    "question": "Een student vraagt toegang tot een extra labo-VM. Dit is een routineverzoek zonder bijzonderheden. Welke practice handelt dit af?",
+    "choices": [
+      "A. Incident Management",
+      "B. Problem Management",
+      "C. Service Request Management",
+      "D. Service Desk"
+    ],
+    "answer": "C. Service Request Management",
+    "explanation": "Service Request Management behandelt standaard verzoeken van gebruikers (geen incidenten) via een catalogus. Het gaat om vooraf gedefinieerde, routinematige aanvragen."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Practices",
+    "type": "mc",
+    "question": "Welke practice beheert nauwkeurige informatie over configuratie-items (CI's) en hun onderlinge relaties?",
+    "choices": [
+      "A. IT Asset Management",
+      "B. Monitoring and Event Management",
+      "C. Service Configuration Management",
+      "D. Release Management"
+    ],
+    "answer": "C. Service Configuration Management",
+    "explanation": "Service Configuration Management houdt bij welke configuratie-items (CI's) bestaan, hoe ze zijn geconfigureerd en welke relaties er zijn — essentieel voor troubleshooting en change management."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Practices",
+    "type": "mc",
+    "question": "Welke drie categorieën van practices kent ITIL 4?",
+    "choices": [
+      "A. Strategisch, Tactisch, Operationeel",
+      "B. General Management, Service Management, Technical Management",
+      "C. People, Process, Technology",
+      "D. Plan, Build, Run"
+    ],
+    "answer": "B. General Management, Service Management, Technical Management",
+    "explanation": "ITIL 4 verdeelt de 34 practices in drie categorieën: 14 General Management practices (algemeen), 17 Service Management practices (IT-diensten) en 3 Technical Management practices (technisch)."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Practices",
+    "type": "mc",
+    "question": "Welke practice heeft als doel de vertrouwelijkheid, integriteit en beschikbaarheid van informatie te waarborgen?",
+    "choices": [
+      "A. Risk Management",
+      "B. IT Asset Management",
+      "C. Information Security Management",
+      "D. Knowledge Management"
+    ],
+    "answer": "C. Information Security Management",
+    "explanation": "Information Security Management beschermt de informatie die de organisatie nodig heeft om haar zaken te doen, met aandacht voor vertrouwelijkheid, integriteit en beschikbaarheid (CIA-triad)."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Practices",
+    "type": "mc",
+    "question": "Monitoring- en alertingstools die 24/7 de servers en het netwerk in de gaten houden, horen bij welke practice?",
+    "choices": [
+      "A. Service Desk",
+      "B. Problem Management",
+      "C. Monitoring and Event Management",
+      "D. Incident Management"
+    ],
+    "answer": "C. Monitoring and Event Management",
+    "explanation": "Monitoring and Event Management observeert systematisch diensten en infrastructuur en registreert veranderingen of toestanden als 'events', zodat problemen worden gedetecteerd vóór een gebruiker iets merkt."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Key Concepts",
+    "type": "mc",
+    "question": "Wat is een 'incident' in ITIL-terminologie?",
+    "choices": [
+      "A. Een oorzaak, of potentiële oorzaak, van een of meer storingen",
+      "B. Een ongeplande onderbreking van een dienst of vermindering van de kwaliteit ervan",
+      "C. Een probleem dat is geanalyseerd maar nog niet opgelost",
+      "D. Een toevoeging, wijziging of verwijdering die effect heeft op diensten"
+    ],
+    "answer": "B. Een ongeplande onderbreking van een dienst of vermindering van de kwaliteit ervan",
+    "explanation": "Een incident is een ongeplande onderbreking van een dienst of een vermindering van de kwaliteit ervan. Het verschil met een probleem is dat een probleem de onderliggende oorzaak is."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Key Concepts",
+    "type": "mc",
+    "question": "Wat is een 'known error' (bekende fout)?",
+    "choices": [
+      "A. Een ongeplande onderbreking van een dienst",
+      "B. Elk onderdeel dat beheerd moet worden voor een IT-dienst",
+      "C. Een probleem dat is geanalyseerd maar nog niet opgelost",
+      "D. Een verandering van toestand van een configuratie-item"
+    ],
+    "answer": "C. Een probleem dat is geanalyseerd maar nog niet opgelost",
+    "explanation": "Een bekende fout (known error) is een probleem waarvoor de root cause al is geïdentificeerd, maar waarvoor nog geen definitieve oplossing bestaat. Ze worden bijgehouden in de Known Error Database (KEDB)."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Key Concepts",
+    "type": "mc",
+    "question": "Waarom zijn 'silo's' in IT-organisaties schadelijk volgens ITIL?",
+    "choices": [
+      "A. Ze zorgen voor te veel automatisatie",
+      "B. Ze leiden tot ontbrekende communicatie, dubbel werk en langere troubleshooting",
+      "C. Ze maken het onmogelijk om een CMDB bij te houden",
+      "D. Ze zijn strijdig met de Guiding Principles voor kleine organisaties"
+    ],
+    "answer": "B. Ze leiden tot ontbrekende communicatie, dubbel werk en langere troubleshooting",
+    "explanation": "Silo's ontstaan als teams niet communiceren: incidenten worden doorgegeven zonder oplossing, kennis zit vast bij één persoon, changes worden dubbel ingepland en troubleshooting duurt langer. ITIL stimuleert gedeelde waardestromen."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Key Concepts",
+    "type": "open",
+    "question": "Beschrijf het verschil tussen een 'gebruiker', een 'klant' en een 'sponsor' in de context van ITIL 4.",
+    "answer": "Een gebruiker is de persoon die de dienst werkelijk gebruikt (bijv. een student die op het netwerk surft). Een klant is de persoon die beslist over en betaalt voor de dienst (bijv. de schooldirectie). Een sponsor is de partij die de middelen ter beschikking stelt om de dienst mogelijk te maken. Een organisatie moet weten voor wie ze waarde creëert om het principe 'Focus on value' correct toe te passen."
+  },
+  {
+    "chapter": "ITIL 4 Foundation",
+    "subtopic": "Key Concepts",
+    "type": "mc",
+    "question": "Wat is het doel van de 'Continual Improvement' component binnen het SVS?",
+    "choices": [
+      "A. Eenmalig alle processen optimaliseren bij implementatie van ITIL",
+      "B. Voortdurend verbeteren van producten, diensten en praktijken op alle niveaus",
+      "C. Alleen de Service Value Chain verbeteren, niet de practices",
+      "D. Automatisch verbeteringen doorvoeren zonder menselijke tussenkomst"
+    ],
+    "answer": "B. Voortdurend verbeteren van producten, diensten en praktijken op alle niveaus",
+    "explanation": "Continual Improvement is een terugkerende organisatorische activiteit op alle niveaus om ervoor te zorgen dat prestaties blijven voldoen aan de verwachtingen van stakeholders. Geen enkel IT-team is 'af'."
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Welke loop gebruik je als je een actie een VAST aantal keer wil uitvoeren?",
+    "choices": [
+      "while",
+      "foreach",
+      "for",
+      "do-while"
+    ],
+    "answer": "for",
+    "explanation": "De for-loop heeft een teller, een eindvoorwaarde en een stapgrootte — ideaal als het aantal herhalingen vooraf bekend is."
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Wat is het verschil tussen while en do-while?",
+    "choices": [
+      "while controleert de voorwaarde vóór de eerste uitvoering, do-while erna",
+      "do-while controleert de voorwaarde vóór de eerste uitvoering, while erna",
+      "Er is geen verschil",
+      "while werkt alleen met getallen, do-while met strings"
+    ],
+    "answer": "while controleert de voorwaarde vóór de eerste uitvoering, do-while erna",
+    "explanation": "Bij while kan de lus-body 0 keer uitgevoerd worden als de voorwaarde direct false is. Bij do-while wordt de body altijd minstens één keer uitgevoerd."
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Wat doet het statement 'break' binnen een loop?",
+    "choices": [
+      "Het slaat de huidige iteratie over en gaat naar de volgende",
+      "Het stopt de volledige loop onmiddellijk",
+      "Het herstart de loop vanaf het begin",
+      "Het geeft een foutmelding"
+    ],
+    "answer": "Het stopt de volledige loop onmiddellijk",
+    "explanation": "break verlaat de lus volledig. continue daarentegen slaat alleen de rest van de huidige iteratie over en gaat door naar de volgende."
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Welke operator gebruik je om te controleren of een getal GROTER DAN OF GELIJK AAN een waarde is?",
+    "choices": [
+      "-gt",
+      "-ge",
+      "-eq",
+      "-le"
+    ],
+    "answer": "-ge",
+    "explanation": "-ge staat voor 'greater than or equal'. -gt is strikt groter dan, -le is kleiner dan of gelijk aan, -eq is gelijk aan."
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Wat doet Test-Path in een PowerShell-script?",
+    "choices": [
+      "Het maakt een nieuw bestand aan",
+      "Het verwijdert een bestand of map",
+      "Het controleert of een bestand of map bestaat en geeft $true of $false terug",
+      "Het toont de inhoud van een bestand"
+    ],
+    "answer": "Het controleert of een bestand of map bestaat en geeft $true of $false terug",
+    "explanation": "Test-Path geeft een boolean terug. Je gebruikt het typisch in een if-statement om fouten te vermijden bij bestands- of mapbewerkingen."
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Wat is het voordeel van 'foreach' bij het werken met arrays of verzamelingen?",
+    "choices": [
+      "Je kunt in één keer door alle elementen van een collectie itereren zonder een teller bij te houden",
+      "foreach werkt sneller dan een for-loop",
+      "foreach kan alleen met bestanden worden gebruikt",
+      "foreach maakt automatisch een back-up van je data"
+    ],
+    "answer": "Je kunt in één keer door alle elementen van een collectie itereren zonder een teller bij te houden",
+    "explanation": "foreach ($item in $collectie) itereert automatisch over elk element. Je hebt geen index-variabele nodig, wat de code leesbaarder maakt."
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "open",
+    "question": "Waarom is het belangrijk om Test-Path te gebruiken vóór je een map aanmaakt of verwijdert in een script?",
+    "choices": [],
+    "answer": "Het voorkomt fouten: een script dat probeert een bestaande map opnieuw aan te maken of een niet-bestaande map te verwijderen, genereert anders een foutmelding. Met Test-Path controleer je eerst de situatie en kan het script meerdere keren foutloos worden uitgevoerd.",
+    "explanation": "Dit maakt scripts idempotent: ze geven hetzelfde correcte resultaat ongeacht hoe vaak ze worden uitgevoerd."
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Wat is het risico van Remove-Item -Recurse -Force?",
+    "choices": [
+      "Het verwijdert alleen lege mappen",
+      "Het vraagt altijd om bevestiging",
+      "Het verwijdert alles definitief zonder waarschuwingen, inclusief alle submappen en bestanden",
+      "Het verplaatst bestanden naar de Prullenbak"
+    ],
+    "answer": "Het verwijdert alles definitief zonder waarschuwingen, inclusief alle submappen en bestanden",
+    "explanation": "-Recurse verwijdert alle submappen en -Force onderdrukt bevestigingsvragen. De verwijdering is permanent en niet te herstellen via de Prullenbak."
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Welk cmdlet gebruik je om invoer van de gebruiker op te vragen in een PowerShell-script?",
+    "choices": [
+      "Write-Host",
+      "Get-Input",
+      "Read-Host",
+      "Get-Content"
+    ],
+    "answer": "Read-Host",
+    "explanation": "Read-Host toont een prompt en wacht op invoer van de gebruiker. De ingevoerde tekst wordt teruggegeven als string. Je kunt -AsSecureString toevoegen voor wachtwoorden."
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "open",
+    "question": "Leg uit wat elseif doet en geef een situatie waarin je het gebruikt.",
+    "choices": [],
+    "answer": "elseif voegt een extra controletak toe tussen if en else. Je gebruikt het als je meer dan twee mogelijke gevallen hebt. Bijvoorbeeld: bij een score kan je A, B of C toewijzen op basis van drempelwaarden — dat vereist een if voor het hoogste bereik, elseif voor het tussenbereik, en else voor de rest.",
+    "explanation": "Zonder elseif zou je geneste if/else-blokken moeten schrijven, wat de code minder leesbaar maakt."
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Wat is het verschil tussen Get-WmiObject en Get-CimInstance?",
+    "choices": [
+      "Get-WmiObject is modern en gebruikt WS-Management; Get-CimInstance is verouderd en gebruikt DCOM.",
+      "Get-WmiObject is verouderd en gebruikt DCOM; Get-CimInstance is modern en gebruikt WS-Management.",
+      "Beide cmdlets zijn identiek en volledig uitwisselbaar.",
+      "Get-CimInstance werkt alleen op remote computers, Get-WmiObject alleen lokaal."
+    ],
+    "answer": "Get-WmiObject is verouderd en gebruikt DCOM; Get-CimInstance is modern en gebruikt WS-Management.",
+    "explanation": "Get-WmiObject is de oudere cmdlet die DCOM gebruikt en niet beschikbaar is in PowerShell 7+. Get-CimInstance is de moderne vervanging die WS-Management (WinRM) gebruikt, sneller en veiliger is, en zowel in PowerShell 5 als 7 werkt.",
+    "subtopic": "WMI & CIM"
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Welke WMI/CIM-klasse gebruik je om informatie over de CPU op te halen?",
+    "choices": [
+      "Win32_OperatingSystem",
+      "Win32_ComputerSystem",
+      "Win32_Processor",
+      "Win32_LogicalDisk"
+    ],
+    "answer": "Win32_Processor",
+    "explanation": "Win32_Processor is de klasse die CPU-informatie bevat, zoals de naam, het aantal cores en de kloksnelheid. Win32_ComputerSystem bevat het totale RAM, Win32_OperatingSystem de OS-info en Win32_LogicalDisk de schijfinformatie.",
+    "subtopic": "WMI & CIM"
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Je wilt schijf C: snel opvragen via Get-CimInstance. Welke aanpak is het meest efficiënt?",
+    "choices": [
+      "Get-CimInstance Win32_LogicalDisk | Where-Object { $_.DeviceID -eq 'C:' }",
+      "Get-CimInstance Win32_LogicalDisk -Filter \"DeviceID='C:'\"",
+      "Get-CimInstance Win32_DiskDrive -Filter \"DeviceID='C:'\"",
+      "Get-CimInstance Win32_LogicalDisk | Select-Object -First 1"
+    ],
+    "answer": "Get-CimInstance Win32_LogicalDisk -Filter \"DeviceID='C:'\"",
+    "explanation": "Met de -Filter parameter wordt de filtering aan de bron (WMI-provider) uitgevoerd, waardoor alleen de gevraagde data wordt teruggegeven. Where-Object filtert pas nadat alles is opgehaald, wat trager is. Win32_DiskDrive is voor fysieke schijven, niet logische.",
+    "subtopic": "WMI & CIM"
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Wat zijn CIM-klassen?",
+    "choices": [
+      "PowerShell-functies die je zelf schrijft om systeemsoftware te beheren.",
+      "Categorieën die systeeminformatie beschrijven, zoals hardware en services.",
+      "Bestanden op schijf die Windows-configuratie bevatten.",
+      "Cmdlets die automatisch worden geladen bij het starten van PowerShell."
+    ],
+    "answer": "Categorieën die systeeminformatie beschrijven, zoals hardware en services.",
+    "explanation": "CIM-klassen zijn schema's die categorieën van systeeminformatie beschrijven. Elke klasse (bv. Win32_Processor, Win32_LogicalDisk) vertegenwoordigt een type object met specifieke eigenschappen. Je gebruikt Get-CimInstance of Get-WmiObject om objecten van die klasse op te halen.",
+    "subtopic": "WMI & CIM"
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "open",
+    "question": "De eigenschap CurrentTemperature van MSAcpi_ThermalZoneTemperature geeft 3085 terug. Wat is de temperatuur in Celsius?",
+    "choices": [],
+    "answer": "35,35°C",
+    "explanation": "De formule is: (CurrentTemperature / 10) − 273.15. Dus (3085 / 10) − 273.15 = 308.5 − 273.15 = 35.35°C. WMI slaat de temperatuur op als Kelvin × 10 om decimalen te vermijden.",
+    "subtopic": "WMI & CIM"
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Welke uitspraak over Win32_Product is correct?",
+    "choices": [
+      "Win32_Product is de snelste manier om geïnstalleerde software op te vragen.",
+      "Win32_Product toont alle geïnstalleerde software inclusief store-apps en portable apps.",
+      "Win32_Product is traag en kan bij het opvragen een reparatieproces starten voor MSI-pakketten.",
+      "Win32_Product werkt enkel op Windows Server en niet op Windows 10/11."
+    ],
+    "answer": "Win32_Product is traag en kan bij het opvragen een reparatieproces starten voor MSI-pakketten.",
+    "explanation": "Win32_Product heeft een bekende beperking: bij elke query controleert Windows de consistentie van MSI-pakketten, wat het reparatiemechanisme kan starten. Daardoor is de cmdlet traag en soms ongewenst in productieomgevingen. Voor schoolopdrachten is het wel bruikbaar.",
+    "subtopic": "WMI & CIM"
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "Wat geeft Get-CimInstance terug als resultaat?",
+    "choices": [
+      "Platte tekst die je verder moet verwerken met string-methoden.",
+      "Een CSV-bestand op schijf.",
+      "PowerShell-objecten met eigenschappen die je kunt opvragen of filteren.",
+      "Een XML-structuur die je met [xml] moet casten."
+    ],
+    "answer": "PowerShell-objecten met eigenschappen die je kunt opvragen of filteren.",
+    "explanation": "Get-CimInstance geeft objecten terug, geen tekst. Je kunt de eigenschappen direct opvragen ($os.Caption), alle leden bekijken met Get-Member, of pipen naar Select-Object, Where-Object en andere cmdlets.",
+    "subtopic": "WMI & CIM"
+  },
+  {
+    "chapter": "PowerShell concepten",
+    "type": "mc",
+    "question": "In welke WMI-namespace vind je de klasse MSAcpi_ThermalZoneTemperature?",
+    "choices": [
+      "root\\cimv2",
+      "root\\default",
+      "root\\WMI",
+      "root\\Microsoft\\Windows"
+    ],
+    "answer": "root\\WMI",
+    "explanation": "De klasse MSAcpi_ThermalZoneTemperature bevindt zich in de namespace root\\WMI, niet in de standaard namespace root\\cimv2. Je moet de -Namespace parameter meegeven: Get-WmiObject -Namespace 'root\\WMI' -Class MSAcpi_ThermalZoneTemperature.",
+    "subtopic": "WMI & CIM"
+  }
+]

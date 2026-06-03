@@ -1,0 +1,1521 @@
+[
+  {
+    "name": "[Microsoft.VisualBasic.Interaction]::InputBox",
+    "aliases": [],
+    "summary": "Toont een invoervenster (inputbox) waar de gebruiker een tekstwaarde kan typen.",
+    "description": "Via de .NET-klasse Microsoft.VisualBasic.Interaction (assembly Microsoft.VisualBasic) toont InputBox een pop-up met een tekstveld. De gebruiker typt een waarde die als string wordt teruggegeven. Als de gebruiker op Annuleren klikt of niets invoert, wordt een lege string teruggegeven.",
+    "syntax": "[Microsoft.VisualBasic.Interaction]::InputBox(\"prompt\", \"titel\", \"standaardwaarde\")",
+    "parameters": [
+      {
+        "name": "prompt",
+        "desc": "De vraag of instructietekst in het venster."
+      },
+      {
+        "name": "titel",
+        "desc": "De tekst in de titelbalk."
+      },
+      {
+        "name": "standaardwaarde",
+        "desc": "Vooraf ingevulde tekst in het invoerveld."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Add-Type -AssemblyName Microsoft.VisualBasic\n$naam = [Microsoft.VisualBasic.Interaction]::InputBox(\"Wat is je naam?\", \"Invoerbox\", \"Typ hier...\")",
+        "desc": "Vraagt de gebruiker om een naam in te typen."
+      }
+    ],
+    "chapter": "H9 GUI & message boxes",
+    "related": [
+      "[System.Windows.MessageBox]::Show",
+      "Add-Type",
+      "Read-Host"
+    ]
+  },
+  {
+    "name": "[System.Windows.MessageBox]::Show",
+    "aliases": [
+      "[System.Windows.Forms.MessageBox]::Show"
+    ],
+    "summary": "Toont een grafisch berichtvenster (message box) met tekst, titel, knoppen en icoon.",
+    "description": "Via de .NET-klasse System.Windows.MessageBox (assembly PresentationFramework) of System.Windows.Forms.MessageBox (assembly System.Windows.Forms) kan je in PowerShell een pop-upvenster tonen. Je kunt de knoppen (OK, YesNo, OKCancel) en het icoon (Information, Warning, Error, Question) instellen. De returnwaarde is de knop die de gebruiker heeft ingedrukt.",
+    "syntax": "[System.Windows.MessageBox]::Show(\"bericht\", \"titel\", \"knoppen\", \"icoon\")",
+    "parameters": [
+      {
+        "name": "bericht",
+        "desc": "De tekst die in het venster wordt getoond."
+      },
+      {
+        "name": "titel",
+        "desc": "De tekst in de titelbalk van het venster."
+      },
+      {
+        "name": "knoppen",
+        "desc": "Knopcombinatie: OK, OKCancel, YesNo, YesNoCancel."
+      },
+      {
+        "name": "icoon",
+        "desc": "Icoon-type: None, Information, Warning, Error, Question."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Add-Type -AssemblyName PresentationFramework\n[System.Windows.MessageBox]::Show(\"Taak voltooid\", \"Info\", \"OK\", \"Information\")",
+        "desc": "Toont een informatieve melding."
+      },
+      {
+        "cmd": "$keuze = [System.Windows.MessageBox]::Show(\"Wil je doorgaan?\", \"Keuze\", \"YesNo\", \"Question\")",
+        "desc": "Vraagt de gebruiker om een keuze en slaat de knop op."
+      }
+    ],
+    "chapter": "H9 GUI & message boxes",
+    "related": [
+      "Add-Type",
+      "[Microsoft.VisualBasic.Interaction]::InputBox"
+    ]
+  },
+  {
+    "name": "Add-LocalGroupMember",
+    "aliases": [],
+    "summary": "Voegt een gebruiker of groep toe aan een lokale groep.",
+    "description": "Add-LocalGroupMember plaatst een bestaand lokaal account in een opgegeven lokale groep (bv. Users, Administrators). Zowel -Group als -Member zijn verplicht.",
+    "syntax": "Add-LocalGroupMember -Group <string> -Member <string|LocalPrincipal>",
+    "parameters": [
+      {
+        "name": "-Group",
+        "desc": "De naam van de lokale groep waaraan je het lid toevoegt."
+      },
+      {
+        "name": "-Member",
+        "desc": "De gebruikersnaam of het account dat je toevoegt aan de groep."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Add-LocalGroupMember -Group \"Users\" -Member \"student1\"",
+        "desc": "Voegt student1 toe aan de lokale groep Users."
+      },
+      {
+        "cmd": "Add-LocalGroupMember -Group \"Administrators\" -Member \"beheerder\"",
+        "desc": "Geeft beheerder lokale adminnrechten."
+      }
+    ],
+    "chapter": "H6 Credentials & rechten",
+    "related": [
+      "New-LocalUser",
+      "Get-LocalUser",
+      "Remove-LocalGroupMember"
+    ]
+  },
+  {
+    "name": "ConvertTo-SecureString",
+    "aliases": [],
+    "summary": "Zet een plaintext-string om naar een versleuteld SecureString-object.",
+    "description": "ConvertTo-SecureString converteert een gewone string naar een SecureString. De parameters -AsPlainText en -Force zijn vereist wanneer je een letterlijke string doorgeeft. Een SecureString wordt veilig in het geheugen bewaard en is nodig voor cmdlets zoals New-LocalUser die een wachtwoord verwachten.",
+    "syntax": "ConvertTo-SecureString [-String] <string> -AsPlainText -Force",
+    "parameters": [
+      {
+        "name": "-AsPlainText",
+        "desc": "Geeft aan dat de invoer een onversleutelde plaintext-string is."
+      },
+      {
+        "name": "-Force",
+        "desc": "Verplicht samen met -AsPlainText; bevestigt dat je bewust een plaintext-wachtwoord verwerkt."
+      },
+      {
+        "name": "-String",
+        "desc": "De te converteren tekst."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "$sec = ConvertTo-SecureString \"P@ssword123\" -AsPlainText -Force",
+        "desc": "Converteert het wachtwoord P@ssword123 naar een SecureString."
+      }
+    ],
+    "chapter": "H6 Credentials & rechten",
+    "related": [
+      "Get-Credential",
+      "New-LocalUser"
+    ]
+  },
+  {
+    "name": "Format-List",
+    "aliases": [
+      "fl"
+    ],
+    "summary": "Toont output als een verticale lijst van eigenschappen.",
+    "description": "Format-List toont elke eigenschap op een aparte regel. Met * toon je alle beschikbare eigenschappen, ook verborgen eigenschappen.",
+    "syntax": "Format-List [[-Property] <Object[]>]",
+    "parameters": [
+      {
+        "name": "-Property",
+        "desc": "Lijst van te tonen eigenschappen; gebruik * voor alle."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-Service wuauserv | Format-List *",
+        "desc": "Toont alle eigenschappen van de Windows Update-service, inclusief verborgen."
+      },
+      {
+        "cmd": "Get-LocalUser student | fl *",
+        "desc": "Toont alle accountdetails van de gebruiker 'student'."
+      }
+    ],
+    "chapter": "H1 PowerShell-basis",
+    "related": [
+      "Format-Table",
+      "Format-Wide",
+      "Select-Object"
+    ]
+  },
+  {
+    "name": "Format-Table",
+    "aliases": [
+      "ft"
+    ],
+    "summary": "Toont output als een tabel met kolommen.",
+    "description": "Format-Table is de standaard tabelweergave in PowerShell. Je kunt specifieke eigenschappen opgeven om te tonen als kolommen.",
+    "syntax": "Format-Table [[-Property] <Object[]>] [-AutoSize] [-Wrap]",
+    "parameters": [
+      {
+        "name": "-Property",
+        "desc": "Lijst van eigenschappen die als kolommen worden getoond."
+      },
+      {
+        "name": "-AutoSize",
+        "desc": "Past de kolombreedte automatisch aan op de inhoud."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-Process | Format-Table Name, CPU, Id",
+        "desc": "Toont processen als tabel met naam, CPU en ID."
+      }
+    ],
+    "chapter": "H1 PowerShell-basis",
+    "related": [
+      "Format-List",
+      "Format-Wide",
+      "Select-Object"
+    ]
+  },
+  {
+    "name": "Format-Wide",
+    "aliases": [
+      "fw"
+    ],
+    "summary": "Toont output als een brede lijst over meerdere kolommen.",
+    "description": "Format-Wide toont één eigenschap van objecten verdeeld over meerdere kolommen, wat handig is voor een compact overzicht van namen of waarden.",
+    "syntax": "Format-Wide [[-Property] <Object>] [-Column <Int32>]",
+    "parameters": [
+      {
+        "name": "-Column",
+        "desc": "Bepaalt het aantal kolommen in de weergave."
+      },
+      {
+        "name": "-Property",
+        "desc": "De eigenschap die weergegeven wordt (standaard de eerste zichtbare)."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-Command | Format-Wide -Column 3",
+        "desc": "Toont alle commando's in drie kolommen."
+      }
+    ],
+    "chapter": "H1 PowerShell-basis",
+    "related": [
+      "Format-Table",
+      "Format-List",
+      "Select-Object"
+    ]
+  },
+  {
+    "name": "Get-Alias",
+    "aliases": [
+      "gal"
+    ],
+    "summary": "Toont de gedefinieerde aliassen in de huidige sessie.",
+    "description": "Get-Alias geeft een overzicht van alle verkorte commandonamen (aliassen) die in de sessie beschikbaar zijn. Zo zie je dat 'dir' verwijst naar Get-ChildItem, of dat 'gm' verwijst naar Get-Member.",
+    "syntax": "Get-Alias [[-Name] <String[]>]",
+    "parameters": [
+      {
+        "name": "-Name",
+        "desc": "Filtert op een specifieke aliasnaam of jokerteken."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-Alias",
+        "desc": "Toont alle aliassen in de sessie."
+      },
+      {
+        "cmd": "Get-Alias dir",
+        "desc": "Toont waarnaar de alias 'dir' verwijst."
+      }
+    ],
+    "chapter": "H1 PowerShell-basis",
+    "related": [
+      "Get-Command",
+      "Set-Alias",
+      "New-Alias"
+    ]
+  },
+  {
+    "name": "Get-CimInstance",
+    "aliases": [
+      "gcim"
+    ],
+    "summary": "Haalt systeeminformatie op via CIM (Common Information Model) — de moderne vervanging van Get-WmiObject.",
+    "description": "Get-CimInstance is de aanbevolen cmdlet voor het ophalen van systeem- en hardware-informatie in PowerShell 5 én 7. Het gebruikt WS-Management (WinRM) in plaats van DCOM, is sneller en veiliger dan Get-WmiObject, en biedt betere ondersteuning voor remote beheer. Je gebruikt dezelfde Win32_-klassen als bij WMI.",
+    "syntax": "Get-CimInstance [-ClassName] <string> [-Filter <string>] [-Property <string[]>] [-ComputerName <string[]>]",
+    "parameters": [
+      {
+        "name": "-ClassName",
+        "desc": "De CIM/WMI-klasse die je wilt opvragen, bv. Win32_OperatingSystem."
+      },
+      {
+        "name": "-Filter",
+        "desc": "WQL-filterstring om resultaten te beperken vóór ze worden teruggegeven, bv. \"DeviceID='C:'\"."
+      },
+      {
+        "name": "-Property",
+        "desc": "Selecteer specifieke eigenschappen om te laden."
+      },
+      {
+        "name": "-ComputerName",
+        "desc": "Voer de query uit op een remote computer (vereist WinRM)."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-CimInstance Win32_OperatingSystem | Select-Object Caption, Version",
+        "desc": "Toont de naam en versie van het besturingssysteem."
+      },
+      {
+        "cmd": "Get-CimInstance Win32_Processor",
+        "desc": "Haalt alle CPU-informatie op."
+      },
+      {
+        "cmd": "Get-CimInstance Win32_LogicalDisk -Filter \"DeviceID='C:'\"",
+        "desc": "Haalt de info van schijf C: op via een filter."
+      },
+      {
+        "cmd": "Get-CimInstance Win32_Process -Filter \"Name='notepad.exe'\"",
+        "desc": "Zoekt het notepad.exe-proces op via een WQL-filter."
+      }
+    ],
+    "chapter": "H5 WMI & CIM",
+    "related": [
+      "Get-WmiObject",
+      "Get-Member",
+      "Win32_OperatingSystem",
+      "Win32_Processor",
+      "Win32_LogicalDisk",
+      "Win32_Process",
+      "Win32_BIOS"
+    ]
+  },
+  {
+    "name": "Get-Command",
+    "aliases": [
+      "gcm"
+    ],
+    "summary": "Toont een overzicht van alle beschikbare cmdlets, functies en aliassen.",
+    "description": "Get-Command geeft een lijst van alle commando's die beschikbaar zijn in de huidige PowerShell-sessie, inclusief cmdlets, functies, scripts en aliassen. Je kunt jokertekens gebruiken om gericht te zoeken.",
+    "syntax": "Get-Command [[-Name] <String[]>] [-CommandType <CommandTypes>]",
+    "parameters": [
+      {
+        "name": "-Name",
+        "desc": "Filtert op naam; jokertekens (*) zijn toegestaan, bijv. *service*."
+      },
+      {
+        "name": "-CommandType",
+        "desc": "Beperkt de resultaten tot een type, zoals Cmdlet, Function of Alias."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-Command",
+        "desc": "Toont alle beschikbare commando's."
+      },
+      {
+        "cmd": "Get-Command *service*",
+        "desc": "Toont alle commando's met 'service' in de naam."
+      },
+      {
+        "cmd": "Get-Command | Format-Wide -Column 3",
+        "desc": "Toont commando's overzichtelijk in drie kolommen."
+      }
+    ],
+    "chapter": "H1 PowerShell-basis",
+    "related": [
+      "Get-Help",
+      "Get-Alias",
+      "Show-Command"
+    ]
+  },
+  {
+    "name": "Get-Credential",
+    "aliases": [],
+    "summary": "Toont een beveiligd loginvenster en geeft een PSCredential-object terug.",
+    "description": "Get-Credential opent een dialoogvenster waarin de gebruiker een gebruikersnaam en wachtwoord kan invoeren. Het resultaat is een PSCredential-object met de eigenschappen UserName (string) en Password (SecureString). Gebruik altijd Get-Credential in plaats van plaintext-wachtwoorden in scripts.",
+    "syntax": "Get-Credential [[-Credential] <PSCredential>] [-Message <string>] [-UserName <string>]",
+    "parameters": [
+      {
+        "name": "-Message",
+        "desc": "Tekst die in het loginvenster wordt getoond als instructie voor de gebruiker."
+      },
+      {
+        "name": "-UserName",
+        "desc": "Vult de gebruikersnaam alvast in; de gebruiker hoeft alleen het wachtwoord in te typen."
+      },
+      {
+        "name": "-Credential",
+        "desc": "Geeft een bestaand PSCredential-object mee (zelden gebruikt bij interactief gebruik)."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "$cred = Get-Credential",
+        "desc": "Opent het loginvenster en slaat het resultaat op in $cred."
+      },
+      {
+        "cmd": "$cred = Get-Credential -Message \"Geef administrator credentials\"",
+        "desc": "Toont een aangepaste instructietekst in het venster."
+      }
+    ],
+    "chapter": "H6 Credentials & rechten",
+    "related": [
+      "ConvertTo-SecureString",
+      "Invoke-Command",
+      "New-LocalUser"
+    ]
+  },
+  {
+    "name": "Get-ExecutionPolicy",
+    "aliases": [],
+    "summary": "Toont het actieve scriptuitvoeringsbeleid voor PowerShell.",
+    "description": "Get-ExecutionPolicy geeft de huidige instelling die bepaalt welke scripts geladen mogen worden. Met -List zie je het beleid voor elke scope (LocalMachine, CurrentUser, etc.).",
+    "syntax": "Get-ExecutionPolicy [-List] [-Scope <ExecutionPolicyScope>]",
+    "parameters": [
+      {
+        "name": "-List",
+        "desc": "Toont het beleid voor alle beschikbare scopes."
+      },
+      {
+        "name": "-Scope",
+        "desc": "Beperkt de query tot één specifieke scope."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-ExecutionPolicy",
+        "desc": "Toont het actieve beleid."
+      },
+      {
+        "cmd": "Get-ExecutionPolicy -List",
+        "desc": "Toont het beleid voor alle scopes."
+      }
+    ],
+    "chapter": "H1 PowerShell-basis",
+    "related": [
+      "Set-ExecutionPolicy"
+    ]
+  },
+  {
+    "name": "Get-Help",
+    "aliases": [
+      "help",
+      "man"
+    ],
+    "summary": "Toont de helpdocumentatie voor een cmdlet of concept.",
+    "description": "Get-Help is het primaire helpsysteem van PowerShell. Je kunt basisbeschrijvingen, gedetailleerde uitleg met voorbeelden (-Detailed) of volledige technische documentatie (-Full) opvragen. Gebruik Update-Help als Administrator om de help-bestanden bij te werken.",
+    "syntax": "Get-Help [[-Name] <String>] [-Full] [-Detailed] [-Examples]",
+    "parameters": [
+      {
+        "name": "-Name",
+        "desc": "De naam van het cmdlet of concept waarvoor je hulp wil, bijv. Add-Computer."
+      },
+      {
+        "name": "-Full",
+        "desc": "Toont alle beschikbare metadata, inclusief technische parameterdetails."
+      },
+      {
+        "name": "-Detailed",
+        "desc": "Toont uitgebreide uitleg inclusief voorbeelden."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-Help Get-Service",
+        "desc": "Toont de basisbeschrijving van Get-Service."
+      },
+      {
+        "cmd": "Get-Help Add-Computer -Full",
+        "desc": "Toont de volledige documentatie voor Add-Computer."
+      },
+      {
+        "cmd": "Get-Help *process*",
+        "desc": "Zoekt naar helppagina's met 'process' in de naam."
+      }
+    ],
+    "chapter": "H1 PowerShell-basis",
+    "related": [
+      "Get-Command",
+      "Update-Help",
+      "Show-Command"
+    ]
+  },
+  {
+    "name": "Get-Host",
+    "aliases": [],
+    "summary": "Toont informatie over de huidige PowerShell-versie en sessieconfiguratie.",
+    "description": "Get-Host geeft details over de actieve PowerShell-host, zoals het versienummer, de UI-cultuur en de achtergrondkleur van de console.",
+    "syntax": "Get-Host",
+    "parameters": [],
+    "examples": [
+      {
+        "cmd": "Get-Host",
+        "desc": "Toont de versie en instellingen van de huidige sessie."
+      },
+      {
+        "cmd": "(Get-Host).Version",
+        "desc": "Toont enkel het versienummer."
+      }
+    ],
+    "chapter": "H1 PowerShell-basis",
+    "related": [
+      "$PSVersionTable",
+      "Get-PSProvider"
+    ]
+  },
+  {
+    "name": "Get-LocalUser",
+    "aliases": [],
+    "summary": "Haalt informatie op over een of alle lokale gebruikersaccounts.",
+    "description": "Get-LocalUser geeft een lijst van alle lokale gebruikers op de computer, inclusief accountstatus, beschrijving en vervaldatum. Met -Name kan je controleren of een specifiek account bestaat.",
+    "syntax": "Get-LocalUser [[-Name] <string[]>] [-ErrorAction <ActionPreference>]",
+    "parameters": [
+      {
+        "name": "-Name",
+        "desc": "De naam van een specifieke gebruiker die je wilt opzoeken."
+      },
+      {
+        "name": "-ErrorAction SilentlyContinue",
+        "desc": "Onderdruk foutmeldingen als het account niet gevonden wordt (handig in if-controles)."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-LocalUser",
+        "desc": "Toont alle lokale gebruikers."
+      },
+      {
+        "cmd": "Get-LocalUser -Name \"student1\" -ErrorAction SilentlyContinue",
+        "desc": "Controleert of student1 bestaat zonder een foutmelding te geven als dat niet zo is."
+      },
+      {
+        "cmd": "Get-LocalUser | Format-List *",
+        "desc": "Toont alle eigenschappen van alle lokale gebruikers."
+      }
+    ],
+    "chapter": "H6 Credentials & rechten",
+    "related": [
+      "New-LocalUser",
+      "Add-LocalGroupMember",
+      "Remove-LocalUser"
+    ]
+  },
+  {
+    "name": "Get-Member",
+    "aliases": [
+      "gm"
+    ],
+    "summary": "Toont de eigenschappen en methoden van een object uit de pipeline.",
+    "description": "Get-Member is het primaire gereedschap voor 'discovery' in PowerShell. Via de pipeline ontvang je een object; Get-Member toont het TypeName en alle beschikbare methoden (Methods) en eigenschappen (Properties). Zo weet je precies hoe je verdere bewerkingen op het object kunt uitvoeren.",
+    "syntax": "Get-Member [[-Name] <String[]>] [-MemberType <PSMemberTypes>]",
+    "parameters": [
+      {
+        "name": "-Name",
+        "desc": "Filtert op de naam van een specifiek lid."
+      },
+      {
+        "name": "-MemberType",
+        "desc": "Beperkt tot een bepaald type lid, bijv. Property of Method."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-Process | Get-Member",
+        "desc": "Toont alle eigenschappen en methoden van Process-objecten."
+      },
+      {
+        "cmd": "Get-Date | Get-Member",
+        "desc": "Toont de leden van een DateTime-object."
+      },
+      {
+        "cmd": "Get-Service | gm -MemberType Property",
+        "desc": "Toont enkel de eigenschappen van Service-objecten."
+      }
+    ],
+    "chapter": "H1 PowerShell-basis",
+    "related": [
+      "Get-Command",
+      "Select-Object",
+      "Format-List"
+    ]
+  },
+  {
+    "name": "Get-PSDrive",
+    "aliases": [],
+    "summary": "Geeft een overzicht van alle beschikbare PSDrives in de huidige sessie.",
+    "description": "Get-PSDrive toont alle gemonteerde PSDrives: fysieke schijven (C, D), Windows Register (HKLM, HKCU), omgevingsvariabelen (Env), functies, variabelen en aliasen. Handig om te controleren welke drives beschikbaar zijn.",
+    "syntax": "Get-PSDrive [[-Name] <string[]>] [-PSProvider <string[]>]",
+    "parameters": [
+      {
+        "name": "-Name",
+        "desc": "Filter op de naam van een of meerdere drives."
+      },
+      {
+        "name": "-PSProvider",
+        "desc": "Filter op het type provider (bv. FileSystem)."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-PSDrive",
+        "desc": "Toont alle beschikbare PSDrives."
+      },
+      {
+        "cmd": "Get-PSDrive -PSProvider FileSystem",
+        "desc": "Toont alleen de bestandssysteem-drives."
+      }
+    ],
+    "chapter": "H7 Bestanden & data-opslag",
+    "related": [
+      "New-PSDrive",
+      "Remove-PSDrive"
+    ]
+  },
+  {
+    "name": "Get-Service",
+    "aliases": [
+      "gsv"
+    ],
+    "summary": "Toont de Windows-services op het systeem.",
+    "description": "Get-Service geeft een overzicht van alle services op de lokale computer (of een externe computer). Zonder parameters toont het alle services; met -Name filter je op naam.",
+    "syntax": "Get-Service [[-Name] <String[]>] [-ComputerName <String[]>]",
+    "parameters": [
+      {
+        "name": "-Name",
+        "desc": "Optionele filternaam; zonder parameter worden alle services getoond."
+      },
+      {
+        "name": "-ComputerName",
+        "desc": "Specificeert een of meerdere externe computers."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-Service",
+        "desc": "Toont alle services op de lokale computer."
+      },
+      {
+        "cmd": "Get-Service -Name wuauserv",
+        "desc": "Toont enkel de Windows Update-service."
+      }
+    ],
+    "chapter": "H1 PowerShell-basis",
+    "related": [
+      "Stop-Service",
+      "Start-Service",
+      "Restart-Service"
+    ]
+  },
+  {
+    "name": "Get-WmiObject",
+    "aliases": [
+      "gwmi"
+    ],
+    "summary": "Haalt systeeminformatie op via de verouderde WMI-interface (Windows Management Instrumentation).",
+    "description": "Get-WmiObject (alias: gwmi) is een oudere PowerShell-cmdlet die systeeminformatie ophaalt via WMI. Je geeft een Win32_-klasse op om hardware, software, services of OS-info te bekijken. De cmdlet is verouderd (deprecated) en werkt niet meer in PowerShell 7+. Gebruik Get-CimInstance voor nieuwe scripts.",
+    "syntax": "Get-WmiObject [-ClassName] <string> [-Filter <string>] [-Namespace <string>] [-Property <string[]>]",
+    "parameters": [
+      {
+        "name": "-ClassName",
+        "desc": "De WMI-klasse die je wilt opvragen, bv. Win32_Processor."
+      },
+      {
+        "name": "-Filter",
+        "desc": "WQL-filterstring om de resultaten te beperken, bv. \"Name='notepad.exe'\"."
+      },
+      {
+        "name": "-Namespace",
+        "desc": "De WMI-namespace, standaard root\\cimv2. Gebruik root\\WMI voor sensorklassen."
+      },
+      {
+        "name": "-Property",
+        "desc": "Geef een lijst van eigenschappen op die je wilt ophalen."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-WmiObject Win32_Processor | Select-Object Name",
+        "desc": "Haalt de naam van de processor op."
+      },
+      {
+        "cmd": "Get-WmiObject Win32_OperatingSystem | Select-Object Caption, Version",
+        "desc": "Toont de naam en versie van het besturingssysteem."
+      },
+      {
+        "cmd": "Get-WmiObject Win32_LogicalDisk | Where-Object { $_.DriveType -eq 3 }",
+        "desc": "Haalt alle lokale logische schijven op (DriveType 3)."
+      },
+      {
+        "cmd": "Get-WmiObject -Namespace 'root\\WMI' -Class MSAcpi_ThermalZoneTemperature",
+        "desc": "Leest de CPU-temperatuurzone uit via de root\\WMI-namespace."
+      }
+    ],
+    "chapter": "H5 WMI & CIM",
+    "related": [
+      "Get-CimInstance",
+      "Win32_Processor",
+      "Win32_OperatingSystem",
+      "Win32_ComputerSystem",
+      "Win32_LogicalDisk",
+      "Win32_Service"
+    ]
+  },
+  {
+    "name": "Import-Csv",
+    "aliases": [],
+    "summary": "Importeert de inhoud van een CSV-bestand als een reeks objecten.",
+    "description": "Import-Csv leest een CSV-bestand en zet elke rij om naar een PowerShell-object waarvan de eigenschappen overeenkomen met de kolomkoppen. Het resultaat kan direct worden gebruikt in een foreach-lus.",
+    "syntax": "Import-Csv [-Path] <string> [-Delimiter <char>] [-Encoding <Encoding>]",
+    "parameters": [
+      {
+        "name": "-Path",
+        "desc": "Pad naar het CSV-bestand."
+      },
+      {
+        "name": "-Delimiter",
+        "desc": "Scheidingsteken tussen kolommen (standaard komma)."
+      },
+      {
+        "name": "-Encoding",
+        "desc": "Tekencodering van het bestand (bv. UTF8)."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "$lijst = Import-Csv -Path \".\\medewerkers.csv\"",
+        "desc": "Importeert medewerkers.csv en slaat de objecten op in $lijst."
+      },
+      {
+        "cmd": "Import-Csv -Path \".\\data.csv\" -Delimiter \";\"",
+        "desc": "Importeert een CSV met puntkomma als scheidingsteken."
+      }
+    ],
+    "chapter": "H7 Bestanden & data-opslag",
+    "related": [
+      "Export-Csv",
+      "Out-File",
+      "ForEach-Object"
+    ]
+  },
+  {
+    "name": "Invoke-Command",
+    "aliases": [],
+    "summary": "Voert een scriptblok uit op een lokale of externe computer, optioneel met andere credentials.",
+    "description": "Invoke-Command stuurt een ScriptBlock naar een doelcomputer (of localhost) en voert dit uit in de opgegeven context. Via -Credential kan je een ander gebruikersaccount gebruiken. Met -ArgumentList geef je variabelen mee aan het scriptblok.",
+    "syntax": "Invoke-Command -ComputerName <string> -ScriptBlock <scriptblock> [-Credential <PSCredential>] [-ArgumentList <object[]>]",
+    "parameters": [
+      {
+        "name": "-ComputerName",
+        "desc": "De naam of het IP-adres van de doelcomputer (gebruik 'localhost' voor lokale uitvoering)."
+      },
+      {
+        "name": "-ScriptBlock",
+        "desc": "Het blok met commando's dat op de doelcomputer wordt uitgevoerd."
+      },
+      {
+        "name": "-Credential",
+        "desc": "PSCredential-object om de actie met andere rechten uit te voeren."
+      },
+      {
+        "name": "-ArgumentList",
+        "desc": "Waarden die als argumenten aan het scriptblok worden meegegeven."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Invoke-Command -ComputerName \"localhost\" -Credential $cred -ScriptBlock { Get-Process }",
+        "desc": "Haalt de processenlijst op met adminrechten."
+      }
+    ],
+    "chapter": "H6 Credentials & rechten",
+    "related": [
+      "Get-Credential",
+      "New-LocalUser"
+    ]
+  },
+  {
+    "name": "MSAcpi_ThermalZoneTemperature",
+    "aliases": [],
+    "summary": "WMI-klasse in de namespace root\\WMI die de CPU-temperatuur via ACPI uitleest.",
+    "description": "MSAcpi_ThermalZoneTemperature is een WMI-klasse in de namespace root\\WMI (niet root\\cimv2) die de temperatuur van thermische zones uitleest via ACPI. De waarde CurrentTemperature is uitgedrukt in Kelvin × 10 en moet worden omgerekend naar Celsius: (waarde / 10) − 273.15. Niet alle hardware ondersteunt deze klasse.",
+    "syntax": "Get-WmiObject -Namespace 'root\\WMI' -Class MSAcpi_ThermalZoneTemperature",
+    "parameters": [
+      {
+        "name": "CurrentTemperature",
+        "desc": "De huidige temperatuur in Kelvin × 10."
+      },
+      {
+        "name": "InstanceName",
+        "desc": "De naam van de thermische zone."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-WmiObject -Namespace 'root\\WMI' -Class MSAcpi_ThermalZoneTemperature | Select-Object CurrentTemperature",
+        "desc": "Leest de ruwe temperatuurwaarde (Kelvin×10) uit."
+      }
+    ],
+    "chapter": "H5 WMI & CIM",
+    "related": [
+      "Get-WmiObject",
+      "Win32_Processor"
+    ]
+  },
+  {
+    "name": "New-LocalUser",
+    "aliases": [],
+    "summary": "Maakt een nieuw lokaal gebruikersaccount aan op de computer.",
+    "description": "New-LocalUser legt een lokale gebruiker aan met opgegeven naam, wachtwoord, volledige naam, beschrijving en optionele vervaldag. Het wachtwoord moet als SecureString worden meegegeven. Gebruik -WhatIf om de actie eerst te simuleren zonder daadwerkelijk iets aan te passen.",
+    "syntax": "New-LocalUser -Name <string> -Password <SecureString> [-FullName <string>] [-Description <string>] [-AccountExpires <DateTime>] [-UserMayNotChangePassword] [-WhatIf]",
+    "parameters": [
+      {
+        "name": "-Name",
+        "desc": "De loginnaam van de nieuwe gebruiker."
+      },
+      {
+        "name": "-Password",
+        "desc": "Het wachtwoord als SecureString-object."
+      },
+      {
+        "name": "-FullName",
+        "desc": "De volledige weergavenaam van de gebruiker."
+      },
+      {
+        "name": "-Description",
+        "desc": "Korte omschrijving van het account."
+      },
+      {
+        "name": "-AccountExpires",
+        "desc": "Datum en tijd waarop het account verloopt (DateTime-object)."
+      },
+      {
+        "name": "-UserMayNotChangePassword",
+        "desc": "Verhindert dat de gebruiker zijn eigen wachtwoord wijzigt."
+      },
+      {
+        "name": "-WhatIf",
+        "desc": "Simuleert de actie zonder echt iets aan te passen; handig voor een testrun."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "New-LocalUser -Name \"student1\" -Password $sec -FullName \"Student Een\" -Description \"Testaccount\"",
+        "desc": "Maakt de lokale gebruiker student1 aan."
+      },
+      {
+        "cmd": "New-LocalUser -Name $u.username -Password $sec -AccountExpires (Get-Date).AddYears(1) -WhatIf",
+        "desc": "Simuleert het aanmaken van een gebruiker met vervaldatum over 1 jaar."
+      }
+    ],
+    "chapter": "H6 Credentials & rechten",
+    "related": [
+      "Add-LocalGroupMember",
+      "Get-LocalUser",
+      "ConvertTo-SecureString"
+    ]
+  },
+  {
+    "name": "New-PSDrive",
+    "aliases": [],
+    "summary": "Maakt een nieuwe virtuele PSDrive aan die verwijst naar een locatie op het bestandssysteem, register of netwerk.",
+    "description": "New-PSDrive koppelt een naam (zoals een schijfletter) aan een root-locatie. Je kunt verwijzen naar lokale mappen, UNC-netwerkpaden of andere PowerShell-providers. Met -Persist wordt de drive ook zichtbaar in Windows Verkenner. Met -Credential kan je de drive koppelen met aparte inloggegevens.",
+    "syntax": "New-PSDrive -Name <string> -PSProvider <string> -Root <string> [-Persist] [-Credential <PSCredential>]",
+    "parameters": [
+      {
+        "name": "-Name",
+        "desc": "Naam van de nieuwe PSDrive (zonder dubbele punt)."
+      },
+      {
+        "name": "-PSProvider",
+        "desc": "Type provider: FileSystem, Registry, Variable, enz."
+      },
+      {
+        "name": "-Root",
+        "desc": "Het pad of de locatie waar de drive naar verwijst."
+      },
+      {
+        "name": "-Persist",
+        "desc": "Maakt de drive permanent zichtbaar in Verkenner (alleen FileSystem)."
+      },
+      {
+        "name": "-Credential",
+        "desc": "Credentials om de drive te koppelen met een ander account."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "New-PSDrive -Name MijnSchijf -PSProvider FileSystem -Root \"C:\\MijnMap\" -Persist",
+        "desc": "Maakt een persistente PSDrive MijnSchijf: aan."
+      },
+      {
+        "cmd": "New-PSDrive -Name Afdeling -PSProvider FileSystem -Root \"\\\\server\\afdeling\" -Credential $cred -Persist",
+        "desc": "Koppelt een netwerkshare met inloggegevens."
+      }
+    ],
+    "chapter": "H7 Bestanden & data-opslag",
+    "related": [
+      "Get-PSDrive",
+      "Remove-PSDrive",
+      "Set-Location"
+    ]
+  },
+  {
+    "name": "Out-File",
+    "aliases": [],
+    "summary": "Schrijft uitvoer van een commando of tekst naar een bestand op schijf.",
+    "description": "Out-File stuurt de uitvoer van een pipeline of een waarde naar een opgegeven bestandspad. Standaard wordt het bestand overschreven. Met -Append wordt tekst toegevoegd aan het einde van een bestaand bestand, met -NoClobber wordt overschrijven verhinderd en met -Width kan de uitvoerbreedte worden ingesteld.",
+    "syntax": "<command> | Out-File [-FilePath] <string> [-Append] [-NoClobber] [-Width <int>] [-Encoding <Encoding>]",
+    "parameters": [
+      {
+        "name": "-FilePath",
+        "desc": "Pad naar het doelbestand."
+      },
+      {
+        "name": "-Append",
+        "desc": "Voegt tekst toe aan het bestand zonder de bestaande inhoud te verwijderen."
+      },
+      {
+        "name": "-NoClobber",
+        "desc": "Geeft een foutmelding als het bestand al bestaat; voorkomt overschrijven."
+      },
+      {
+        "name": "-Width",
+        "desc": "Geeft de maximale breedte in tekens op voor de uitvoer (handig voor brede tabellen)."
+      },
+      {
+        "name": "-Encoding",
+        "desc": "Tekencodering waarmee het bestand wordt weggeschreven."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-ChildItem | Out-File \"C:\\Temp\\Bestanden.txt\"",
+        "desc": "Slaat de bestandenlijst op in Bestanden.txt."
+      },
+      {
+        "cmd": "\"Nieuwe regel\" | Out-File \"C:\\Temp\\Log.txt\" -Append",
+        "desc": "Voegt een regel toe aan het einde van Log.txt."
+      },
+      {
+        "cmd": "Get-Process | Out-File \"C:\\Temp\\Proc.txt\" -Width 200",
+        "desc": "Schrijft processen naar bestand met brede opmaak."
+      }
+    ],
+    "chapter": "H7 Bestanden & data-opslag",
+    "related": [
+      "Set-Content",
+      "Add-Content",
+      "Get-Content",
+      "Export-Csv"
+    ]
+  },
+  {
+    "name": "Remove-PSDrive",
+    "aliases": [],
+    "summary": "Verwijdert een eerder aangemaakte PSDrive uit de huidige sessie.",
+    "description": "Remove-PSDrive koppelt een PSDrive los. Als de drive met -Persist was aangemaakt, blijft hij zichtbaar in Verkenner totdat je ook `net use <naam>: /delete` uitvoert.",
+    "syntax": "Remove-PSDrive [-Name] <string[]>",
+    "parameters": [
+      {
+        "name": "-Name",
+        "desc": "De naam van de PSDrive die je wilt verwijderen."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Remove-PSDrive -Name MijnSchijf",
+        "desc": "Verwijdert de PSDrive MijnSchijf uit de sessie."
+      },
+      {
+        "cmd": "Remove-PSDrive -Name Afdeling",
+        "desc": "Ontkoppelt de netwerkshare Afdeling."
+      }
+    ],
+    "chapter": "H7 Bestanden & data-opslag",
+    "related": [
+      "New-PSDrive",
+      "Get-PSDrive"
+    ]
+  },
+  {
+    "name": "Select-Object",
+    "aliases": [
+      "select"
+    ],
+    "summary": "Filtert specifieke eigenschappen uit een object of beperkt het aantal resultaten.",
+    "description": "Select-Object laat je kiezen welke eigenschappen je wil behouden van objecten in de pipeline. Je kunt ook -First of -Last gebruiken om het aantal resultaten te beperken.",
+    "syntax": "Select-Object [[-Property] <Object[]>] [-First <Int32>] [-Last <Int32>] [-Unique]",
+    "parameters": [
+      {
+        "name": "-Property",
+        "desc": "De eigenschappen die je wil behouden."
+      },
+      {
+        "name": "-First",
+        "desc": "Geeft enkel de eerste N objecten terug."
+      },
+      {
+        "name": "-Last",
+        "desc": "Geeft enkel de laatste N objecten terug."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-Process | Select-Object Name, Id, CPU",
+        "desc": "Toont enkel naam, ID en CPU-gebruik per proces."
+      },
+      {
+        "cmd": "Get-Service | Select-Object -First 5",
+        "desc": "Toont de eerste vijf services."
+      }
+    ],
+    "chapter": "H1 PowerShell-basis",
+    "related": [
+      "Where-Object",
+      "Sort-Object",
+      "Format-Table"
+    ]
+  },
+  {
+    "name": "Set-ExecutionPolicy",
+    "aliases": [],
+    "summary": "Wijzigt het scriptuitvoeringsbeleid voor PowerShell.",
+    "description": "Set-ExecutionPolicy laat je instellen welke scripts mogen worden uitgevoerd. Beleidswaarden zijn Restricted, AllSigned, RemoteSigned, Unrestricted, Bypass en Undefined. Dit is een voorkeursinstelling, geen ondoordringbare beveiligingsbarrière.",
+    "syntax": "Set-ExecutionPolicy [-ExecutionPolicy] <ExecutionPolicy> [-Scope <ExecutionPolicyScope>]",
+    "parameters": [
+      {
+        "name": "-ExecutionPolicy",
+        "desc": "De nieuwe beleidswaarde, bijv. RemoteSigned of Bypass."
+      },
+      {
+        "name": "-Scope",
+        "desc": "De scope waarop het beleid toegepast wordt, bijv. LocalMachine of CurrentUser."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Set-ExecutionPolicy RemoteSigned",
+        "desc": "Staat lokale scripts toe; gedownloade scripts vereisen een handtekening."
+      },
+      {
+        "cmd": "Set-ExecutionPolicy Bypass -Scope CurrentUser",
+        "desc": "Omzeilt alle beperkingen voor de huidige gebruiker."
+      }
+    ],
+    "chapter": "H1 PowerShell-basis",
+    "related": [
+      "Get-ExecutionPolicy"
+    ]
+  },
+  {
+    "name": "Show-Command",
+    "aliases": [],
+    "summary": "Opent een grafisch venster voor visuele parameterinvoer van een cmdlet.",
+    "description": "Show-Command opent een dialoogvenster met alle parameters van het opgegeven cmdlet. Handig als je de exacte parameternamen nog niet kent.",
+    "syntax": "Show-Command [[-Name] <String>]",
+    "parameters": [
+      {
+        "name": "-Name",
+        "desc": "De naam van het cmdlet waarvoor je het venster wil openen."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Show-Command Get-Service",
+        "desc": "Opent een grafisch venster voor Get-Service."
+      }
+    ],
+    "chapter": "H1 PowerShell-basis",
+    "related": [
+      "Get-Help",
+      "Get-Command"
+    ]
+  },
+  {
+    "name": "Sort-Object",
+    "aliases": [
+      "sort"
+    ],
+    "summary": "Sorteert objecten in de pipeline op een of meerdere eigenschappen.",
+    "description": "Sort-Object sorteert de objecten uit de pipeline op de opgegeven eigenschap(pen). Standaard oplopend; gebruik -Descending voor aflopende volgorde.",
+    "syntax": "Sort-Object [[-Property] <Object[]>] [-Descending] [-Unique]",
+    "parameters": [
+      {
+        "name": "-Property",
+        "desc": "De eigenschap waarop gesorteerd wordt."
+      },
+      {
+        "name": "-Descending",
+        "desc": "Sorteert van groot naar klein (omgekeerde volgorde)."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-Process | Sort-Object CPU -Descending",
+        "desc": "Toont processen gesorteerd op CPU-gebruik, hoogste eerst."
+      },
+      {
+        "cmd": "Get-Service | Sort-Object Name",
+        "desc": "Toont services gesorteerd op naam."
+      }
+    ],
+    "chapter": "H1 PowerShell-basis",
+    "related": [
+      "Where-Object",
+      "Select-Object",
+      "Group-Object"
+    ]
+  },
+  {
+    "name": "Update-Help",
+    "aliases": [],
+    "summary": "Downloadt en installeert de nieuwste helpbestanden voor geïnstalleerde modules.",
+    "description": "Update-Help moet periodiek worden uitgevoerd als Administrator om het helpsysteem up-to-date te houden. Zonder bijgewerkte helpbestanden kan Get-Help beperkte informatie tonen.",
+    "syntax": "Update-Help [-Module <String[]>] [-Force]",
+    "parameters": [
+      {
+        "name": "-Module",
+        "desc": "Beperkt de update tot een specifieke module."
+      },
+      {
+        "name": "-Force",
+        "desc": "Dwingt de update af, ook als de bestanden al recent zijn bijgewerkt."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Update-Help",
+        "desc": "Werkt alle helpbestanden bij (vereist Administrator)."
+      }
+    ],
+    "chapter": "H1 PowerShell-basis",
+    "related": [
+      "Get-Help",
+      "Get-Command"
+    ]
+  },
+  {
+    "name": "Where-Object",
+    "aliases": [
+      "where",
+      "?"
+    ],
+    "summary": "Filtert objecten in de pipeline op basis van een voorwaarde.",
+    "description": "Where-Object (alias: ?) laat je objecten filteren die voldoen aan een bepaalde conditie. Je gebruikt eigenschappen van het object gecombineerd met vergelijkingsoperatoren zoals -eq, -gt, -like.",
+    "syntax": "Where-Object [-FilterScript] <ScriptBlock>",
+    "parameters": [
+      {
+        "name": "-FilterScript",
+        "desc": "Een scriptblok {} met de filterconditie; gebruik $_ voor het huidige object."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-Service | Where-Object { $_.Status -eq 'Running' }",
+        "desc": "Toont enkel de services die actief zijn."
+      },
+      {
+        "cmd": "Get-Process | Where-Object { $_.CPU -gt 100 }",
+        "desc": "Toont processen die meer dan 100 CPU-eenheden verbruiken."
+      }
+    ],
+    "chapter": "H1 PowerShell-basis",
+    "related": [
+      "Select-Object",
+      "Sort-Object",
+      "ForEach-Object"
+    ]
+  },
+  {
+    "name": "Win32_BIOS",
+    "aliases": [],
+    "summary": "WMI/CIM-klasse met informatie over het BIOS van het systeem.",
+    "description": "Win32_BIOS bevat gegevens over het geïnstalleerde BIOS, zoals de naam, versie en de fabrikant. Nuttig om snel de firmware-versie van een machine op te vragen.",
+    "syntax": "Get-CimInstance Win32_BIOS",
+    "parameters": [
+      {
+        "name": "Name",
+        "desc": "De naam van het BIOS."
+      },
+      {
+        "name": "SMBIOSBIOSVersion",
+        "desc": "Het SMBIOS-versienummer van het BIOS."
+      },
+      {
+        "name": "Manufacturer",
+        "desc": "De fabrikant van het BIOS."
+      },
+      {
+        "name": "ReleaseDate",
+        "desc": "De releasedatum van de BIOS-versie."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-CimInstance Win32_BIOS | Select-Object Name, SMBIOSBIOSVersion",
+        "desc": "Toont de naam en versie van het BIOS."
+      },
+      {
+        "cmd": "Get-WmiObject Win32_BIOS | Select-Object Manufacturer, SMBIOSBIOSVersion",
+        "desc": "Toont de BIOS-fabrikant en versie via WMI."
+      }
+    ],
+    "chapter": "H5 WMI & CIM",
+    "related": [
+      "Get-CimInstance",
+      "Get-WmiObject",
+      "Win32_ComputerSystem"
+    ]
+  },
+  {
+    "name": "Win32_ComputerSystem",
+    "aliases": [],
+    "summary": "WMI/CIM-klasse met informatie over het computersysteem, waaronder de naam en het totale RAM.",
+    "description": "Win32_ComputerSystem beschrijft het computersysteem als geheel: computernaam, fabrikant, model en het totale fysieke geheugen. TotalPhysicalMemory wordt in bytes uitgedrukt en moet je zelf omrekenen naar GB.",
+    "syntax": "Get-CimInstance Win32_ComputerSystem",
+    "parameters": [
+      {
+        "name": "Name",
+        "desc": "De naam van de computer (hostnaam)."
+      },
+      {
+        "name": "TotalPhysicalMemory",
+        "desc": "Het totale fysieke geheugen in bytes."
+      },
+      {
+        "name": "Manufacturer",
+        "desc": "De fabrikant van het systeem."
+      },
+      {
+        "name": "Model",
+        "desc": "Het model van het systeem."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-CimInstance Win32_ComputerSystem | Select-Object Name, TotalPhysicalMemory",
+        "desc": "Toont de computernaam en het totale RAM in bytes."
+      },
+      {
+        "cmd": "[math]::Round((Get-CimInstance Win32_ComputerSystem).TotalPhysicalMemory / 1GB, 2)",
+        "desc": "Rekent het RAM direct om naar GB."
+      }
+    ],
+    "chapter": "H5 WMI & CIM",
+    "related": [
+      "Get-CimInstance",
+      "Get-WmiObject",
+      "Win32_Processor",
+      "Win32_OperatingSystem"
+    ]
+  },
+  {
+    "name": "Win32_DiskDrive",
+    "aliases": [],
+    "summary": "WMI/CIM-klasse met informatie over fysieke schijven (harde schijven en SSD's).",
+    "description": "Win32_DiskDrive beschrijft de fysieke schijven in het systeem. In tegenstelling tot Win32_LogicalDisk gaat het hier om de hardware-laag: het model, de serienummer, de interface en de status. De Status-eigenschap geeft aan of de schijf correct functioneert.",
+    "syntax": "Get-CimInstance Win32_DiskDrive",
+    "parameters": [
+      {
+        "name": "Model",
+        "desc": "De modelnaam van de schijf."
+      },
+      {
+        "name": "Status",
+        "desc": "De gezondheidsst status van de schijf, bv. OK."
+      },
+      {
+        "name": "SerialNumber",
+        "desc": "Het serienummer van de schijf."
+      },
+      {
+        "name": "Size",
+        "desc": "De totale grootte in bytes."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-WmiObject Win32_DiskDrive | Select-Object Model, Status",
+        "desc": "Toont het model en de status van elke fysieke schijf."
+      },
+      {
+        "cmd": "Get-CimInstance Win32_DiskDrive | Select-Object Model, SerialNumber, Size",
+        "desc": "Toont model, serienummer en totale grootte."
+      }
+    ],
+    "chapter": "H5 WMI & CIM",
+    "related": [
+      "Get-CimInstance",
+      "Get-WmiObject",
+      "Win32_LogicalDisk"
+    ]
+  },
+  {
+    "name": "Win32_LogicalDisk",
+    "aliases": [],
+    "summary": "WMI/CIM-klasse met informatie over logische schijfstations (volumes).",
+    "description": "Win32_LogicalDisk bevat informatie over elk logisch station op het systeem, zoals de stationsletter, het bestandssysteem, de totale grootte en de vrije ruimte. DriveType 3 staat voor lokale vaste schijven. Gebruik -Filter \"DeviceID='C:'\" om snel één station op te halen.",
+    "syntax": "Get-CimInstance Win32_LogicalDisk [-Filter <string>]",
+    "parameters": [
+      {
+        "name": "DeviceID",
+        "desc": "De stationsletter, bv. C:."
+      },
+      {
+        "name": "FreeSpace",
+        "desc": "Vrije ruimte in bytes."
+      },
+      {
+        "name": "Size",
+        "desc": "Totale grootte in bytes."
+      },
+      {
+        "name": "FileSystem",
+        "desc": "Het bestandssysteem, bv. NTFS."
+      },
+      {
+        "name": "DriveType",
+        "desc": "Type station: 3 = lokale schijf, 5 = optisch station."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-CimInstance Win32_LogicalDisk -Filter \"DeviceID='C:'\"",
+        "desc": "Haalt info over schijf C: op."
+      },
+      {
+        "cmd": "Get-WmiObject Win32_LogicalDisk | Where-Object { $_.DriveType -eq 3 }",
+        "desc": "Haalt alle lokale vaste schijven op."
+      }
+    ],
+    "chapter": "H5 WMI & CIM",
+    "related": [
+      "Get-CimInstance",
+      "Get-WmiObject",
+      "Win32_DiskDrive"
+    ]
+  },
+  {
+    "name": "Win32_OperatingSystem",
+    "aliases": [],
+    "summary": "WMI/CIM-klasse met informatie over het geïnstalleerde besturingssysteem.",
+    "description": "Win32_OperatingSystem bevat eigenschappen van het Windows-besturingssysteem, zoals de naam, versie, installatiedatum en de laatste opstarttijd. Vaak gebruikt om snel te zien welk OS op een machine draait.",
+    "syntax": "Get-CimInstance Win32_OperatingSystem",
+    "parameters": [
+      {
+        "name": "Caption",
+        "desc": "De volledige naam van het OS, bv. Microsoft Windows 11 Pro."
+      },
+      {
+        "name": "Version",
+        "desc": "Het versienummer, bv. 10.0.22621."
+      },
+      {
+        "name": "LastBootUpTime",
+        "desc": "Tijdstip van de laatste opstart."
+      },
+      {
+        "name": "InstallDate",
+        "desc": "De installatiedatum van het OS."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-CimInstance Win32_OperatingSystem | Select-Object Caption, Version, LastBootUpTime",
+        "desc": "Toont naam, versie en laatste opstarttijd."
+      },
+      {
+        "cmd": "Get-WmiObject Win32_OperatingSystem | Select-Object Caption, Version",
+        "desc": "Haalt OS-naam en versie op via WMI."
+      }
+    ],
+    "chapter": "H5 WMI & CIM",
+    "related": [
+      "Get-CimInstance",
+      "Get-WmiObject",
+      "Win32_ComputerSystem"
+    ]
+  },
+  {
+    "name": "Win32_Process",
+    "aliases": [],
+    "summary": "WMI/CIM-klasse met informatie over actieve processen op het systeem.",
+    "description": "Win32_Process geeft een overzicht van alle actieve processen, inclusief naam, proces-ID en geheugengebruik. Je kunt een -Filter gebruiken om snel één specifiek proces op te zoeken zonder alle processen te laden.",
+    "syntax": "Get-CimInstance Win32_Process [-Filter <string>]",
+    "parameters": [
+      {
+        "name": "Name",
+        "desc": "De naam van het uitvoerbare bestand, bv. notepad.exe."
+      },
+      {
+        "name": "ProcessId",
+        "desc": "Het unieke proces-ID (PID)."
+      },
+      {
+        "name": "HandleCount",
+        "desc": "Het aantal open handles van het proces."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-CimInstance Win32_Process -Filter \"Name='notepad.exe'\"",
+        "desc": "Zoekt het notepad.exe-proces op via een WQL-filter."
+      },
+      {
+        "cmd": "Get-WmiObject Win32_Process | Select-Object Name, ProcessId",
+        "desc": "Toont naam en PID van alle actieve processen."
+      }
+    ],
+    "chapter": "H5 WMI & CIM",
+    "related": [
+      "Get-CimInstance",
+      "Get-WmiObject",
+      "Win32_Service"
+    ]
+  },
+  {
+    "name": "Win32_Processor",
+    "aliases": [],
+    "summary": "WMI/CIM-klasse die informatie over de processor (CPU) bevat.",
+    "description": "Win32_Processor is een WMI-klasse die eigenschappen van de CPU beschrijft, zoals de naam, het aantal cores, de kloksnelheid en de fabrikant. Je gebruikt deze klasse met Get-WmiObject of Get-CimInstance.",
+    "syntax": "Get-CimInstance Win32_Processor",
+    "parameters": [
+      {
+        "name": "Name",
+        "desc": "De volledige naam van de processor."
+      },
+      {
+        "name": "NumberOfCores",
+        "desc": "Het aantal fysieke cores."
+      },
+      {
+        "name": "MaxClockSpeed",
+        "desc": "De maximale kloksnelheid in MHz."
+      },
+      {
+        "name": "Manufacturer",
+        "desc": "De fabrikant van de processor."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-CimInstance Win32_Processor | Select-Object Name, NumberOfCores",
+        "desc": "Toont de naam en het aantal cores van de CPU."
+      },
+      {
+        "cmd": "Get-WmiObject Win32_Processor | Select-Object Name",
+        "desc": "Haalt alleen de naam van de processor op via WMI."
+      }
+    ],
+    "chapter": "H5 WMI & CIM",
+    "related": [
+      "Get-CimInstance",
+      "Get-WmiObject",
+      "Win32_ComputerSystem"
+    ]
+  },
+  {
+    "name": "Win32_Product",
+    "aliases": [],
+    "summary": "WMI/CIM-klasse met informatie over geïnstalleerde software (MSI-pakketten).",
+    "description": "Win32_Product haalt alle via MSI geïnstalleerde softwarepakketten op, inclusief naam en versie. Let op: deze klasse is traag en kan bij het opvragen een reparatiemechanisme triggeren. Gebruik ze alleen als je specifiek MSI-software nodig hebt.",
+    "syntax": "Get-WmiObject Win32_Product",
+    "parameters": [
+      {
+        "name": "Name",
+        "desc": "De naam van het geïnstalleerde pakket."
+      },
+      {
+        "name": "Version",
+        "desc": "Het versienummer van het pakket."
+      },
+      {
+        "name": "Vendor",
+        "desc": "De leverancier/fabrikant van het pakket."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-WmiObject Win32_Product | Select-Object Name, Version",
+        "desc": "Toont alle geïnstalleerde MSI-software met versienummers."
+      }
+    ],
+    "chapter": "H5 WMI & CIM",
+    "related": [
+      "Get-WmiObject",
+      "Get-CimInstance"
+    ]
+  },
+  {
+    "name": "Win32_Service",
+    "aliases": [],
+    "summary": "WMI/CIM-klasse met informatie over Windows-services en hun status.",
+    "description": "Win32_Service bevat een entry voor elke geïnstalleerde Windows-service, inclusief de naam, weergavenaam, huidige staat (Running/Stopped) en het starttype. Je kunt deze klasse combineren met Where-Object om specifieke services te filteren.",
+    "syntax": "Get-CimInstance Win32_Service [-Filter <string>]",
+    "parameters": [
+      {
+        "name": "Name",
+        "desc": "De interne servicenaam, bv. wuauserv."
+      },
+      {
+        "name": "DisplayName",
+        "desc": "De weergavenaam, bv. Windows Update."
+      },
+      {
+        "name": "State",
+        "desc": "De huidige staat: Running of Stopped."
+      },
+      {
+        "name": "StartMode",
+        "desc": "Het starttype: Auto, Manual of Disabled."
+      }
+    ],
+    "examples": [
+      {
+        "cmd": "Get-WmiObject Win32_Service | Where-Object { $_.State -eq 'Running' }",
+        "desc": "Toont alle actieve services."
+      },
+      {
+        "cmd": "Get-CimInstance Win32_Service -Filter \"Name='wuauserv'\"",
+        "desc": "Haalt de Windows Update-service op via een filter."
+      }
+    ],
+    "chapter": "H5 WMI & CIM",
+    "related": [
+      "Get-CimInstance",
+      "Get-WmiObject",
+      "Start-Service",
+      "Stop-Service",
+      "Win32_Process"
+    ]
+  }
+]

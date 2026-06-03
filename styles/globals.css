@@ -1,0 +1,518 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================================================
+   WINCOMMANDER — THEME TOKENS
+   Windows 11 Fluent. RGB-triples (zonder rgb(...) wrapper) zodat Tailwind
+   /alpha-modifiers werken: bg-panel/60, border-line/40, ...
+   ======================================================================== */
+
+/* ── DARK (Windows 11 dark / Mica) ────────────────────────────────────── */
+:root, .dark {
+  color-scheme: dark;
+
+  --canvas:    32 32 32;        /* #202020  app-achtergrond */
+  --panel:     43 43 43;        /* #2b2b2b  kaarten/oppervlak (laag op Mica) */
+  --pane:      39 39 39;        /* #272727  binnenpaneel */
+  --sunken:    24 24 24;        /* #181818  input/sunken */
+  --elevated:  50 50 50;        /* #323232  flyout/popover */
+  --hover:     55 55 55;        /* #373737 */
+  --line:      66 66 66;        /* subtiele rand */
+  --line-strong: 94 94 94;
+
+  --fg:        242 242 242;
+  --fg-muted:  179 179 179;     /* secundaire tekst (~60%) */
+  --fg-dim:    138 138 138;
+  --fg-faint:  102 102 102;
+
+  --brand:     76 194 255;      /* #4cc2ff  Windows-accent (dark variant) */
+  --brand-fg:  0 0 0;           /* tekst op accent-fill */
+  --brand-bg:  0 70 122;        /* diepe accent-tint */
+
+  --ok:        108 203 95;      /* #6ccb5f */
+  --warn:      252 200 70;
+  --err:       255 153 164;     /* zachte rode tekst op donker */
+
+  --diff-easy:   82 211 153;
+  --diff-medium: 252 200 70;
+  --diff-hard:   255 138 128;
+  --diff-insane: 224 122 247;   /* fuchsia/paars */
+}
+
+/* ── LIGHT (Windows 11 light / Mica) ──────────────────────────────────── */
+.light {
+  color-scheme: light;
+
+  --canvas:    243 243 243;     /* #f3f3f3 */
+  --panel:     255 255 255;
+  --pane:      251 251 251;
+  --sunken:    239 239 239;
+  --elevated:  255 255 255;
+  --hover:     234 234 234;
+  --line:      225 225 225;     /* ~rgba(0,0,0,.07) */
+  --line-strong: 198 198 198;
+
+  --fg:        26 26 26;
+  --fg-muted:  92 92 92;
+  --fg-dim:    122 122 122;
+  --fg-faint:  168 168 168;
+
+  --brand:     0 120 212;       /* #0078d4  Windows-blauw */
+  --brand-fg:  255 255 255;
+  --brand-bg:  235 244 252;     /* #ebf4fc lichte tint */
+
+  --ok:        15 123 64;
+  --warn:      157 93 0;
+  --err:       196 43 28;       /* #c42b1c */
+
+  --diff-easy:   16 122 87;
+  --diff-medium: 161 98 7;
+  --diff-hard:   196 43 28;
+  --diff-insane: 146 39 165;
+}
+
+/* ── TERMINAL — themaonafhankelijk donker PowerShell-venster ──────────── */
+:root {
+  --term-bg:      11 20 36;      /* #0b1424 dark navy (PowerShell-vibe) */
+  --term-bar:     22 33 58;      /* #16213a titlebar */
+  --term-fg:      224 230 240;
+  --term-muted:   140 154 184;
+  --term-caret:   224 230 240;
+  --term-sel:     38 79 120;     /* selectie-highlight */
+
+  /* PowerShell syntax (per brief: cmdlets blauw, params wit, strings oranje, comments groen) */
+  --tok-cmd:      79 193 255;    /* #4fc1ff  cmdlet/command — blauw */
+  --tok-param:    220 224 232;   /* parameter -Name — (bijna) wit */
+  --tok-string:   206 145 120;   /* #ce9178  string — oranje */
+  --tok-comment:  106 168 100;   /* #6aa864  comment — groen */
+  --tok-var:      156 220 254;   /* #9cdcfe  $variabele */
+  --tok-num:      181 206 168;   /* #b5cea8  getal */
+  --tok-op:       197 134 192;   /* #c586c0  operator (-eq, |, >) */
+  --tok-prop:     224 230 240;   /* property na . */
+}
+
+/* ========================================================================
+   BASE
+   ======================================================================== */
+html, body { height: 100%; }
+body {
+  @apply bg-canvas text-fg font-sans antialiased;
+  font-size: 14px;
+  line-height: 1.55;
+  /* Subtiele Mica-achtige diepte */
+  background-image: radial-gradient(1200px 700px at 80% -10%, rgb(var(--brand) / 0.06), transparent 60%);
+  background-attachment: fixed;
+}
+.light body {
+  background-image: radial-gradient(1100px 650px at 85% -12%, rgb(var(--brand) / 0.08), transparent 55%);
+}
+
+::selection { background: rgb(var(--brand) / 0.28); }
+
+/* Scrollbars — Fluent dun & rond */
+* { scrollbar-color: rgb(var(--line-strong)) transparent; scrollbar-width: thin; }
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--line-strong));
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover { background-color: rgb(var(--fg-dim)); }
+
+h1, h2, h3, h4 { @apply font-semibold text-fg; letter-spacing: -0.01em; }
+
+/* ========================================================================
+   SURFACES / CARDS
+   ======================================================================== */
+.card {
+  @apply bg-panel border border-line rounded-md shadow-fluent;
+}
+.card-pad { @apply p-4; }
+.surface {
+  @apply bg-pane border border-line rounded-md;
+}
+.section-title {
+  @apply text-2xs font-semibold uppercase tracking-wider text-fg-muted;
+}
+
+/* ========================================================================
+   NAV — Windows 11 top-nav
+   ======================================================================== */
+.nav-tab {
+  @apply relative inline-flex items-center gap-2 h-9 px-3 rounded-md text-[13px] font-medium
+         text-fg-muted hover:text-fg hover:bg-hover transition-colors;
+}
+.nav-tab.active {
+  @apply text-fg bg-hover;
+}
+.nav-tab.active::after {
+  content: "";
+  @apply absolute left-1/2 -translate-x-1/2 bottom-0.5 h-0.5 w-5 rounded-full bg-brand;
+}
+
+/* ========================================================================
+   BUTTONS — Fluent
+   ======================================================================== */
+.btn {
+  @apply inline-flex items-center justify-center gap-1.5 h-8 px-3 text-[13px] font-medium rounded-md
+         border border-line bg-pane text-fg hover:bg-hover hover:border-line-strong
+         active:translate-y-px transition-all select-none;
+}
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-1.5 h-8 px-3.5 text-[13px] font-semibold rounded-md
+         border active:translate-y-px transition-all select-none;
+  background: rgb(var(--brand));
+  border-color: rgb(var(--brand));
+  color: rgb(var(--brand-fg));
+}
+.btn-primary:hover { background: rgb(var(--brand) / 0.88); }
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-1.5 h-8 px-2.5 text-[13px] font-medium rounded-md
+         text-fg-muted hover:text-fg hover:bg-hover transition-colors select-none;
+}
+.btn-sm { @apply h-7 px-2.5 text-2xs; }
+.btn:disabled, .btn-primary:disabled { @apply opacity-50 pointer-events-none; }
+
+/* ========================================================================
+   INPUTS — Fluent (onderlijn-accent bij focus)
+   ======================================================================== */
+.input {
+  @apply w-full h-9 px-3 text-[13px] rounded-md bg-sunken border border-line text-fg
+         placeholder:text-fg-faint transition-colors;
+  border-bottom-width: 1px;
+}
+.input:focus {
+  @apply outline-none border-line-strong;
+  box-shadow: inset 0 -2px 0 0 rgb(var(--brand));
+}
+
+/* ========================================================================
+   CHIPS / BADGES / PILLS
+   ======================================================================== */
+.chip {
+  @apply inline-flex items-center gap-1 px-2 h-6 text-2xs font-medium rounded-full
+         border border-line bg-pane text-fg-muted;
+}
+.chip-ok   { @apply chip text-ok;   border-color: rgb(var(--ok) / 0.4);   background: rgb(var(--ok) / 0.10); }
+.chip-warn { @apply chip text-warn; border-color: rgb(var(--warn) / 0.4); background: rgb(var(--warn) / 0.10); }
+.chip-err  { @apply chip text-err;  border-color: rgb(var(--err) / 0.4);  background: rgb(var(--err) / 0.10); }
+.chip-brand{ @apply chip; color: rgb(var(--brand)); border-color: rgb(var(--brand) / 0.4); background: rgb(var(--brand) / 0.10); }
+
+/* Admin tag — opvallend goud/glow */
+.admin-tag {
+  @apply inline-flex items-center gap-1 px-2 h-5 text-2xs font-mono font-bold uppercase tracking-wider rounded-full border;
+  color: #fde68a;
+  border-color: rgba(251, 191, 36, 0.55);
+  background: linear-gradient(135deg, rgba(217, 119, 6, 0.35), rgba(251, 191, 36, 0.18));
+  box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.2), 0 0 8px rgba(251, 191, 36, 0.25);
+  text-shadow: 0 0 6px rgba(251, 191, 36, 0.45);
+}
+.light .admin-tag {
+  color: #92400e;
+  border-color: rgba(180, 83, 9, 0.5);
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.35), rgba(252, 211, 77, 0.5));
+  text-shadow: none;
+}
+
+/* Difficulty pills */
+.diff {
+  @apply inline-flex items-center gap-1 px-2 h-5 text-2xs font-mono font-semibold uppercase rounded-full border;
+}
+.diff-easy   { @apply diff; color: rgb(var(--diff-easy));   border-color: rgb(var(--diff-easy) / 0.45);   background: rgb(var(--diff-easy) / 0.10); }
+.diff-medium { @apply diff; color: rgb(var(--diff-medium)); border-color: rgb(var(--diff-medium) / 0.45); background: rgb(var(--diff-medium) / 0.10); }
+.diff-hard   { @apply diff; color: rgb(var(--diff-hard));   border-color: rgb(var(--diff-hard) / 0.45);   background: rgb(var(--diff-hard) / 0.10); }
+.diff-insane {
+  @apply diff;
+  color: #fdf2ff;
+  border-color: rgb(var(--diff-insane) / 0.8);
+  background: linear-gradient(135deg, rgb(var(--diff-insane) / 0.55), rgb(var(--err) / 0.30));
+  box-shadow: 0 0 0 1px rgb(var(--diff-insane) / 0.4), 0 0 10px rgb(var(--diff-insane) / 0.45);
+  text-shadow: 0 0 6px rgb(var(--diff-insane) / 0.85);
+  animation: insane-pulse 2.4s ease-in-out infinite;
+}
+@keyframes insane-pulse {
+  0%, 100% { box-shadow: 0 0 0 1px rgb(var(--diff-insane) / 0.4), 0 0 10px rgb(var(--diff-insane) / 0.45); }
+  50%      { box-shadow: 0 0 0 1px rgb(var(--diff-insane) / 0.55), 0 0 18px rgb(var(--diff-insane) / 0.7); }
+}
+.diff-dot        { @apply inline-block w-2 h-2 rounded-full; }
+.diff-dot.easy   { background: rgb(var(--diff-easy)); }
+.diff-dot.medium { background: rgb(var(--diff-medium)); }
+.diff-dot.hard   { background: rgb(var(--diff-hard)); }
+.diff-dot.insane { background: rgb(var(--diff-insane)); box-shadow: 0 0 6px rgb(var(--diff-insane)); }
+
+/* Shell-badge (PowerShell / CMD) */
+.shell-badge {
+  @apply inline-flex items-center gap-1 px-2 h-5 text-2xs font-mono font-semibold rounded-full border;
+}
+.shell-powershell { color: rgb(var(--brand)); border-color: rgb(var(--brand) / 0.45); background: rgb(var(--brand) / 0.10); }
+.shell-cmd        { @apply text-fg-muted; border-color: rgb(var(--line-strong)); background: rgb(var(--sunken)); }
+
+/* XP-chip op oefeningenlijst */
+.xp-chip { @apply inline-flex items-center px-2 h-5 text-2xs font-mono font-bold rounded-full border; }
+.xp-chip.easy   { color: rgb(var(--diff-easy));   border-color: rgb(var(--diff-easy) / 0.45);   background: rgb(var(--diff-easy) / 0.10); }
+.xp-chip.medium { color: rgb(var(--diff-medium)); border-color: rgb(var(--diff-medium) / 0.45); background: rgb(var(--diff-medium) / 0.10); }
+.xp-chip.hard   { color: rgb(var(--diff-hard));   border-color: rgb(var(--diff-hard) / 0.45);   background: rgb(var(--diff-hard) / 0.10); }
+.xp-chip.insane, .xp-chip.zero { @apply text-fg-dim; border-color: rgb(var(--line-strong)); }
+
+/* Progress bar */
+.progress-track { @apply h-2 w-full rounded-full overflow-hidden bg-sunken border border-line; }
+.progress-fill  { @apply h-full rounded-full; background: linear-gradient(90deg, rgb(var(--brand)), rgb(var(--brand) / 0.6)); transition: width .5s cubic-bezier(.16,1,.3,1); }
+
+/* ========================================================================
+   FEEDBACK BLOCKS
+   ======================================================================== */
+.feedback-ok   { @apply text-[13px] px-3 py-2 rounded-md border-l-4; color: rgb(var(--ok));   border-color: rgb(var(--ok)); background: rgb(var(--ok)   / 0.09); }
+.feedback-err  { @apply text-[13px] px-3 py-2 rounded-md border-l-4; color: rgb(var(--err));  border-color: rgb(var(--err)); background: rgb(var(--err)  / 0.09); }
+.feedback-warn { @apply text-[13px] px-3 py-2 rounded-md border-l-4; color: rgb(var(--warn)); border-color: rgb(var(--warn)); background: rgb(var(--warn) / 0.09); }
+.feedback-info { @apply text-[13px] px-3 py-2 rounded-md border-l-4; color: rgb(var(--brand)); border-color: rgb(var(--brand)); background: rgb(var(--brand) / 0.09); }
+
+/* ========================================================================
+   MOCK TERMINAL  —  Windows-Terminal look-alike
+   ======================================================================== */
+.terminal {
+  @apply rounded-lg overflow-hidden border;
+  border-color: rgb(0 0 0 / 0.5);
+  background: rgb(var(--term-bg));
+  color: rgb(var(--term-fg));
+  font-family: "Cascadia Code", "Cascadia Mono", "JetBrains Mono", ui-monospace, Consolas, monospace;
+  box-shadow: 0 10px 40px rgb(0 0 0 / 0.35), 0 0 0 1px rgb(255 255 255 / 0.04) inset;
+}
+/* Tab-strip / titlebar zoals Windows Terminal */
+.terminal-bar {
+  @apply flex items-center gap-2 h-9 px-2 select-none;
+  background: rgb(var(--term-bar));
+  color: rgb(var(--term-fg) / 0.85);
+}
+.terminal-tab {
+  @apply inline-flex items-center gap-1.5 h-7 px-3 rounded-t-md text-2xs font-medium;
+  background: rgb(var(--term-bg));
+  color: rgb(var(--term-fg) / 0.95);
+}
+.terminal-dot { @apply inline-block w-3 h-3 rounded-full; }
+.terminal-body {
+  @apply p-3 overflow-y-auto text-[13.5px] leading-relaxed;
+  min-height: 200px;
+}
+.terminal-body pre, .terminal-body code { font-family: inherit; }
+
+/* Caret (knipperend) */
+.term-caret {
+  display: inline-block;
+  width: 8px;
+  height: 1.15em;
+  background: rgb(var(--term-caret));
+  vertical-align: text-bottom;
+  margin-left: 1px;
+  animation: caret-blink 1.05s step-end infinite;
+}
+@keyframes caret-blink { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
+
+/* Prompt-segmenten */
+.term-prompt-ps   { color: #d7e3ff; }
+.term-prompt-path { color: #7fb7ff; }
+.term-prompt-cmd  { color: #d7e3ff; }
+.term-prompt-glyph{ color: rgb(var(--term-fg) / 0.8); }
+.term-shield { color: #ffd86b; }
+
+/* Output-tekst & PowerShell Format-Table */
+.term-output { color: rgb(var(--term-fg) / 0.92); white-space: pre-wrap; }
+.term-output .hdr   { color: #d7e3ff; font-weight: 600; }
+.term-output .rule  { color: rgb(var(--term-fg) / 0.45); }
+.term-error   { color: #ff8a80; }
+.term-warning { color: #ffd86b; }
+.term-success { color: #7ee787; }
+.term-dim     { color: rgb(var(--term-muted)); }
+
+/* Syntax-highlighting tokens (overlay & output-echo) */
+.tok-cmd     { color: rgb(var(--tok-cmd)); }
+.tok-param   { color: rgb(var(--tok-param)); }
+.tok-string  { color: rgb(var(--tok-string)); }
+.tok-comment { color: rgb(var(--tok-comment)); font-style: italic; }
+.tok-var     { color: rgb(var(--tok-var)); }
+.tok-num     { color: rgb(var(--tok-num)); }
+.tok-op      { color: rgb(var(--tok-op)); }
+.tok-prop    { color: rgb(var(--tok-prop)); }
+.tok-plain   { color: rgb(var(--term-fg)); }
+
+/* Input-overlay techniek: onzichtbare textarea bovenop gekleurde <pre> */
+.term-input-wrap { position: relative; }
+.term-input-wrap .highlight,
+.term-input-wrap textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  tab-size: 4;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.term-input-wrap .highlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+.term-input-wrap textarea {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  resize: none;
+  background: transparent;
+  color: transparent;
+  caret-color: rgb(var(--term-caret));
+  outline: none;
+  overflow: hidden;
+}
+.term-input-wrap textarea::selection { background: rgb(var(--term-sel)); color: transparent; }
+
+/* Autocomplete-popup boven de terminal-regel */
+.term-suggest {
+  @apply absolute z-20 rounded-md overflow-hidden border text-2xs;
+  background: rgb(var(--term-bar));
+  border-color: rgb(255 255 255 / 0.12);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.5);
+  min-width: 220px;
+}
+.term-suggest-item { @apply flex items-center gap-2 px-2.5 py-1.5 cursor-pointer; color: rgb(var(--term-fg) / 0.88); }
+.term-suggest-item.active { background: rgb(var(--tok-cmd) / 0.22); color: #fff; }
+.term-suggest-item .hint { @apply ml-auto; color: rgb(var(--term-muted)); }
+
+/* ========================================================================
+   STEP TRACKER (multi-step oefeningen)
+   ======================================================================== */
+.step-pill {
+  @apply inline-flex items-center justify-center w-6 h-6 rounded-full text-2xs font-bold border;
+  border-color: rgb(var(--line-strong));
+  color: rgb(var(--fg-muted));
+}
+.step-pill.done { background: rgb(var(--ok) / 0.18); border-color: rgb(var(--ok) / 0.5); color: rgb(var(--ok)); }
+.step-pill.current { background: rgb(var(--brand) / 0.18); border-color: rgb(var(--brand) / 0.6); color: rgb(var(--brand)); }
+
+/* ========================================================================
+   STYLED NAME  —  per-user username effects (leaderboard)
+   ======================================================================== */
+.styled-name {
+  display: inline-flex; align-items: center; gap: 0.25rem;
+  position: relative; white-space: nowrap; padding: 0 0.1em;
+}
+.styled-name.font-mono      { font-family: "Cascadia Code", "JetBrains Mono", ui-monospace, monospace; }
+.styled-name.font-serif     { font-family: Georgia, "Times New Roman", serif; }
+.styled-name.font-cursive   { font-family: "Brush Script MT", "Lucida Handwriting", cursive; letter-spacing: 0.02em; }
+.styled-name.font-display   { font-family: "Impact", "Bebas Neue", sans-serif; letter-spacing: 0.06em; text-transform: uppercase; }
+.styled-name.font-minecraft { font-family: "Press Start 2P", "VT323", monospace; font-size: 0.75em; letter-spacing: 0.05em; }
+.styled-name.font-terminal  { font-family: "VT323", "Cascadia Mono", monospace; font-size: 1.15em; letter-spacing: 0.02em; }
+
+.light .styled-name .name-text {
+  paint-order: stroke fill;
+  -webkit-text-stroke: 0.6px rgba(0, 0, 0, 0.55);
+}
+.styled-name .name-text { display: inline-block; }
+.styled-name.b .name-text { font-weight: 800; }
+.styled-name.i .name-text { font-style: italic; }
+.styled-name.u .name-text { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 2px; }
+.styled-name.s .name-text { text-decoration: line-through; }
+
+.styled-name.rainbow .name-text {
+  background: linear-gradient(90deg, #ef4444, #f59e0b, #eab308, #22c55e, #06b6d4, #3b82f6, #a855f7, #ef4444);
+  background-size: 200% auto;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: rainbow-shift 4s linear infinite;
+}
+@keyframes rainbow-shift { to { background-position: 200% center; } }
+
+.styled-name.pulse .name-text { animation: name-pulse 2s ease-in-out infinite; }
+@keyframes name-pulse { 0%,100% { filter: drop-shadow(0 0 0 currentColor); } 50% { filter: drop-shadow(0 0 8px currentColor); } }
+
+.styled-name.shake .name-text { animation: name-shake 0.6s ease-in-out infinite; display: inline-block; }
+@keyframes name-shake {
+  0%,100% { transform: translateX(0) rotate(0deg); }
+  20% { transform: translateX(-1px) rotate(-0.6deg); }
+  40% { transform: translateX(1px) rotate(0.6deg); }
+  60% { transform: translateX(-1px) rotate(-0.4deg); }
+  80% { transform: translateX(1px) rotate(0.4deg); }
+}
+.styled-name.sparkle::before, .styled-name.sparkle::after {
+  content: "✨"; font-size: 0.85em; position: absolute; pointer-events: none;
+}
+.styled-name.sparkle::before { left: -1.1em; top: -0.15em; animation: spark-a 1.8s ease-in-out infinite; }
+.styled-name.sparkle::after { right: -1.1em; bottom: -0.15em; animation: spark-b 1.8s ease-in-out infinite; }
+@keyframes spark-a { 0%,100% { opacity: 0; transform: scale(0.6) rotate(0); } 50% { opacity: 1; transform: scale(1.1) rotate(20deg); } }
+@keyframes spark-b { 0%,100% { opacity: 1; transform: scale(1) rotate(-15deg); } 50% { opacity: 0.4; transform: scale(0.7) rotate(10deg); } }
+
+.styled-name .particle { position: absolute; font-size: 0.7em; pointer-events: none; z-index: 1; -webkit-text-stroke: 0 !important; line-height: 1; }
+.styled-name.snow { padding: 0.6em 0.2em; }
+.styled-name.snow .particle { top: -0.4em; animation: snow-fall 3s linear infinite; }
+@keyframes snow-fall { 0% { transform: translateY(0) rotate(0); opacity: 0; } 10% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateY(2.4em) rotate(180deg); opacity: 0; } }
+.styled-name.stars .particle { animation: star-twinkle 1.8s ease-in-out infinite; }
+@keyframes star-twinkle { 0%,100% { opacity: 0; transform: scale(0.5); } 50% { opacity: 1; transform: scale(1.2); } }
+.styled-name.hearts { padding: 0.4em 0.2em; }
+.styled-name.hearts .particle { bottom: -0.4em; animation: heart-rise 2.6s ease-in infinite; }
+@keyframes heart-rise { 0% { transform: translateY(0) scale(0.6); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateY(-2.2em) scale(1) rotate(15deg); opacity: 0; } }
+.styled-name.fire { padding-bottom: 0.5em; }
+.styled-name.fire .particle.fire-p { bottom: -0.3em; font-size: 0.9em; animation: fire-flicker 0.45s ease-in-out infinite alternate; }
+@keyframes fire-flicker { 0% { transform: translateY(0) scaleY(1); opacity: 0.85; } 100% { transform: translateY(-2px) scaleY(1.15); opacity: 1; } }
+.styled-name.orbit { padding: 0 1.6em; }
+.styled-name.orbit .particle.orbit-p { top: 50%; left: 50%; font-size: 0.55em; animation: orbit-anim 2.4s linear infinite; text-shadow: 0 0 6px currentColor; }
+@keyframes orbit-anim { from { transform: translate(-50%,-50%) rotate(0) translateX(1.7em) rotate(0); } to { transform: translate(-50%,-50%) rotate(360deg) translateX(1.7em) rotate(-360deg); } }
+
+/* ========================================================================
+   XP TOAST
+   ======================================================================== */
+.xp-toast {
+  position: fixed; left: 50%; top: 42%; transform: translate(-50%, -50%);
+  padding: 1rem 1.75rem;
+  font-family: "Cascadia Code", "JetBrains Mono", ui-monospace, monospace;
+  font-size: 3rem; font-weight: 800; letter-spacing: -0.02em;
+  color: rgb(var(--ok));
+  text-shadow: 0 0 24px rgb(var(--ok) / 0.7), 0 0 8px rgb(var(--ok) / 0.5);
+  pointer-events: none; z-index: 1000; white-space: nowrap;
+  animation: xp-pop 1.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+.xp-toast .xp-sub {
+  display: block; font-size: 0.95rem; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; opacity: 0.75; text-align: center; margin-top: -0.25rem; text-shadow: none;
+}
+@keyframes xp-pop {
+  0%   { opacity: 0; transform: translate(-50%, -10%) scale(0.6); }
+  18%  { opacity: 1; transform: translate(-50%, -50%) scale(1.18); }
+  40%  { transform: translate(-50%, -50%) scale(1); }
+  75%  { opacity: 1; transform: translate(-50%, -90%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -160%) scale(0.95); }
+}
+
+/* ========================================================================
+   MISC
+   ======================================================================== */
+.kbd {
+  @apply inline-block px-1.5 py-px text-[11px] leading-none border bg-pane text-fg-muted font-mono rounded;
+  border-color: rgb(var(--line-strong));
+  box-shadow: 0 1px 0 rgb(var(--line-strong));
+}
+pre.code, .code {
+  @apply font-mono text-2xs bg-sunken border border-line rounded-md p-2.5 text-fg overflow-auto;
+}
+a.link { color: rgb(var(--brand)); }
+a.link:hover { text-decoration: underline; }
+.empty-state {
+  @apply flex flex-col items-center justify-center text-center gap-2 py-12 px-4 text-fg-muted;
+}
+
+/* ========================================================================
+   PRINT  — voor de cheat-sheet
+   ======================================================================== */
+@media print {
+  header, footer { display: none !important; }
+  body { background: #fff !important; color: #111 !important; }
+  body { background-image: none !important; }
+  main { padding: 0 !important; }
+  .card { box-shadow: none !important; border-color: #ccc !important; background: #fff !important; break-inside: avoid; }
+  .section-title { color: #444 !important; }
+  a { color: #111 !important; text-decoration: none !important; }
+}

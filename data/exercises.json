@@ -1,0 +1,4059 @@
+[
+  {
+    "id": "ps-h1-01",
+    "chapter": "H1 PowerShell-basis",
+    "title": "Alle beschikbare commando's tonen",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "get-command",
+      "discovery",
+      "basis"
+    ],
+    "prompt": "Toon een overzicht van alle beschikbare cmdlets, functies en aliassen in jouw PowerShell-sessie.",
+    "acceptors": [
+      "Get-Command",
+      "get-command"
+    ],
+    "mustInclude": [],
+    "forbid": [],
+    "outputMock": [
+      "CommandType     Name                                               Version    Source",
+      "Alias           % -> ForEach-Object",
+      "Alias           ? -> Where-Object",
+      "Cmdlet          Add-Content                                        7.0.0.0    Microsoft.PowerShell.Management"
+    ],
+    "hints": [
+      "Het cmdlet begint met 'Get-' en gaat over commando's zelf.",
+      "De naam is letterlijk wat je doet: get-command."
+    ],
+    "solution": "Get-Command"
+  },
+  {
+    "id": "ps-h1-02",
+    "chapter": "H1 PowerShell-basis",
+    "title": "Commando's in drie kolommen weergeven",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "get-command",
+      "format-wide",
+      "pipeline",
+      "basis"
+    ],
+    "prompt": "Geef een overzicht van alle beschikbare commando's, maar toon ze overzichtelijk in drie kolommen naast elkaar (zonder extra detail).",
+    "acceptors": [
+      "Get-Command | Format-Wide -Column 3",
+      "get-command | format-wide -column 3",
+      "Get-Command | Format-Wide -Col 3"
+    ],
+    "mustInclude": [
+      "get-command",
+      "format-wide",
+      "3"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Add-Content               Add-History               Add-Member",
+      "Add-Type                  Clear-Content             Clear-History"
+    ],
+    "hints": [
+      "Gebruik de pipe (|) om de uitvoer van Get-Command door te sturen.",
+      "Het cmdlet voor brede weergave heet Format-Wide; gebruik de parameter -Column."
+    ],
+    "solution": "Get-Command | Format-Wide -Column 3"
+  },
+  {
+    "id": "ps-h1-03",
+    "chapter": "H1 PowerShell-basis",
+    "title": "Hulp opvragen voor een cmdlet",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "get-help",
+      "help",
+      "basis"
+    ],
+    "prompt": "Vraag de volledige helpinformatie op voor het cmdlet Add-Computer (inclusief alle technische parameterdetails).",
+    "acceptors": [
+      "Get-Help Add-Computer -Full",
+      "get-help Add-Computer -full",
+      "help Add-Computer -Full"
+    ],
+    "mustInclude": [
+      "get-help",
+      "add-computer",
+      "-full"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "NAME",
+      "    Add-Computer",
+      "SYNTAX",
+      "    Add-Computer [-DomainName] <String> [[-Credential] <PSCredential>] ..."
+    ],
+    "hints": [
+      "Gebruik Get-Help gevolgd door de naam van het cmdlet.",
+      "Er zijn drie detailniveaus: standaard, -Detailed en -Full."
+    ],
+    "solution": "Get-Help Add-Computer -Full"
+  },
+  {
+    "id": "ps-h1-04",
+    "chapter": "H1 PowerShell-basis",
+    "title": "Zoeken naar service-gerelateerde commando's",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "get-command",
+      "wildcard",
+      "discovery"
+    ],
+    "prompt": "Zoek naar alle beschikbare commando's waarvan de naam het woord 'service' bevat. Gebruik een jokerteken.",
+    "acceptors": [
+      "Get-Command *service*",
+      "get-command *service*",
+      "Get-Command -Name *service*"
+    ],
+    "mustInclude": [
+      "get-command",
+      "*service*"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "CommandType     Name                                               Version    Source",
+      "Cmdlet          Get-Service                                        7.0.0.0    Microsoft.PowerShell.Management",
+      "Cmdlet          Restart-Service                                    7.0.0.0    Microsoft.PowerShell.Management",
+      "Cmdlet          Set-Service                                        7.0.0.0    Microsoft.PowerShell.Management"
+    ],
+    "hints": [
+      "Gebruik het sterretje (*) als jokerteken voor 'nul of meer tekens'.",
+      "Omsluit het zoekwoord met sterretjes zodat je voor én na 'service' iets mag staan."
+    ],
+    "solution": "Get-Command *service*"
+  },
+  {
+    "id": "ps-h1-05",
+    "chapter": "H1 PowerShell-basis",
+    "title": "Eigenschappen en methoden van een object ontdekken",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "get-member",
+      "pipeline",
+      "objecten",
+      "discovery"
+    ],
+    "prompt": "Stuur de uitvoer van Get-Process door de pipeline naar het cmdlet dat alle beschikbare eigenschappen en methoden toont.",
+    "acceptors": [
+      "Get-Process | Get-Member",
+      "get-process | get-member",
+      "Get-Process | gm"
+    ],
+    "mustInclude": [],
+    "forbid": [],
+    "outputMock": [
+      "   TypeName: System.Diagnostics.Process",
+      "",
+      "Name                       MemberType     Definition",
+      "----                       ----------     ----------",
+      "Handles                    Property       int Handles {get;}",
+      "Id                         Property       int Id {get;}"
+    ],
+    "hints": [
+      "Gebruik de pipe (|) om de output van Get-Process door te sturen.",
+      "Het cmdlet dat leden van een object toont heet Get-Member (alias: gm)."
+    ],
+    "solution": "Get-Process | Get-Member"
+  },
+  {
+    "id": "ps-h1-06",
+    "chapter": "H1 PowerShell-basis",
+    "title": "Aliassen opvragen",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "get-alias",
+      "aliassen",
+      "basis"
+    ],
+    "prompt": "Toon een overzicht van alle gedefinieerde aliassen in de huidige PowerShell-sessie.",
+    "acceptors": [
+      "Get-Alias",
+      "get-alias",
+      "gal"
+    ],
+    "mustInclude": [],
+    "forbid": [],
+    "outputMock": [
+      "CommandType     Name                                               Version    Source",
+      "Alias           % -> ForEach-Object",
+      "Alias           ? -> Where-Object",
+      "Alias           cat -> Get-Content"
+    ],
+    "hints": [
+      "Het cmdlet begint met 'Get-' en gaat over aliassen.",
+      "De alias van dit cmdlet zelf is 'gal'."
+    ],
+    "solution": "Get-Alias"
+  },
+  {
+    "id": "ps-h1-07",
+    "chapter": "H1 PowerShell-basis",
+    "title": "Simuleren van een verwijderactie met -WhatIf",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "remove-item",
+      "-whatif",
+      "veiligheid",
+      "parameters"
+    ],
+    "prompt": "Je wil alle .txt-bestanden in C:\\Temp en alle submappen verwijderen, maar je wil eerst zien wat er zou gebeuren zonder iets echt te verwijderen. Schrijf het commando dat dit simuleert.",
+    "acceptors": [
+      "Remove-Item C:\\Temp\\*.txt -Recurse -WhatIf",
+      "remove-item C:\\Temp\\*.txt -Recurse -WhatIf",
+      "Remove-Item -Path C:\\Temp\\*.txt -Recurse -WhatIf"
+    ],
+    "mustInclude": [
+      "remove-item",
+      "-whatif",
+      "-recurse"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "What if: Performing the operation \"Remove File\" on target \"C:\\Temp\\test.txt\".",
+      "What if: Performing the operation \"Remove File\" on target \"C:\\Temp\\sub\\notes.txt\"."
+    ],
+    "hints": [
+      "Het cmdlet om bestanden te verwijderen is Remove-Item.",
+      "Gebruik -Recurse om ook submappen te doorzoeken.",
+      "Er is een speciale parameter die een 'droge run' doet zonder echt iets te wijzigen."
+    ],
+    "solution": "Remove-Item C:\\Temp\\*.txt -Recurse -WhatIf"
+  },
+  {
+    "id": "ps-h2-01",
+    "chapter": "H2 Variabelen & operatoren",
+    "title": "Een variabele toewijzen en weergeven",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "variabelen",
+      "toewijzing",
+      "basis"
+    ],
+    "prompt": "Wijs de waarde 42 toe aan een variabele genaamd $getal en toon daarna de inhoud van die variabele.",
+    "acceptors": [],
+    "mustInclude": [
+      "$getal",
+      "42"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "42"
+    ],
+    "hints": [
+      "Variabelen beginnen altijd met een $-teken.",
+      "Gebruik = om een waarde toe te wijzen, en daarna de variabelenaam alleen om hem te tonen."
+    ],
+    "solution": "$getal = 42\n$getal"
+  },
+  {
+    "id": "ps-h2-02",
+    "chapter": "H2 Variabelen & operatoren",
+    "title": "Datatype van een variabele controleren",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "variabelen",
+      "datatype",
+      "gettype"
+    ],
+    "prompt": "Je hebt een variabele $waarde met de inhoud 'Hallo'. Roep de methode op die het actuele datatype van deze variabele toont.",
+    "acceptors": [
+      "$waarde = 'Hallo'; $waarde.GetType()",
+      "$waarde = \"Hallo\"; $waarde.GetType()",
+      "$waarde.GetType()"
+    ],
+    "mustInclude": [
+      "$waarde",
+      ".gettype()"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "IsPublic IsSerial Name    BaseType",
+      "-------- -------- ----    --------",
+      "True     True     String  System.Object"
+    ],
+    "hints": [
+      "Op elke PowerShell-variabele kun je methoden aanroepen met een punt (.).",
+      "De methode om het type te controleren heet .GetType() — vergeet de haakjes niet."
+    ],
+    "solution": "$waarde = 'Hallo'\n$waarde.GetType()"
+  },
+  {
+    "id": "ps-h2-03",
+    "chapter": "H2 Variabelen & operatoren",
+    "title": "Dynamische typering begrijpen",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "variabelen",
+      "datatype",
+      "string",
+      "integer"
+    ],
+    "prompt": "Maak twee variabelen: $a met de waarde 4 (als getal) en $b met de waarde '4' (als tekst). Toon van beide het datatype met .GetType(). Merk het verschil op.",
+    "acceptors": [],
+    "mustInclude": [
+      "$a",
+      "$b",
+      ".gettype()"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "IsPublic IsSerial Name    BaseType",
+      "True     True     Int32   System.ValueType",
+      "IsPublic IsSerial Name    BaseType",
+      "True     True     String  System.Object"
+    ],
+    "hints": [
+      "Een getal zonder aanhalingstekens wordt herkend als Int32.",
+      "Tekst moet altijd tussen aanhalingstekens staan: 'tekst' of \"tekst\".",
+      "Roep .GetType() aan op beide variabelen om het verschil te zien."
+    ],
+    "solution": "$a = 4\n$b = '4'\n$a.GetType()\n$b.GetType()"
+  },
+  {
+    "id": "ps-h2-04",
+    "chapter": "H2 Variabelen & operatoren",
+    "title": "Een omgevingsvariabele lezen",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "variabelen",
+      "omgevingsvariabelen",
+      "env"
+    ],
+    "prompt": "Toon de computernaam van het systeem via de omgevingsvariabele.",
+    "acceptors": [
+      "$env:ComputerName",
+      "$env:COMPUTERNAME"
+    ],
+    "mustInclude": [
+      "$env:computername"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "DESKTOP-ABC123"
+    ],
+    "hints": [
+      "Omgevingsvariabelen zijn bereikbaar via de env: provider.",
+      "De syntax is $env: gevolgd door de naam van de variabele."
+    ],
+    "solution": "$env:ComputerName"
+  },
+  {
+    "id": "ps-h2-05",
+    "chapter": "H2 Variabelen & operatoren",
+    "title": "Rekenkundige berekening in een variabele",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "variabelen",
+      "operatoren",
+      "rekenkundig"
+    ],
+    "prompt": "Wijs het resultaat van 5 + 5 toe aan de variabele $a en toon daarna de waarde.",
+    "acceptors": [
+      "$a = 5 + 5; $a",
+      "$a = 5+5; $a"
+    ],
+    "mustInclude": [
+      "$a",
+      "5",
+      "+"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "10"
+    ],
+    "hints": [
+      "PowerShell berekent de expressie rechts van = meteen.",
+      "Na de toewijzing typ je gewoon $a om de waarde te tonen."
+    ],
+    "solution": "$a = 5 + 5\n$a"
+  },
+  {
+    "id": "ps-h6-01",
+    "chapter": "H6 Credentials & rechten",
+    "title": "Credentials opvragen met Get-Credential",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "credentials",
+      "get-credential",
+      "pscredential"
+    ],
+    "prompt": "Sla administrator-credentials veilig op in de variabele `$cred` via een interactief loginvenster. Geef als begeleidende tekst 'Geef administrator credentials' mee.",
+    "acceptors": [
+      "$cred = Get-Credential -Message \"Geef administrator credentials\"",
+      "$cred = Get-Credential -Message 'Geef administrator credentials'"
+    ],
+    "mustInclude": [
+      "get-credential",
+      "-message"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Get-Credential met de parameter -Message om een eigen tekst in het venster te tonen.",
+      "Het resultaat is een PSCredential-object met $cred.UserName en $cred.Password."
+    ],
+    "solution": "$cred = Get-Credential -Message \"Geef administrator credentials\""
+  },
+  {
+    "id": "ps-h6-02",
+    "chapter": "H6 Credentials & rechten",
+    "title": "Wachtwoord omzetten naar SecureString",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "credentials",
+      "securestring",
+      "convertto-securestring"
+    ],
+    "prompt": "Zet het plaintext wachtwoord `P@ssword123` om naar een SecureString en sla het op in `$securePass`.",
+    "acceptors": [
+      "$securePass = ConvertTo-SecureString \"P@ssword123\" -AsPlainText -Force",
+      "$securePass = ConvertTo-SecureString 'P@ssword123' -AsPlainText -Force",
+      "$securePass = ConvertTo-SecureString -String \"P@ssword123\" -AsPlainText -Force",
+      "$securePass = ConvertTo-SecureString -String 'P@ssword123' -AsPlainText -Force"
+    ],
+    "mustInclude": [
+      "convertto-securestring",
+      "-asplaintext",
+      "-force"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik ConvertTo-SecureString met de parameters -AsPlainText en -Force.",
+      "Zonder -Force weigert PowerShell plaintext-wachtwoorden te verwerken."
+    ],
+    "solution": "$securePass = ConvertTo-SecureString \"P@ssword123\" -AsPlainText -Force"
+  },
+  {
+    "id": "ps-h6-03",
+    "chapter": "H6 Credentials & rechten",
+    "title": "Lokale gebruiker aanmaken",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "credentials",
+      "new-localuser",
+      "securestring"
+    ],
+    "prompt": "Maak een lokale gebruiker `student1` aan met SecureString-wachtwoord `$securePass`, volledige naam `student1` en beschrijving `Aangemaakt via script`.",
+    "acceptors": [
+      "New-LocalUser -Name \"student1\" -Password $securePass -FullName \"student1\" -Description \"Aangemaakt via script\"",
+      "New-LocalUser -Name 'student1' -Password $securePass -FullName 'student1' -Description 'Aangemaakt via script'"
+    ],
+    "mustInclude": [
+      "new-localuser",
+      "-name",
+      "-password",
+      "-fullname"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik New-LocalUser met -Name, -Password, -FullName en -Description.",
+      "Zorg dat $securePass al als SecureString is aangemaakt vóór je dit commando uitvoert."
+    ],
+    "solution": "New-LocalUser -Name \"student1\" -Password $securePass -FullName \"student1\" -Description \"Aangemaakt via script\""
+  },
+  {
+    "id": "ps-h6-04",
+    "chapter": "H6 Credentials & rechten",
+    "title": "Gebruiker toevoegen aan lokale groep",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "credentials",
+      "add-localgroupmember",
+      "groepen"
+    ],
+    "prompt": "Voeg de lokale gebruiker `student1` toe aan de groep `Users`.",
+    "acceptors": [
+      "Add-LocalGroupMember -Group \"Users\" -Member \"student1\"",
+      "Add-LocalGroupMember -Group 'Users' -Member 'student1'"
+    ],
+    "mustInclude": [
+      "add-localgroupmember",
+      "-group",
+      "-member"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Add-LocalGroupMember met -Group en -Member.",
+      "De groepsnaam is hoofdlettergevoelig op sommige systemen; gebruik 'Users' (Engels)."
+    ],
+    "solution": "Add-LocalGroupMember -Group \"Users\" -Member \"student1\""
+  },
+  {
+    "id": "ps-h6-05",
+    "chapter": "H6 Credentials & rechten",
+    "title": "Script: gebruikers aanmaken vanuit array met admin-credentials",
+    "difficulty": "hard",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "credentials",
+      "new-localuser",
+      "invoke-command",
+      "foreach",
+      "securestring"
+    ],
+    "prompt": "Schrijf een script dat:\n1. Administrator-credentials opvraagt en opslaat in `$adminCred`.\n2. Een array `$users` definieert met twee gebruikers (`student1` en `student2`, wachtwoord `P@ssword123`).\n3. Via een `foreach`-lus en `Invoke-Command` (op localhost) elke gebruiker aanmaakt als die nog niet bestaat (controleer met `Get-LocalUser`), en de gebruiker toevoegt aan de groep `Users`.\nGeef feedback per gebruiker.",
+    "acceptors": [],
+    "mustInclude": [
+      "get-credential",
+      "invoke-command",
+      "convertto-securestring",
+      "new-localuser",
+      "add-localgroupmember",
+      "foreach"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Sla de credentials op met Get-Credential -Message '...' en gebruik ze in Invoke-Command -Credential.",
+      "Gebruik Get-LocalUser -Name $username -ErrorAction SilentlyContinue om te checken of de gebruiker al bestaat.",
+      "Geef variabelen mee aan het ScriptBlock via -ArgumentList en declareer ze als param(...) binnenin."
+    ],
+    "solution": "$adminCred = Get-Credential -Message \"Geef administrator credentials\"\n\n$users = @(\n    @{Name=\"student1\"; Password=\"P@ssword123\"},\n    @{Name=\"student2\"; Password=\"P@ssword123\"}\n)\n\nforeach ($user in $users) {\n    $username = $user.Name\n    $plainPassword = $user.Password\n    $securePassword = ConvertTo-SecureString $plainPassword -AsPlainText -Force\n\n    Invoke-Command -ComputerName \"localhost\" -Credential $adminCred -ScriptBlock {\n        param($username, $securePassword)\n        if (Get-LocalUser -Name $username -ErrorAction SilentlyContinue) {\n            Write-Output \"Gebruiker $username bestaat al\"\n        } else {\n            New-LocalUser -Name $username -Password $securePassword -FullName $username -Description \"Aangemaakt via script\"\n            Add-LocalGroupMember -Group \"Users\" -Member $username\n            Write-Output \"Gebruiker $username aangemaakt\"\n        }\n    } -ArgumentList $username, $securePassword\n}"
+  },
+  {
+    "id": "ps-h6-06",
+    "chapter": "H6 Credentials & rechten",
+    "title": "Script: bestand beheren met admin-credentials (labo)",
+    "difficulty": "hard",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "credentials",
+      "invoke-command",
+      "test-path",
+      "new-item",
+      "out-file"
+    ],
+    "prompt": "Schrijf een script dat:\n1. Administrator-credentials opvraagt (`$cred`).\n2. Via `Invoke-Command` op localhost controleert of de map `C:\\AdminData` bestaat.\n3. De map aanmaakt als die er nog niet is.\n4. Een bestand `info.txt` in die map aanmaakt met daarin de huidige datum en de ingelogde gebruikersnaam.\n5. Feedback geeft aan de gebruiker.",
+    "acceptors": [],
+    "mustInclude": [
+      "get-credential",
+      "invoke-command",
+      "test-path",
+      "new-item",
+      "out-file"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Test-Path om te controleren of C:\\AdminData bestaat; maak de map aan met New-Item -ItemType Directory.",
+      "Schrijf de tekst naar het bestand met Out-File of Add-Content.",
+      "Geef de datum mee via (Get-Date) en de gebruiker via $env:USERNAME of $using:cred.UserName."
+    ],
+    "solution": "$cred = Get-Credential\n\nInvoke-Command -ComputerName \"localhost\" -Credential $cred -ScriptBlock {\n    $folder = \"C:\\AdminData\"\n    $file = \"$folder\\info.txt\"\n\n    if (-not (Test-Path $folder)) {\n        New-Item -ItemType Directory -Path $folder\n        Write-Output \"Map aangemaakt: $folder\"\n    } else {\n        Write-Output \"Map bestaat al: $folder\"\n    }\n\n    \"Datum: $(Get-Date) | Gebruiker: $env:USERNAME\" | Out-File -FilePath $file\n    Write-Output \"Bestand geschreven: $file\"\n}"
+  },
+  {
+    "id": "ps-h6-07",
+    "chapter": "H6 Credentials & rechten",
+    "title": "CSV-import: gebruikers aanmaken met -WhatIf (labo)",
+    "difficulty": "hard",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "credentials",
+      "import-csv",
+      "new-localuser",
+      "foreach",
+      "securestring",
+      "whatif"
+    ],
+    "prompt": "Schrijf een script dat:\n1. Credentials opvraagt en opslaat in `$cred`.\n2. Een CSV-bestand `medewerkers.csv` importeert (kolommen: name, username, password, expirationInYears, description).\n3. Voor elke gebruiker het wachtwoord omzet naar SecureString en een nieuwe lokale gebruiker aanmaakt met vervaldatum (`-AccountExpires`) en `-WhatIf` voor een veilige testrun.\n4. Na afloop alle lokale gebruikers toont met `Format-List *`.",
+    "acceptors": [],
+    "mustInclude": [
+      "import-csv",
+      "foreach",
+      "convertto-securestring",
+      "new-localuser",
+      "get-localuser"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Import-Csv -Path .\\medewerkers.csv om de CSV in te laden.",
+      "Bereken de vervaldatum met (Get-Date).AddYears($u.expirationInYears).",
+      "Voeg -WhatIf toe aan New-LocalUser om de acties eerst te simuleren zonder ze echt uit te voeren."
+    ],
+    "solution": "$cred = Get-Credential\n$csvPath = \".\\medewerkers.csv\"\n$gebruikersLijst = Import-Csv -Path $csvPath\n\nforeach ($u in $gebruikersLijst) {\n    $securePass = ConvertTo-SecureString -String $u.password -AsPlainText -Force\n    New-LocalUser -Name $u.username `\n        -Password $securePass `\n        -FullName $u.name `\n        -Description $u.description `\n        -AccountExpires (Get-Date).AddYears($u.expirationInYears) `\n        -UserMayNotChangePassword `\n        -WhatIf\n}\n\nGet-LocalUser | Format-List *"
+  },
+  {
+    "id": "ps-h7-01",
+    "chapter": "H7 Bestanden & data-opslag",
+    "title": "Uitvoer opslaan naar tekstbestand met Out-File",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "out-file",
+      "bestanden",
+      "get-childitem"
+    ],
+    "prompt": "Sla een lijst van alle bestanden en mappen in `C:\\Temp` op in het bestand `C:\\Temp\\Bestanden.txt` met behulp van Out-File.",
+    "acceptors": [
+      "Get-ChildItem -Path \"C:\\Temp\" | Out-File \"C:\\Temp\\Bestanden.txt\"",
+      "Get-ChildItem -Path 'C:\\Temp' | Out-File 'C:\\Temp\\Bestanden.txt'",
+      "Get-ChildItem \"C:\\Temp\" | Out-File \"C:\\Temp\\Bestanden.txt\"",
+      "Get-ChildItem C:\\Temp | Out-File C:\\Temp\\Bestanden.txt"
+    ],
+    "mustInclude": [
+      "get-childitem",
+      "out-file"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Pipe de uitvoer van Get-ChildItem naar Out-File.",
+      "Geef het doelpad mee als argument aan Out-File."
+    ],
+    "solution": "Get-ChildItem -Path \"C:\\Temp\" | Out-File \"C:\\Temp\\Bestanden.txt\""
+  },
+  {
+    "id": "ps-h7-02",
+    "chapter": "H7 Bestanden & data-opslag",
+    "title": "Tekst toevoegen aan bestand met -Append",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "out-file",
+      "-append",
+      "bestanden"
+    ],
+    "prompt": "Voeg de tekst `Nieuwe logregel` toe aan het bestaande bestand `C:\\Temp\\Test.txt` zonder de bestaande inhoud te overschrijven.",
+    "acceptors": [
+      "\"Nieuwe logregel\" | Out-File \"C:\\Temp\\Test.txt\" -Append",
+      "'Nieuwe logregel' | Out-File 'C:\\Temp\\Test.txt' -Append",
+      "\"Nieuwe logregel\" | Out-File -FilePath \"C:\\Temp\\Test.txt\" -Append"
+    ],
+    "mustInclude": [
+      "out-file",
+      "-append"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik de -Append parameter van Out-File zodat de bestaande inhoud bewaard blijft.",
+      "Zonder -Append wordt het bestand overschreven."
+    ],
+    "solution": "\"Nieuwe logregel\" | Out-File \"C:\\Temp\\Test.txt\" -Append"
+  },
+  {
+    "id": "ps-h7-03",
+    "chapter": "H7 Bestanden & data-opslag",
+    "title": "Overschrijven voorkomen met -NoClobber",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "out-file",
+      "-noclobber",
+      "bestanden"
+    ],
+    "prompt": "Probeer de tekst `Dit mag niet overschrijven` naar `C:\\Temp\\Test.txt` te schrijven, maar zorg ervoor dat het bestand NIET wordt overschreven als het al bestaat.",
+    "acceptors": [
+      "\"Dit mag niet overschrijven\" | Out-File \"C:\\Temp\\Test.txt\" -NoClobber",
+      "'Dit mag niet overschrijven' | Out-File 'C:\\Temp\\Test.txt' -NoClobber",
+      "\"Dit mag niet overschrijven\" | Out-File -FilePath \"C:\\Temp\\Test.txt\" -NoClobber"
+    ],
+    "mustInclude": [
+      "out-file",
+      "-noclobber"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "De parameter -NoClobber laat PowerShell een foutmelding geven als het bestand al bestaat.",
+      "Zonder -NoClobber wordt het bestand stilzwijgend overschreven."
+    ],
+    "solution": "\"Dit mag niet overschrijven\" | Out-File \"C:\\Temp\\Test.txt\" -NoClobber"
+  },
+  {
+    "id": "ps-h7-04",
+    "chapter": "H7 Bestanden & data-opslag",
+    "title": "HTML-rapport opslaan met Out-File",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "out-file",
+      "convertto-html",
+      "services"
+    ],
+    "prompt": "Genereer een HTML-overzicht van alle actieve services (Status = Running) en sla dit op als `C:\\ps\\stats.htm`.",
+    "acceptors": [
+      "Get-Service | Where-Object -Property Status -eq \"Running\" | ConvertTo-Html | Out-File C:\\ps\\stats.htm",
+      "Get-Service | Where-Object -Property Status -eq 'Running' | ConvertTo-Html | Out-File C:\\ps\\stats.htm",
+      "Get-Service | Where-Object { $_.Status -eq \"Running\" } | ConvertTo-Html | Out-File C:\\ps\\stats.htm"
+    ],
+    "mustInclude": [
+      "get-service",
+      "where-object",
+      "convertto-html",
+      "out-file"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Filter de services met Where-Object -Property Status -eq 'Running'.",
+      "Pipe het gefilterde resultaat naar ConvertTo-Html en dan naar Out-File."
+    ],
+    "solution": "Get-Service | Where-Object -Property Status -eq \"Running\" | ConvertTo-Html | Out-File C:\\ps\\stats.htm"
+  },
+  {
+    "id": "ps-h7-05",
+    "chapter": "H7 Bestanden & data-opslag",
+    "title": "Nieuwe PSDrive aanmaken",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "psdrive",
+      "new-psdrive",
+      "bestandssysteem"
+    ],
+    "prompt": "Maak een nieuwe PSDrive aan met de naam `MijnSchijf` die verwijst naar de map `C:\\MijnMap`. Zorg dat de drive ook persistent (zichtbaar in Verkenner) is.",
+    "acceptors": [
+      "New-PSDrive -Name MijnSchijf -PSProvider FileSystem -Root \"C:\\MijnMap\" -Persist",
+      "New-PSDrive -Name MijnSchijf -PSProvider FileSystem -Root 'C:\\MijnMap' -Persist",
+      "New-PSDrive -Name \"MijnSchijf\" -PSProvider FileSystem -Root \"C:\\MijnMap\" -Persist"
+    ],
+    "mustInclude": [
+      "new-psdrive",
+      "-psprovider",
+      "-root",
+      "-persist"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik New-PSDrive met -Name, -PSProvider FileSystem, -Root en -Persist.",
+      "Zonder -Persist is de drive alleen beschikbaar in de huidige PowerShell-sessie."
+    ],
+    "solution": "New-PSDrive -Name MijnSchijf -PSProvider FileSystem -Root \"C:\\MijnMap\" -Persist"
+  },
+  {
+    "id": "ps-h7-06",
+    "chapter": "H7 Bestanden & data-opslag",
+    "title": "Netwerkshare koppelen als PSDrive met credentials",
+    "difficulty": "hard",
+    "shell": "powershell",
+    "type": "multi-step",
+    "tags": [
+      "psdrive",
+      "new-psdrive",
+      "credentials",
+      "netwerkshare"
+    ],
+    "prompt": "Koppel de netwerkmap `\\\\server\\afdeling` als de PSDrive `Afdeling` met inloggegevens:\n1. Sla credentials op in `$credential` via Get-Credential.\n2. Maak de PSDrive aan met -Persist.\n3. Verwijder de PSDrive nadien met Remove-PSDrive.",
+    "acceptors": [],
+    "mustInclude": [
+      "get-credential",
+      "new-psdrive",
+      "-psprovider",
+      "-root",
+      "-credential",
+      "-persist",
+      "remove-psdrive"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Stap 1: $credential = Get-Credential",
+      "Stap 2: New-PSDrive -Name Afdeling -PSProvider FileSystem -Root \"\\\\server\\afdeling\" -Credential $credential -Persist",
+      "Stap 3: Remove-PSDrive -Name Afdeling"
+    ],
+    "solution": "$credential = Get-Credential\nNew-PSDrive -Name Afdeling -PSProvider FileSystem -Root \"\\\\server\\afdeling\" -Credential $credential -Persist\n# Gebruik de drive...\nRemove-PSDrive -Name Afdeling"
+  },
+  {
+    "id": "ps-h9-01",
+    "chapter": "H9 GUI & message boxes",
+    "title": "Eenvoudige message box tonen",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "messagebox",
+      "gui",
+      "presentationframework"
+    ],
+    "prompt": "Laad de benodigde .NET-bibliotheek en toon een eenvoudige message box met de tekst `Hallo, dit is een berichtvenster!`.",
+    "acceptors": [
+      "Add-Type -AssemblyName PresentationFramework\n[System.Windows.MessageBox]::Show(\"Hallo, dit is een berichtvenster!\")",
+      "Add-Type -AssemblyName PresentationFramework\n[System.Windows.MessageBox]::Show('Hallo, dit is een berichtvenster!')"
+    ],
+    "mustInclude": [
+      "add-type",
+      "presentationframework",
+      "system.windows.messagebox"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Laad eerst de assembly met Add-Type -AssemblyName PresentationFramework.",
+      "Roep daarna [System.Windows.MessageBox]::Show(...) aan met je tekst."
+    ],
+    "solution": "Add-Type -AssemblyName PresentationFramework\n[System.Windows.MessageBox]::Show(\"Hallo, dit is een berichtvenster!\")"
+  },
+  {
+    "id": "ps-h9-02",
+    "chapter": "H9 GUI & message boxes",
+    "title": "Message box met Ja/Nee-knoppen en reactie verwerken",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "messagebox",
+      "gui",
+      "yesno",
+      "if-else"
+    ],
+    "prompt": "Schrijf een script dat een message box toont met de vraag `Wil je doorgaan?`, knoppen Ja/Nee en een vraagteken-icoon. Verwerk de keuze: toon `Gebruiker koos Ja` of `Gebruiker koos Nee` in de console.",
+    "acceptors": [],
+    "mustInclude": [
+      "add-type",
+      "system.windows.messagebox",
+      "yesno",
+      "if"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Gebruiker koos Ja",
+      "Gebruiker koos Nee"
+    ],
+    "hints": [
+      "Gebruik [System.Windows.MessageBox]::Show(\"...\", \"...\", \"YesNo\", \"Question\") en sla het resultaat op in $antwoord.",
+      "Vergelijk $antwoord met de string \"Yes\" in een if-statement."
+    ],
+    "solution": "Add-Type -AssemblyName PresentationFramework\n$antwoord = [System.Windows.MessageBox]::Show(\"Wil je doorgaan?\", \"Bevestiging\", \"YesNo\", \"Question\")\n\nif ($antwoord -eq \"Yes\") {\n    Write-Output \"Gebruiker koos Ja\"\n} else {\n    Write-Output \"Gebruiker koos Nee\"\n}"
+  },
+  {
+    "id": "ps-h9-03",
+    "chapter": "H9 GUI & message boxes",
+    "title": "Waarschuwings-message box tonen",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "messagebox",
+      "gui",
+      "warning"
+    ],
+    "prompt": "Toon een message box met de tekst `Let op! Dit is een waarschuwing.`, titel `Waarschuwing`, één OK-knop en een waarschuwings-icoon.",
+    "acceptors": [
+      "Add-Type -AssemblyName PresentationFramework\n[System.Windows.MessageBox]::Show(\"Let op! Dit is een waarschuwing.\", \"Waarschuwing\", \"OK\", \"Warning\")",
+      "Add-Type -AssemblyName PresentationFramework\n[System.Windows.MessageBox]::Show('Let op! Dit is een waarschuwing.', 'Waarschuwing', 'OK', 'Warning')"
+    ],
+    "mustInclude": [
+      "add-type",
+      "system.windows.messagebox",
+      "warning"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Het vierde argument van ::Show() bepaalt het icoon: 'Warning', 'Information', 'Error' of 'Question'.",
+      "Het derde argument bepaalt de knoppen: 'OK', 'YesNo', 'OKCancel', enz."
+    ],
+    "solution": "Add-Type -AssemblyName PresentationFramework\n[System.Windows.MessageBox]::Show(\"Let op! Dit is een waarschuwing.\", \"Waarschuwing\", \"OK\", \"Warning\")"
+  },
+  {
+    "id": "ps-h9-04",
+    "chapter": "H9 GUI & message boxes",
+    "title": "Script: bestandenlijst opslaan en melden via message box",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "messagebox",
+      "out-file",
+      "get-childitem",
+      "gui"
+    ],
+    "prompt": "Schrijf een script dat:\n1. Alle bestanden in `C:\\Temp` ophaalt en opslaat in `C:\\Temp\\BestandenLog.txt`.\n2. Daarna een informatieve message box toont met de melding dat de taak voltooid is en het pad naar het logbestand.",
+    "acceptors": [],
+    "mustInclude": [
+      "add-type",
+      "get-childitem",
+      "out-file",
+      "system.windows.messagebox"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Get-ChildItem -Path 'C:\\Temp' | Out-File 'C:\\Temp\\BestandenLog.txt' voor stap 1.",
+      "Gebruik [System.Windows.MessageBox]::Show(..., ..., 'OK', 'Information') voor de melding."
+    ],
+    "solution": "Add-Type -AssemblyName PresentationFramework\n\n$pad = \"C:\\Temp\"\nGet-ChildItem -Path $pad | Out-File \"C:\\Temp\\BestandenLog.txt\"\n\n[System.Windows.MessageBox]::Show(\"Bestandenlijst is opgeslagen in C:\\Temp\\BestandenLog.txt\", \"Taak voltooid\", \"OK\", \"Information\")"
+  },
+  {
+    "id": "ps-h9-05",
+    "chapter": "H9 GUI & message boxes",
+    "title": "Script: gebruikersinput vragen en opslaan",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "messagebox",
+      "inputbox",
+      "out-file",
+      "gui",
+      "microsoft.visualbasic"
+    ],
+    "prompt": "Schrijf een script dat:\n1. Een InputBox toont met de vraag `Wat is je naam?`.\n2. Als er een naam is ingevoerd: de naam opslaat in `C:\\Temp\\GebruikerLog.txt` en een bevestigingsbericht toont.\n3. Als er niets is ingevoerd: een foutmelding toont met een Error-icoon.",
+    "acceptors": [],
+    "mustInclude": [
+      "add-type",
+      "microsoft.visualbasic.interaction",
+      "inputbox",
+      "out-file",
+      "system.windows.messagebox"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Laad twee assemblies: Microsoft.VisualBasic en PresentationFramework.",
+      "Gebruik [Microsoft.VisualBasic.Interaction]::InputBox(...) om de naam op te vragen.",
+      "Controleer met if ($naam -ne \"\") of er iets is ingevoerd."
+    ],
+    "solution": "Add-Type -AssemblyName Microsoft.VisualBasic\nAdd-Type -AssemblyName PresentationFramework\n\n$naam = [Microsoft.VisualBasic.Interaction]::InputBox(\"Wat is je naam?\", \"Invoerbox\", \"Typ hier je naam...\")\n\nif ($naam -ne \"\") {\n    $naam | Out-File \"C:\\Temp\\GebruikerLog.txt\"\n    [System.Windows.MessageBox]::Show(\"Je naam is opgeslagen in C:\\Temp\\GebruikerLog.txt\", \"Opgeslagen\", \"OK\", \"Information\")\n} else {\n    [System.Windows.MessageBox]::Show(\"Geen naam ingevoerd.\", \"Fout\", \"OK\", \"Error\")\n}"
+  },
+  {
+    "id": "ps-extra-01",
+    "chapter": "H1 PowerShell-basis",
+    "title": "Tijd en datum in aparte variabelen",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "get-date",
+      "variabelen",
+      "datum",
+      "tijd"
+    ],
+    "prompt": "Sla de huidige datum op in de variabele $datum (gebruik de eigenschap .date) en de huidige tijd in de variabele $tijd (gebruik de eigenschap .timeofday).",
+    "acceptors": [
+      "$datum = (Get-Date).Date; $tijd = (Get-Date).TimeOfDay",
+      "$d = Get-Date; $datum = $d.date; $tijd = $d.timeofday"
+    ],
+    "mustInclude": [
+      "get-date",
+      ".date",
+      ".timeofday"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Get-Date om een datum-object op te halen.",
+      "Een datum-object heeft de eigenschap .Date voor de datum en .TimeOfDay voor de tijd.",
+      "Sla elke eigenschap afzonderlijk op: $datum = (Get-Date).Date"
+    ],
+    "solution": "$datum = (Get-Date).Date\n$tijd = (Get-Date).TimeOfDay"
+  },
+  {
+    "id": "ps-extra-02",
+    "chapter": "H1 PowerShell-basis",
+    "title": "Aliassen van Del opzoeken",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "get-alias",
+      "alias",
+      "del"
+    ],
+    "prompt": "Zoek welke aliassen het commando Del heeft in PowerShell.",
+    "acceptors": [
+      "Get-Alias del",
+      "Get-Alias -Name del"
+    ],
+    "mustInclude": [
+      "get-alias"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "CommandType  Name  Version  Source",
+      "-----------  ----  -------  ------",
+      "Alias        del -> Remove-Item"
+    ],
+    "hints": [
+      "Gebruik Get-Alias om aliassen op te zoeken.",
+      "Je kan een naam meegeven aan Get-Alias om gericht te zoeken.",
+      "Probeer: Get-Alias del"
+    ],
+    "solution": "Get-Alias del"
+  },
+  {
+    "id": "ps-extra-03",
+    "chapter": "H1 PowerShell-basis",
+    "title": "Beschikbare logboeken via Get-EventLog",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "get-help",
+      "get-eventlog",
+      "logboeken"
+    ],
+    "prompt": "Gebruik Get-Help om na te gaan welke logboeken opgevraagd kunnen worden met Get-EventLog. Toon daarna het 'application'-logboek scherm per scherm via more.",
+    "acceptors": [
+      "Get-Help Get-EventLog",
+      "Get-EventLog application | more"
+    ],
+    "mustInclude": [
+      "get-help",
+      "get-eventlog"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Get-Help Get-EventLog om de beschikbare logboeken te zien.",
+      "Voeg | more toe aan een commando om de uitvoer per pagina te tonen.",
+      "Probeer: Get-EventLog application | more"
+    ],
+    "solution": "Get-Help Get-EventLog\nGet-EventLog application | more"
+  },
+  {
+    "id": "ps-extra-04",
+    "chapter": "H1 PowerShell-basis",
+    "title": "Gegevens van een lokale gebruiker tonen",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "get-localuser",
+      "gebruikers",
+      "lokaal"
+    ],
+    "prompt": "Toon alle gegevens van een lokale gebruiker (bv. 'Beheerder') met alle eigenschappen zichtbaar.",
+    "acceptors": [
+      "Get-LocalUser Beheerder | Format-List *",
+      "Get-LocalUser -Name Beheerder | fl *"
+    ],
+    "mustInclude": [
+      "get-localuser",
+      "fl"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Get-LocalUser gevolgd door de gebruikersnaam.",
+      "Pipe het resultaat naar Format-List * om alle eigenschappen te zien.",
+      "Probeer: Get-LocalUser Beheerder | fl *"
+    ],
+    "solution": "Get-LocalUser Beheerder | Format-List *"
+  },
+  {
+    "id": "ps-extra-05",
+    "chapter": "H1 PowerShell-basis",
+    "title": "Gebruiker verwijderen",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "remove-localuser",
+      "gebruikers",
+      "verwijderen"
+    ],
+    "prompt": "Verwijder de lokale gebruiker 'Wesley'.",
+    "acceptors": [
+      "Remove-LocalUser Wesley",
+      "Remove-LocalUser -Name Wesley"
+    ],
+    "mustInclude": [
+      "remove-localuser"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Zoek het juiste cmdlet met Get-Command -Noun LocalUser.",
+      "Het cmdlet om een lokale gebruiker te verwijderen begint met Remove-.",
+      "Probeer: Remove-LocalUser Wesley"
+    ],
+    "solution": "Remove-LocalUser Wesley"
+  },
+  {
+    "id": "ps-extra-06",
+    "chapter": "H1 PowerShell-basis",
+    "title": "Alle lokale gebruikers tonen",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "get-localuser",
+      "gebruikers",
+      "overzicht"
+    ],
+    "prompt": "Toon een overzicht van alle lokale gebruikers op het systeem.",
+    "acceptors": [
+      "Get-LocalUser",
+      "Get-LocalUser *"
+    ],
+    "mustInclude": [
+      "get-localuser"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Name          Enabled Description",
+      "----          ------- -----------",
+      "Beheerder     False",
+      "Gast          False",
+      "Gebruiker     True"
+    ],
+    "hints": [
+      "Er bestaat een cmdlet speciaal voor lokale gebruikers.",
+      "Het cmdlet begint met Get- en eindigt op LocalUser.",
+      "Probeer: Get-LocalUser"
+    ],
+    "solution": "Get-LocalUser"
+  },
+  {
+    "id": "ps-extra-07",
+    "chapter": "H1 PowerShell-basis",
+    "title": "Wachtwoord van gebruiker wijzigen via Set-LocalUser",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "set-localuser",
+      "wachtwoord",
+      "read-host",
+      "securestring"
+    ],
+    "prompt": "Vraag een nieuw wachtwoord op als SecureString en wijzig daarmee het wachtwoord van de gebruiker 'Beheerder' via Set-LocalUser.",
+    "acceptors": [],
+    "mustInclude": [
+      "read-host",
+      "-assecurestring",
+      "set-localuser",
+      "-password"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Read-Host -AsSecureString om een wachtwoord veilig op te vragen.",
+      "Sla het wachtwoord op in een variabele en geef dit door aan Set-LocalUser.",
+      "Gebruik de parameter -Password bij Set-LocalUser."
+    ],
+    "solution": "$Password = Read-Host -AsSecureString\nSet-LocalUser -Name 'Beheerder' -Password $Password"
+  },
+  {
+    "id": "ps-extra-08",
+    "chapter": "H1 PowerShell-basis",
+    "title": "Nieuwe gebruiker aanmaken en toevoegen aan administrators",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "new-localuser",
+      "add-localgroupmember",
+      "administrators",
+      "gebruikers"
+    ],
+    "prompt": "Maak een nieuwe lokale gebruiker 'Bestuurder' aan met het wachtwoord 'Server*' en voeg deze toe aan de groep 'Administrators'.",
+    "acceptors": [],
+    "mustInclude": [
+      "new-localuser",
+      "add-localgroupmember",
+      "administrators"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik New-LocalUser om een gebruiker aan te maken. Je hebt een SecureString nodig voor het wachtwoord.",
+      "Gebruik Add-LocalGroupMember om de gebruiker aan de groep toe te voegen.",
+      "Combineer ConvertTo-SecureString met -AsPlainText -Force om een gewoon wachtwoord om te zetten."
+    ],
+    "solution": "$pw = ConvertTo-SecureString 'Server*' -AsPlainText -Force\nNew-LocalUser -Name 'Bestuurder' -Password $pw\nAdd-LocalGroupMember -Group 'Administrators' -Member 'Bestuurder'"
+  },
+  {
+    "id": "ps-extra-09",
+    "chapter": "H1 PowerShell-basis",
+    "title": "Leden van de groep Administrators opvragen",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "get-localgroupmember",
+      "administrators",
+      "groepen"
+    ],
+    "prompt": "Vraag de leden op van de lokale groep 'Administrators'.",
+    "acceptors": [
+      "Get-LocalGroupMember Administrators",
+      "Get-LocalGroupMember -Group Administrators"
+    ],
+    "mustInclude": [
+      "get-localgroupmember"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "ObjectClass Name                       PrincipalSource",
+      "----------- ----                       ---------------",
+      "User        DESKTOP\\Beheerder          Local"
+    ],
+    "hints": [
+      "Gebruik Get-LocalGroupMember om de leden van een groep op te vragen.",
+      "Geef de groepsnaam mee als parameter.",
+      "Probeer: Get-LocalGroupMember Administrators"
+    ],
+    "solution": "Get-LocalGroupMember Administrators"
+  },
+  {
+    "id": "ps-extra-10",
+    "chapter": "H1 PowerShell-basis",
+    "title": "SID van gebruiker Beheerder opvragen",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "get-localuser",
+      "sid",
+      "beveiliging"
+    ],
+    "prompt": "Vraag het SID (Security Identifier) op van de lokale gebruiker 'Beheerder'.",
+    "acceptors": [
+      "Get-LocalUser -Name Beheerder | Select-Object SID",
+      "(Get-LocalUser Beheerder).SID"
+    ],
+    "mustInclude": [
+      "get-localuser"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "SID",
+      "---",
+      "S-1-5-21-XXXXXXXXXX-XXXXXXXXXX-XXXXXXXXXX-500"
+    ],
+    "hints": [
+      "Gebruik Get-LocalUser om gebruikersinformatie op te halen.",
+      "Pipe het resultaat naar Select-Object SID of gebruik de punt-notatie.",
+      "Probeer: (Get-LocalUser Beheerder).SID"
+    ],
+    "solution": "(Get-LocalUser Beheerder).SID"
+  },
+  {
+    "id": "ps-extra-11",
+    "chapter": "H1 PowerShell-basis",
+    "title": "Schijven opvragen via Get-Command zoeken",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "get-command",
+      "get-disk",
+      "schijven"
+    ],
+    "prompt": "Gebruik Get-Command met het zoekwoord 'disk' om het cmdlet te vinden waarmee je de schijven van een machine kan opvragen. Voer daarna dat cmdlet uit.",
+    "acceptors": [
+      "Get-Command *disk*",
+      "Get-Disk"
+    ],
+    "mustInclude": [
+      "get-command"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Get-Command met een wildcard (*) voor en na je zoekwoord.",
+      "Probeer: Get-Command *disk*",
+      "Het cmdlet om schijven te tonen heet Get-Disk."
+    ],
+    "solution": "Get-Command *disk*\nGet-Disk"
+  },
+  {
+    "id": "ps-extra-12",
+    "chapter": "H1 PowerShell-basis",
+    "title": "Script uitvoeren met -bypass ExecutionPolicy",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "executionpolicy",
+      "bypass",
+      "beveiliging"
+    ],
+    "prompt": "Voer een PowerShell-script (bv. C:\\scripts\\test.ps1) uit met de -bypass ExecutionPolicy, zodat het script uitgevoerd kan worden zonder de juiste bevoegdheden.",
+    "acceptors": [
+      "PowerShell -ExecutionPolicy bypass -File C:\\scripts\\test.ps1",
+      "powershell.exe -ExecutionPolicy Bypass -File C:\\scripts\\test.ps1"
+    ],
+    "mustInclude": [
+      "executionpolicy",
+      "bypass"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Je kan de ExecutionPolicy per sessie overschrijven met een parameter bij het opstarten van PowerShell.",
+      "Gebruik de parameter -ExecutionPolicy Bypass bij powershell.exe.",
+      "Probeer: PowerShell -ExecutionPolicy Bypass -File C:\\scripts\\test.ps1"
+    ],
+    "solution": "PowerShell -ExecutionPolicy Bypass -File C:\\scripts\\test.ps1"
+  },
+  {
+    "id": "ps-extra-13",
+    "chapter": "H1 PowerShell-basis",
+    "title": "Windows Module-pad tonen via omgevingsvariabele",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "omgevingsvariabele",
+      "psmodulepath",
+      "modules"
+    ],
+    "prompt": "Toon het PowerShell Module-pad via de Windows-omgevingsvariabele PSModulePath.",
+    "acceptors": [
+      "$env:PSModulePath",
+      "$Env:PSModulePath"
+    ],
+    "mustInclude": [
+      "psmodulepath"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "C:\\Users\\gebruiker\\Documents\\PowerShell\\Modules;C:\\Program Files\\PowerShell\\Modules;c:\\program files\\powershell\\7\\Modules"
+    ],
+    "hints": [
+      "Omgevingsvariabelen zijn toegankelijk via $env: in PowerShell.",
+      "De variabele heet PSModulePath.",
+      "Probeer: $env:PSModulePath"
+    ],
+    "solution": "$env:PSModulePath"
+  },
+  {
+    "id": "ps-extra-14",
+    "chapter": "H1 PowerShell-basis",
+    "title": "Datatype opvragen via Get-Member",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "get-member",
+      "datatype",
+      "get-localuser"
+    ],
+    "prompt": "Gebruik Get-Member om het datatype van Get-LocalUser te achterhalen.",
+    "acceptors": [
+      "Get-LocalUser | Get-Member",
+      "Get-LocalUser * | Get-Member",
+      "Get-LocalUser | gm"
+    ],
+    "mustInclude": [
+      "get-localuser",
+      "get-member"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "TypeName: Microsoft.PowerShell.Commands.LocalUser"
+    ],
+    "hints": [
+      "Gebruik Get-Member (of gm) om het type en de leden van objecten te bekijken.",
+      "Pipe de uitvoer van Get-LocalUser naar Get-Member.",
+      "Probeer: Get-LocalUser | Get-Member"
+    ],
+    "solution": "Get-LocalUser | Get-Member"
+  },
+  {
+    "id": "ps-extra-15",
+    "chapter": "H7 Bestanden & data-opslag",
+    "title": "Bestand read-only maken via eigenschappen",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "set-itemattribute",
+      "readonly",
+      "bestandsattributen",
+      "get-item"
+    ],
+    "prompt": "Maak het bestand C:\\powershell-scripts\\test.txt read-only via de bestandseigenschappen.",
+    "acceptors": [
+      "Set-ItemProperty -Path C:\\powershell-scripts\\test.txt -Name IsReadOnly -Value $true",
+      "(Get-Item C:\\powershell-scripts\\test.txt).IsReadOnly = $true"
+    ],
+    "mustInclude": [
+      "set-itemproperty",
+      "-name",
+      "isreadonly"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Bekijk de beschikbare eigenschappen van een bestand via: Get-Item test.txt | gm -MemberType Property",
+      "De eigenschap IsReadOnly is beschikbaar op bestandsobjecten.",
+      "Gebruik Set-ItemProperty om de eigenschap IsReadOnly in te stellen op $true."
+    ],
+    "solution": "Set-ItemProperty -Path C:\\powershell-scripts\\test.txt -Name IsReadOnly -Value $true"
+  },
+  {
+    "id": "ps-extra-16",
+    "chapter": "H1 PowerShell-basis",
+    "title": "Procesinfo als string weergeven",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "get-process",
+      "foreach-object",
+      "format",
+      "uitvoer"
+    ],
+    "prompt": "Vraag alle processen op met Get-Process en geef per proces de naam en het geheugengebruik (WorkingSet) weer in een leesbare zin.",
+    "acceptors": [
+      "Get-Process | ForEach-Object { \"Proces: $($_.Name) – Geheugen: $($_.WorkingSet)\" }"
+    ],
+    "mustInclude": [
+      "get-process",
+      "foreach-object"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Proces: chrome – Geheugen: 102400000",
+      "Proces: explorer – Geheugen: 45056000"
+    ],
+    "hints": [
+      "Gebruik Get-Process om een lijst van processen op te halen.",
+      "Pipe naar ForEach-Object en gebruik $_ om elk object aan te spreken.",
+      "Gebruik string-interpolatie met $($_.Name) en $($_.WorkingSet)."
+    ],
+    "solution": "Get-Process | ForEach-Object { \"Proces: $($_.Name) – Geheugen: $($_.WorkingSet)\" }"
+  },
+  {
+    "id": "ps-extra-17",
+    "chapter": "H1 PowerShell-basis",
+    "title": "Systeemlog events groeperen op LevelDisplayName",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "get-eventlog",
+      "group-object",
+      "systeemlog",
+      "events"
+    ],
+    "prompt": "Haal de laatste 1000 gebeurtenissen op uit het systeemlog en groepeer ze op basis van de eigenschap LevelDisplayName, zodat je een telling per niveau te zien krijgt.",
+    "acceptors": [
+      "Get-EventLog -LogName System -Newest 1000 | Group-Object LevelDisplayName"
+    ],
+    "mustInclude": [
+      "get-eventlog",
+      "group-object",
+      "leveldisplayname"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Count Name         Group",
+      "----- ----         -----",
+      "850   Information  {...}",
+      "120   Warning      {...}",
+      "30    Error        {...}"
+    ],
+    "hints": [
+      "Gebruik Get-EventLog met de parameter -Newest 1000 om de laatste 1000 events op te halen.",
+      "Pipe het resultaat naar Group-Object en geef de eigenschap op waarop je wil groeperen.",
+      "Probeer: Get-EventLog -LogName System -Newest 1000 | Group-Object LevelDisplayName"
+    ],
+    "solution": "Get-EventLog -LogName System -Newest 1000 | Group-Object LevelDisplayName"
+  },
+  {
+    "id": "ps-extra-18",
+    "chapter": "H7 Bestanden & data-opslag",
+    "title": "Lokale gebruikers exporteren naar CSV",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "get-localuser",
+      "select-object",
+      "export-csv",
+      "csv"
+    ],
+    "prompt": "Vraag de lokale gebruikers op en selecteer de eigenschappen Name, FullName, Description, Enabled en AccountExpires. Exporteer het resultaat naar C:\\info\\users.csv.",
+    "acceptors": [
+      "Get-LocalUser | Select-Object Name, FullName, Description, Enabled, AccountExpires | Export-Csv C:\\info\\users.csv -NoTypeInformation"
+    ],
+    "mustInclude": [
+      "get-localuser",
+      "select-object",
+      "export-csv"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Get-LocalUser om alle gebruikers op te halen.",
+      "Pipe naar Select-Object met de gevraagde eigenschappen.",
+      "Pipe vervolgens naar Export-Csv met -NoTypeInformation om het CSV-bestand te maken."
+    ],
+    "solution": "Get-LocalUser | Select-Object Name, FullName, Description, Enabled, AccountExpires | Export-Csv C:\\info\\users.csv -NoTypeInformation"
+  },
+  {
+    "id": "ps-extra-19",
+    "chapter": "H1 PowerShell-basis",
+    "title": "Alias aanmaken voor Get-Alias",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "set-alias",
+      "get-alias",
+      "aliassen"
+    ],
+    "prompt": "Maak via Set-Alias een alias 'aliassen' aan voor het cmdlet Get-Alias en test of het werkt.",
+    "acceptors": [
+      "Set-Alias aliassen Get-Alias",
+      "Set-Alias -Name aliassen -Value Get-Alias"
+    ],
+    "mustInclude": [
+      "set-alias",
+      "get-alias"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Set-Alias om een nieuwe alias aan te maken.",
+      "Het eerste argument is de aliasnaam, het tweede de cmdlet-naam.",
+      "Probeer: Set-Alias aliassen Get-Alias"
+    ],
+    "solution": "Set-Alias aliassen Get-Alias\naliassen"
+  },
+  {
+    "id": "ps-extra-20",
+    "chapter": "H7 Bestanden & data-opslag",
+    "title": "Counter-informatie naar bestand schrijven",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "get-counter",
+      "out-file",
+      "prestaties",
+      "counters"
+    ],
+    "prompt": "Maak een lijst met alle mogelijke performance counters (gebruik -ListSet *). Selecteer de eigenschappen CounterSetName en Counter en schrijf het resultaat naar C:\\list.txt met een breedte van 1500.",
+    "acceptors": [
+      "Get-Counter -ListSet * | Select-Object CounterSetName, Counter | Out-File C:\\list.txt -Width 1500"
+    ],
+    "mustInclude": [
+      "get-counter",
+      "-listset",
+      "out-file",
+      "-width"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Get-Counter -ListSet * om alle beschikbare counter-sets te tonen.",
+      "Pipe naar Select-Object om enkel CounterSetName en Counter te selecteren.",
+      "Gebruik Out-File met -Width 1500 om te voorkomen dat de uitvoer wordt afgekapt."
+    ],
+    "solution": "Get-Counter -ListSet * | Select-Object CounterSetName, Counter | Out-File C:\\list.txt -Width 1500"
+  },
+  {
+    "id": "ps-extra-21",
+    "chapter": "H8 Systeem & netwerk",
+    "title": "PSRemoting inschakelen op client",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "enable-psremoting",
+      "remoting",
+      "winrm"
+    ],
+    "prompt": "Schakel PowerShell Remoting in op de lokale machine zodat er remote verbindingen mee gemaakt kunnen worden.",
+    "acceptors": [
+      "Enable-PSRemoting",
+      "Enable-PSRemoting -Force"
+    ],
+    "mustInclude": [
+      "enable-psremoting"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Er bestaat een specifiek cmdlet om PSRemoting in te schakelen.",
+      "Het cmdlet begint met Enable- en eindigt op PSRemoting.",
+      "Gebruik -Force om bevestigingsvragen te vermijden."
+    ],
+    "solution": "Enable-PSRemoting -Force"
+  },
+  {
+    "id": "ps-extra-22",
+    "chapter": "H8 Systeem & netwerk",
+    "title": "TrustedHosts uitbreiden met meerdere computers",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "set-item",
+      "trustedhosts",
+      "winrm",
+      "remoting"
+    ],
+    "prompt": "Voeg de namen localpc1, localpc2, client en localpc3 toe aan de TrustedHosts-lijst van WinRM.",
+    "acceptors": [
+      "Set-Item WSMan:\\localhost\\Client\\TrustedHosts -Value 'localpc1,localpc2,client,localpc3' -Concatenate"
+    ],
+    "mustInclude": [
+      "set-item",
+      "trustedhosts"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "TrustedHosts bevindt zich in het WSMan-pad: WSMan:\\localhost\\Client\\TrustedHosts.",
+      "Gebruik Set-Item om de waarde te wijzigen.",
+      "Gebruik -Concatenate om de waarden toe te voegen in plaats van te overschrijven."
+    ],
+    "solution": "Set-Item WSMan:\\localhost\\Client\\TrustedHosts -Value 'localpc1,localpc2,client,localpc3' -Concatenate\nGet-Item WSMan:\\localhost\\Client\\TrustedHosts"
+  },
+  {
+    "id": "ps-extra-23",
+    "chapter": "H8 Systeem & netwerk",
+    "title": "Script remote uitvoeren via Invoke-Command",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "invoke-command",
+      "remoting",
+      "scriptblock",
+      "client"
+    ],
+    "prompt": "Voer via Invoke-Command vanaf de server een scriptblok uit op de client (gebruiker 'ict') dat het bestand C:\\ipconfig.txt aanmaakt met de uitvoer van ipconfig.",
+    "acceptors": [],
+    "mustInclude": [
+      "invoke-command",
+      "-credential",
+      "-scriptblock",
+      "ipconfig"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Invoke-Command met -ComputerName om een commando op afstand uit te voeren.",
+      "Gebruik -Credential om de gebruikersnaam en het wachtwoord mee te geven.",
+      "Gebruik -ScriptBlock met de uit te voeren code tussen accolades."
+    ],
+    "solution": "Invoke-Command -ComputerName client -Credential ict -ScriptBlock { ipconfig > C:\\ipconfig.txt }"
+  },
+  {
+    "id": "ps-extra-24",
+    "chapter": "H2 Variabelen & operatoren",
+    "title": "Datatypes van variabelen onderzoeken",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "variabelen",
+      "datatype",
+      "gettype",
+      "array"
+    ],
+    "prompt": "Maak drie variabelen aan: $waar met de waarde $true, $datum met de waarde van Get-Date en $waarden met de waarden 'word', 'excel', 'powerpoint'. Controleer het datatype van elke variabele.",
+    "acceptors": [],
+    "mustInclude": [
+      "$true",
+      "get-date",
+      "gettype"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "$waar.GetType(): Boolean",
+      "$datum.GetType(): DateTime",
+      "$waarden.GetType(): Object[]"
+    ],
+    "hints": [
+      "Wijs elke waarde toe aan de juiste variabele.",
+      "Gebruik de methode .GetType() op een variabele om het datatype op te vragen.",
+      "Een array maak je aan met @('waarde1','waarde2','waarde3')."
+    ],
+    "solution": "$waar = $true\n$datum = Get-Date\n$waarden = 'word', 'excel', 'powerpoint'\n$waar.GetType()\n$datum.GetType()\n$waarden.GetType()"
+  },
+  {
+    "id": "ps-extra-25",
+    "chapter": "H2 Variabelen & operatoren",
+    "title": "DNS-serveradressen instellen via splatting",
+    "difficulty": "hard",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "splatting",
+      "hashtable",
+      "set-dnsclientserveraddress",
+      "netwerk",
+      "constante"
+    ],
+    "prompt": "Maak een hashtable-constante $dns met de sleutels InterfaceAlias (gebruik de gevonden interfacenaam) en ServerAddresses (8.8.8.8 en 1.1.1.1). Gebruik splatting om deze hashtable door te geven aan Set-DnsClientServerAddress.",
+    "acceptors": [],
+    "mustInclude": [
+      "set-dnsclientserveraddress",
+      "set-variable",
+      "-option",
+      "constant"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Get-NetIPConfiguration om de interfacenaam te vinden.",
+      "Maak een hashtable aan met @{sleutel = 'waarde'}.",
+      "Gebruik Set-Variable met -Option Constant om een constante te maken. Gebruik @splatting om de hashtable als parameters door te geven."
+    ],
+    "solution": "$alias = (Get-NetIPConfiguration | Where-Object {$_.IPv4DefaultGateway}).InterfaceAlias\nSet-Variable -Name dns -Value @{ InterfaceAlias = $alias; ServerAddresses = '8.8.8.8','1.1.1.1' } -Option Constant\nSet-DnsClientServerAddress @dns"
+  },
+  {
+    "id": "ps-extra-26",
+    "chapter": "H2 Variabelen & operatoren",
+    "title": "Array van actieve processen en services",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "array",
+      "get-process",
+      "get-service",
+      "combineren"
+    ],
+    "prompt": "Maak een array die zowel alle actieve processen als alle actieve services bevat.",
+    "acceptors": [],
+    "mustInclude": [
+      "get-process",
+      "get-service"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Je kan twee arrays samenvoegen met de + operator.",
+      "Gebruik @() om objecten in een array te plaatsen.",
+      "Probeer: $alles = @(Get-Process) + @(Get-Service)"
+    ],
+    "solution": "$alles = @(Get-Process) + @(Get-Service)\n$alles"
+  },
+  {
+    "id": "ps-extra-27",
+    "chapter": "H2 Variabelen & operatoren",
+    "title": "RAM-geheugen meten in een array via loop",
+    "difficulty": "hard",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "get-counter",
+      "array",
+      "loop",
+      "start-sleep",
+      "geheugen"
+    ],
+    "prompt": "Maak een array die het beschikbare RAM-geheugen 10 keer opmeet met een interval van 2 seconden via Get-Counter. Toon daarna de opgeslagen timestamps.",
+    "acceptors": [],
+    "mustInclude": [
+      "get-counter",
+      "start-sleep",
+      "for"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Get-Counter met de counter '\\Memory\\Available Bytes' (of '\\Geheugen\\Beschikbare bytes' in het Nederlands).",
+      "Gebruik een for- of foreach-lus om de meting 10 keer te herhalen.",
+      "Sla elke meting op in de array met +=. Gebruik $metingen.Timestamp voor de tijdstempels."
+    ],
+    "solution": "$metingen = @()\nfor ($i = 0; $i -lt 10; $i++) {\n    $metingen += Get-Counter -Counter '\\Memory\\Available Bytes'\n    Start-Sleep -Seconds 2\n}\n$metingen.Timestamp"
+  },
+  {
+    "id": "ps-extra-28",
+    "chapter": "H2 Variabelen & operatoren",
+    "title": "Reguliere expressie voor MAC-adres",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "regex",
+      "mac-adres",
+      "patroon"
+    ],
+    "prompt": "Maak een reguliere expressie die een MAC-adres valideert in het formaat 8A:5B:6C:3E:2F:28 (hexadecimale paren gescheiden door dubbele punten).",
+    "acceptors": [],
+    "mustInclude": [
+      "-match",
+      "{2}",
+      ":"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Een MAC-adres bestaat uit 6 hexadecimale paren gescheiden door ':'.",
+      "Gebruik [0-9A-Fa-f]{2} voor elk hexadecimaal paar.",
+      "Herhaal het patroon 6 keer en scheid elk paar met ':'."
+    ],
+    "solution": "$macRegex = '^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$'\n'8A:5B:6C:3E:2F:28' -match $macRegex"
+  },
+  {
+    "id": "ps-extra-29",
+    "chapter": "H3 Loops & condities",
+    "title": "Array van pc-namen aanmaken via lus",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "array",
+      "foreach",
+      "string",
+      "lus"
+    ],
+    "prompt": "Maak een lege array $computers. Maak een variabele $n met de getallen 1 tot 100 via de snelmethode. Voeg voor elk nummer het woord 'pc' toe en sla ze één voor één op in de array (pc1, pc2, ..., pc100).",
+    "acceptors": [],
+    "mustInclude": [
+      "1..100",
+      "foreach",
+      "$computers"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "pc1",
+      "pc2",
+      "...",
+      "pc100"
+    ],
+    "hints": [
+      "Gebruik de bereikoperator 1..100 om snel een reeks getallen te maken.",
+      "Gebruik een foreach-lus om door elk getal te itereren.",
+      "Voeg de string 'pc' samen met het getal en sla het op in de array met +=."
+    ],
+    "solution": "$computers = @()\n$n = 1..100\nforeach ($getal in $n) {\n    $computers += \"pc$getal\"\n}\n$computers"
+  },
+  {
+    "id": "ps-extra-30",
+    "chapter": "H3 Loops & condities",
+    "title": "Gebruikersnaam valideren en SID tonen",
+    "difficulty": "hard",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "read-host",
+      "try-catch",
+      "get-localuser",
+      "sid",
+      "conditie"
+    ],
+    "prompt": "Vraag een gebruikersnaam op bij de start. Ga na of de gebruiker bestaat. Als de gebruiker bestaat, toon dan de SID als string. Als de gebruiker niet bestaat, toon dan de melding 'Gebruikersnaam bestaat niet'.",
+    "acceptors": [],
+    "mustInclude": [
+      "read-host",
+      "get-localuser",
+      "sid",
+      "[string]"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Read-Host om input op te vragen.",
+      "Gebruik try-catch of -ErrorAction SilentlyContinue bij Get-LocalUser om fouten op te vangen.",
+      "Cast de SID naar [string] en toon die. Gebruik Write-Host voor de foutmelding."
+    ],
+    "solution": "$naam = Read-Host 'Geef een gebruikersnaam op'\n$gebruiker = Get-LocalUser -Name $naam -ErrorAction SilentlyContinue\nif ($gebruiker) {\n    [string]$sid = $gebruiker.SID\n    Write-Host \"SID: $sid\"\n} else {\n    Write-Host 'Gebruikersnaam bestaat niet'\n}"
+  },
+  {
+    "id": "ps-extra-31",
+    "chapter": "H3 Loops & condities",
+    "title": "SID opvragen met herhaling (do-until, do-while, while)",
+    "difficulty": "hard",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "do-until",
+      "do-while",
+      "while",
+      "lus",
+      "validatie",
+      "sid"
+    ],
+    "prompt": "Pas de vorige oefening aan zodat bij een foutieve gebruikersnaam de vraag opnieuw gesteld wordt. Maak drie aparte versies: één met do-until, één met do-while en één met while.",
+    "acceptors": [],
+    "mustInclude": [
+      "read-host",
+      "get-localuser",
+      "do",
+      "while"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik een lus die blijft herhalen zolang de gebruiker niet gevonden is.",
+      "do { ... } until (voorwaarde) voert de code minstens één keer uit.",
+      "Bij while moet je de conditie controleren vóór de lus begint."
+    ],
+    "solution": "# Versie met do-until\ndo {\n    $naam = Read-Host 'Geef een gebruikersnaam op'\n    $gebruiker = Get-LocalUser -Name $naam -ErrorAction SilentlyContinue\n    if (-not $gebruiker) { Write-Host 'Gebruikersnaam bestaat niet' }\n} until ($gebruiker)\n[string]$sid = $gebruiker.SID\nWrite-Host \"SID: $sid\"\n\n# Versie met do-while\n$gevonden = $false\ndo {\n    $naam = Read-Host 'Geef een gebruikersnaam op'\n    $gebruiker = Get-LocalUser -Name $naam -ErrorAction SilentlyContinue\n    if ($gebruiker) { $gevonden = $true } else { Write-Host 'Gebruikersnaam bestaat niet' }\n} while (-not $gevonden)\nWrite-Host \"SID: $([string]$gebruiker.SID)\"\n\n# Versie met while\n$gebruiker = $null\nwhile (-not $gebruiker) {\n    $naam = Read-Host 'Geef een gebruikersnaam op'\n    $gebruiker = Get-LocalUser -Name $naam -ErrorAction SilentlyContinue\n    if (-not $gebruiker) { Write-Host 'Gebruikersnaam bestaat niet' }\n}\nWrite-Host \"SID: $([string]$gebruiker.SID)\""
+  },
+  {
+    "id": "ps-extra-32",
+    "chapter": "H4 Functies & scripting",
+    "title": "Functie ToonSID met meervoudige SID-opvraag",
+    "difficulty": "hard",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "functie",
+      "sid",
+      "lus",
+      "get-localuser",
+      "validatie"
+    ],
+    "prompt": "Maak een functie ToonSID zonder parameters. De gebruiker geeft eerst op hoeveel SID's ze wil opvragen. Als het opgegeven aantal groter is dan het aantal actieve gebruikers, geef je de melding 'Opgelet: er zijn maar X gebruikers actief op dit toestel. Geef een andere waarde op.' en vraag je opnieuw. Daarna wordt voor het juiste aantal keer een geldige gebruikersnaam gevraagd en de SID getoond. Roep de functie op.",
+    "acceptors": [],
+    "mustInclude": [
+      "function",
+      "toonSID",
+      "get-localuser",
+      "for",
+      "read-host"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik (Get-LocalUser).Count om het totaal aantal gebruikers te bepalen.",
+      "Gebruik een do-until lus voor de validatie van het aantal.",
+      "Gebruik een for-lus om het gevraagde aantal keren een gebruikersnaam op te vragen."
+    ],
+    "solution": "function ToonSID {\n    $aantalGebruikers = (Get-LocalUser).Count\n    do {\n        [int]$aantal = Read-Host 'Hoeveel SIDs wil je opvragen?'\n        if ($aantal -gt $aantalGebruikers) {\n            Write-Host \"Opgelet: er zijn maar $aantalGebruikers gebruikers actief op dit toestel. Geef een andere waarde op.\"\n        }\n    } until ($aantal -le $aantalGebruikers)\n\n    for ($i = 0; $i -lt $aantal; $i++) {\n        do {\n            $naam = Read-Host 'Geef een geldige gebruikersnaam op'\n            $gebruiker = Get-LocalUser -Name $naam -ErrorAction SilentlyContinue\n            if (-not $gebruiker) { Write-Host 'Gebruikersnaam bestaat niet' }\n        } until ($gebruiker)\n        Write-Host \"SID van $naam: $([string]$gebruiker.SID)\"\n    }\n}\nToonSID"
+  },
+  {
+    "id": "ps-extra-33",
+    "chapter": "H4 Functies & scripting",
+    "title": "Functie om bestand in map te zoeken",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "functie",
+      "test-path",
+      "parameters",
+      "bestand"
+    ],
+    "prompt": "Maak een functie 'zoeken' met parameters $map (string) en $bestand (string). De functie controleert of het bestand in de opgegeven map bestaat en geeft een duidelijke melding terug. Roep de functie op met een zelfgekozen pad en bestandsnaam.",
+    "acceptors": [],
+    "mustInclude": [
+      "function",
+      "param",
+      "test-path",
+      "[string]"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Definieer de functie met function zoeken { param([string]$map, [string]$bestand) ... }",
+      "Gebruik Test-Path om te controleren of het bestand bestaat.",
+      "Combineer het pad met Join-Path $map $bestand."
+    ],
+    "solution": "function zoeken {\n    param([string]$map, [string]$bestand)\n    $volledigPad = Join-Path $map $bestand\n    if (Test-Path $volledigPad) {\n        Write-Host \"Bestand '$bestand' gevonden in '$map'.\"\n    } else {\n        Write-Host \"Bestand '$bestand' NIET gevonden in '$map'.\"\n    }\n}\nzoeken 'C:\\Windows\\System32' 'notepad.exe'"
+  },
+  {
+    "id": "ps-extra-34",
+    "chapter": "H5 WMI & CIM",
+    "title": "BIOS-serienummer opvragen via WMI/CIM",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "get-ciminstance",
+      "bios",
+      "serienummer",
+      "wmi"
+    ],
+    "prompt": "Vraag het serienummer van het BIOS op via CIM.",
+    "acceptors": [
+      "Get-CimInstance Win32_BIOS | Select-Object SerialNumber",
+      "(Get-CimInstance Win32_BIOS).SerialNumber"
+    ],
+    "mustInclude": [
+      "get-ciminstance",
+      "win32_bios"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "SerialNumber",
+      "------------",
+      "VMware-56 4d e1 2a 8f 3b 12 45"
+    ],
+    "hints": [
+      "Gebruik Get-CimInstance met de klasse Win32_BIOS.",
+      "Het serienummer zit in de eigenschap SerialNumber.",
+      "Probeer: (Get-CimInstance Win32_BIOS).SerialNumber"
+    ],
+    "solution": "(Get-CimInstance Win32_BIOS).SerialNumber"
+  },
+  {
+    "id": "ps-extra-35",
+    "chapter": "H5 WMI & CIM",
+    "title": "Alle CIM-klassen met WIN32 opvragen",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "get-cimclass",
+      "win32",
+      "cim-klassen"
+    ],
+    "prompt": "Geef de instructie in om alle beschikbare CIM-klassen met 'WIN32' in de naam te bekomen.",
+    "acceptors": [
+      "Get-CimClass -ClassName Win32_*",
+      "Get-CimClass Win32_*"
+    ],
+    "mustInclude": [
+      "get-cimclass",
+      "win32_"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Get-CimClass om beschikbare CIM-klassen op te vragen.",
+      "Gebruik een wildcard (*) na Win32_ om alle klassen te tonen.",
+      "Probeer: Get-CimClass -ClassName Win32_*"
+    ],
+    "solution": "Get-CimClass -ClassName Win32_*"
+  },
+  {
+    "id": "ps-extra-36",
+    "chapter": "H5 WMI & CIM",
+    "title": "CIM-klassen filteren op disk",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "get-cimclass",
+      "win32",
+      "disk",
+      "filter"
+    ],
+    "prompt": "Zoek alle CIM-klassen die zowel 'WIN32' als 'disk' in de naam hebben.",
+    "acceptors": [
+      "Get-CimClass -ClassName Win32_*disk*",
+      "Get-CimClass Win32_*disk*"
+    ],
+    "mustInclude": [
+      "get-cimclass",
+      "win32_",
+      "disk"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Get-CimClass met een wildcard-patroon dat zowel Win32_ als disk bevat.",
+      "Wildcards (*) kunnen voor en na 'disk' geplaatst worden.",
+      "Probeer: Get-CimClass -ClassName Win32_*disk*"
+    ],
+    "solution": "Get-CimClass -ClassName Win32_*disk*"
+  },
+  {
+    "id": "ps-extra-37",
+    "chapter": "H5 WMI & CIM",
+    "title": "Schijfpartities opvragen via CIM",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "get-ciminstance",
+      "win32_diskpartition",
+      "partities"
+    ],
+    "prompt": "Vraag alle schijfpartities op via de bijhorende CIM-klasse.",
+    "acceptors": [
+      "Get-CimInstance Win32_DiskPartition"
+    ],
+    "mustInclude": [
+      "get-ciminstance",
+      "win32_diskpartition"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "NumberOfBlocks  BootPartition  Name",
+      "--------------  -------------  ----",
+      "204800          True           Disk #0, Partition #0",
+      "1047576448      False          Disk #0, Partition #1"
+    ],
+    "hints": [
+      "Gebruik Get-CimInstance met de juiste klassename.",
+      "De klasse voor schijfpartities heet Win32_DiskPartition.",
+      "Probeer: Get-CimInstance Win32_DiskPartition"
+    ],
+    "solution": "Get-CimInstance Win32_DiskPartition"
+  },
+  {
+    "id": "ps-extra-38",
+    "chapter": "H1 PowerShell-basis",
+    "title": "Huidig PID van PowerShell-sessie tonen",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "pid",
+      "processid",
+      "sessie"
+    ],
+    "prompt": "Toon het PID (Process ID) van de huidige PowerShell-sessie.",
+    "acceptors": [
+      "$PID",
+      "$pid"
+    ],
+    "mustInclude": [
+      "$pid"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "5432"
+    ],
+    "hints": [
+      "PowerShell heeft een ingebouwde variabele die het huidige proces-ID bijhoudt.",
+      "De variabele heet $PID.",
+      "Probeer simpelweg: $PID"
+    ],
+    "solution": "$PID"
+  },
+  {
+    "id": "ps-extra-39",
+    "chapter": "H8 Systeem & netwerk",
+    "title": "AD-computers afsluiten via script",
+    "difficulty": "hard",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "active-directory",
+      "get-adcomputer",
+      "shutdown",
+      "test-connection",
+      "script"
+    ],
+    "prompt": "Schrijf een script dat alle computers afsluit waarvan de naam begint met 'client', maar de computer 'hoofdclient' wordt uitgesloten. Controleer eerst of de computer online is via Test-Connection.",
+    "acceptors": [],
+    "mustInclude": [
+      "import-module",
+      "activedirectory",
+      "get-adcomputer",
+      "test-connection",
+      "shutdown"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Importeer eerst de ActiveDirectory module.",
+      "Gebruik Get-ADComputer met een filter: Name -like 'client*' en Name -notlike 'hoofdclient'.",
+      "Controleer bereikbaarheid via Test-Connection -Quiet en gebruik shutdown /s /m \\\\$naam om af te sluiten."
+    ],
+    "solution": "Import-Module ActiveDirectory\n$clients = Get-ADComputer -Filter {Name -like 'client*' -AND Name -notlike 'hoofdclient'}\nForEach ($pc in $clients) {\n    $client = $pc.Name\n    if (Test-Connection -ComputerName $client -Count 1 -Quiet) {\n        Write-Host \"$client is online\"\n        shutdown /s /m \\\\$client\n    }\n}"
+  },
+  {
+    "id": "ps-extra-40",
+    "chapter": "H8 Systeem & netwerk",
+    "title": "Bestand via remote sessie kopiëren naar server",
+    "difficulty": "hard",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "copy-item",
+      "pssession",
+      "remoting",
+      "bestandsoverdracht"
+    ],
+    "prompt": "Kopieer het bestand C:\\ipconfig.txt van de client naar C:\\clientinfo\\ op de server via PowerShell Remoting (Copy-Item via een PSSession).",
+    "acceptors": [],
+    "mustInclude": [
+      "new-pssession",
+      "copy-item",
+      "-fromsession"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Maak eerst een PSSession aan naar de client.",
+      "Gebruik Copy-Item met -FromSession om een bestand van de remote machine op te halen.",
+      "Zorg dat de doelmap C:\\clientinfo\\ bestaat op de server."
+    ],
+    "solution": "$s = New-PSSession -ComputerName client -Credential ict\nCopy-Item -Path 'C:\\ipconfig.txt' -Destination 'C:\\clientinfo\\' -FromSession $s"
+  },
+  {
+    "id": "ps-labo-01",
+    "chapter": "H7 Bestanden & data-opslag",
+    "title": "Nieuwe map aanmaken op bureaublad",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "bestandsbeheer",
+      "new-item",
+      "desktop"
+    ],
+    "prompt": "Maak een nieuwe map aan met de naam 'Projecten' op je bureaublad.",
+    "acceptors": [
+      "New-Item -ItemType Directory -Path \"$env:USERPROFILE\\Desktop\\Projecten\""
+    ],
+    "mustInclude": [
+      "new-item",
+      "directory",
+      "projecten",
+      "desktop"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "    Directory: C:\\Users\\student\\Desktop",
+      "",
+      "Mode    LastWriteTime    Length Name",
+      "d----   ...              Projecten"
+    ],
+    "hints": [
+      "Gebruik New-Item met de parameter -ItemType Directory.",
+      "Het bureaublad staat onder $env:USERPROFILE\\Desktop."
+    ],
+    "solution": "New-Item -ItemType Directory -Path \"$env:USERPROFILE\\Desktop\\Projecten\""
+  },
+  {
+    "id": "ps-labo-02",
+    "chapter": "H7 Bestanden & data-opslag",
+    "title": "Tekstbestand aanmaken in map",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "bestandsbeheer",
+      "new-item",
+      "file"
+    ],
+    "prompt": "Maak een leeg tekstbestand 'log.txt' aan in de map 'Projecten' op je bureaublad.",
+    "acceptors": [
+      "New-Item -ItemType File -Path \"$env:USERPROFILE\\Desktop\\Projecten\\log.txt\""
+    ],
+    "mustInclude": [
+      "new-item",
+      "file",
+      "log.txt",
+      "projecten"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "    Directory: C:\\Users\\student\\Desktop\\Projecten",
+      "",
+      "Mode    LastWriteTime    Length Name",
+      "-a---   ...           0 log.txt"
+    ],
+    "hints": [
+      "Gebruik New-Item met -ItemType File.",
+      "Geef het volledige pad op inclusief de bestandsnaam log.txt."
+    ],
+    "solution": "New-Item -ItemType File -Path \"$env:USERPROFILE\\Desktop\\Projecten\\log.txt\""
+  },
+  {
+    "id": "ps-labo-03",
+    "chapter": "H7 Bestanden & data-opslag",
+    "title": "Grote bestanden zoeken in C:\\Windows",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "bestandsbeheer",
+      "get-childitem",
+      "where-object",
+      "filter"
+    ],
+    "prompt": "Zoek alle bestanden in de map C:\\Windows die groter zijn dan 10 MB. Doorzoek ook submappen.",
+    "acceptors": [
+      "Get-ChildItem -Path C:\\Windows -Recurse -File | Where-Object { $_.Length -gt 10MB }"
+    ],
+    "mustInclude": [
+      "get-childitem",
+      "recurse",
+      "where-object",
+      "length",
+      "10mb"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Mode   LastWriteTime    Length Name",
+      "-a---  ...        12582912 some.dll"
+    ],
+    "hints": [
+      "Gebruik Get-ChildItem met de vlag -Recurse om submappen mee te doorzoeken.",
+      "Filter met Where-Object op de eigenschap Length. 10 MB schrijf je als 10MB in PowerShell."
+    ],
+    "solution": "Get-ChildItem -Path C:\\Windows -Recurse -File | Where-Object { $_.Length -gt 10MB }"
+  },
+  {
+    "id": "ps-labo-04",
+    "chapter": "H7 Bestanden & data-opslag",
+    "title": "Txt-bestanden verplaatsen naar Documenten",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "bestandsbeheer",
+      "move-item",
+      "wildcard"
+    ],
+    "prompt": "Verplaats alle .txt-bestanden vanuit de map 'Projecten' op het bureaublad naar je map Documenten.",
+    "acceptors": [
+      "Move-Item -Path \"$env:USERPROFILE\\Desktop\\Projecten\\*.txt\" -Destination \"$env:USERPROFILE\\Documents\""
+    ],
+    "mustInclude": [
+      "move-item",
+      "*.txt",
+      "documents"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Move-Item met een wildcard *.txt als pad.",
+      "Documenten staat onder $env:USERPROFILE\\Documents."
+    ],
+    "solution": "Move-Item -Path \"$env:USERPROFILE\\Desktop\\Projecten\\*.txt\" -Destination \"$env:USERPROFILE\\Documents\""
+  },
+  {
+    "id": "ps-labo-05",
+    "chapter": "H7 Bestanden & data-opslag",
+    "title": "Lege bestanden verwijderen uit een map",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "bestandsbeheer",
+      "remove-item",
+      "where-object",
+      "filter"
+    ],
+    "prompt": "Verwijder alle lege bestanden (grootte = 0) uit de map C:\\TestMap.",
+    "acceptors": [
+      "Get-ChildItem -Path \"C:\\TestMap\" -File | Where-Object { $_.Length -eq 0 } | Remove-Item"
+    ],
+    "mustInclude": [
+      "get-childitem",
+      "where-object",
+      "length",
+      "-eq 0",
+      "remove-item"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Haal eerst alle bestanden op met Get-ChildItem -File.",
+      "Filter met Where-Object op Length -eq 0 en stuur het resultaat via de pipe naar Remove-Item."
+    ],
+    "solution": "Get-ChildItem -Path \"C:\\TestMap\" -File | Where-Object { $_.Length -eq 0 } | Remove-Item"
+  },
+  {
+    "id": "ps-labo-06",
+    "chapter": "H8 Systeem & netwerk",
+    "title": "Processen filteren op geheugengebruik",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "processen",
+      "get-process",
+      "where-object",
+      "ram"
+    ],
+    "prompt": "Haal de lijst op van actieve processen en toon alleen de processen die meer dan 100 MB RAM gebruiken. Toon de naam, het ID en het geheugengebruik.",
+    "acceptors": [
+      "Get-Process | Where-Object { $_.WorkingSet64 -gt 100MB } | Select-Object ProcessName, Id, WorkingSet64"
+    ],
+    "mustInclude": [
+      "get-process",
+      "where-object",
+      "workingset64",
+      "100mb",
+      "select-object"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "ProcessName      Id  WorkingSet64",
+      "-----------      --  ------------",
+      "chrome         1234    209715200"
+    ],
+    "hints": [
+      "Gebruik Get-Process en filter met Where-Object.",
+      "De eigenschap voor geheugengebruik is WorkingSet64. 100 MB schrijf je als 100MB."
+    ],
+    "solution": "Get-Process | Where-Object { $_.WorkingSet64 -gt 100MB } | Select-Object ProcessName, Id, WorkingSet64"
+  },
+  {
+    "id": "ps-labo-07",
+    "chapter": "H8 Systeem & netwerk",
+    "title": "Specifiek proces stoppen",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "processen",
+      "stop-process"
+    ],
+    "prompt": "Stop het proces notepad.exe geforceerd via PowerShell.",
+    "acceptors": [
+      "Stop-Process -Name \"notepad\" -Force",
+      "Stop-Process -Name notepad -Force"
+    ],
+    "mustInclude": [
+      "stop-process",
+      "notepad",
+      "-force"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Stop-Process met de parameter -Name.",
+      "Voeg -Force toe zodat het proces ook gestopt wordt als het nog vensters open heeft."
+    ],
+    "solution": "Stop-Process -Name \"notepad\" -Force"
+  },
+  {
+    "id": "ps-labo-08",
+    "chapter": "H8 Systeem & netwerk",
+    "title": "Ingelogde gebruiker en domein tonen",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "gebruikers",
+      "environment",
+      "write-output"
+    ],
+    "prompt": "Toon de gebruikersnaam en het domein van de momenteel ingelogde gebruiker via Write-Output.",
+    "acceptors": [
+      "Write-Output \"Gebruiker: $env:USERNAME, Domein: $env:USERDOMAIN\""
+    ],
+    "mustInclude": [
+      "write-output",
+      "username",
+      "userdomain"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Gebruiker: student, Domein: WORKGROUP"
+    ],
+    "hints": [
+      "De omgevingsvariabelen $env:USERNAME en $env:USERDOMAIN bevatten de juiste info.",
+      "Gebruik Write-Output met een geïnterpoleerde string."
+    ],
+    "solution": "Write-Output \"Gebruiker: $env:USERNAME, Domein: $env:USERDOMAIN\""
+  },
+  {
+    "id": "ps-labo-09",
+    "chapter": "H6 Credentials & rechten",
+    "title": "Nieuwe lokale gebruiker aanmaken",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "gebruikers",
+      "new-localuser",
+      "securestring"
+    ],
+    "prompt": "Maak een nieuwe lokale gebruiker 'StudentUser' aan met het wachtwoord 'P@ssw0rd', volledige naam 'Student' en een beschrijving.",
+    "acceptors": [
+      "New-LocalUser -Name \"StudentUser\" -Password (ConvertTo-SecureString \"P@ssw0rd\" -AsPlainText -Force) -FullName \"Student\" -Description \"Nieuwe studentengebruiker\""
+    ],
+    "mustInclude": [
+      "new-localuser",
+      "studentuser",
+      "converttosecurestring",
+      "-asplaintext"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Name        Enabled Description",
+      "----        ------- -----------",
+      "StudentUser True    Nieuwe studentengebruiker"
+    ],
+    "hints": [
+      "Gebruik New-LocalUser. Het wachtwoord moet als SecureString worden meegegeven.",
+      "Gebruik ConvertTo-SecureString met de vlaggen -AsPlainText -Force om een tekst om te zetten."
+    ],
+    "solution": "New-LocalUser -Name \"StudentUser\" -Password (ConvertTo-SecureString \"P@ssw0rd\" -AsPlainText -Force) -FullName \"Student\" -Description \"Nieuwe studentengebruiker\""
+  },
+  {
+    "id": "ps-labo-10",
+    "chapter": "H6 Credentials & rechten",
+    "title": "Controleren of gebruiker beheerder is",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "gebruikers",
+      "get-localgroupmember",
+      "condities"
+    ],
+    "prompt": "Schrijf een script dat controleert of de gebruiker 'StudentUser' lid is van de groep Administrators. Toon een passende melding.",
+    "acceptors": [],
+    "mustInclude": [
+      "get-localgroupmember",
+      "administrators",
+      "studentuser",
+      "where-object"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Gebruiker is beheerder"
+    ],
+    "hints": [
+      "Gebruik Get-LocalGroupMember -Group \"Administrators\" om alle leden op te halen.",
+      "Filter het resultaat met Where-Object op de naam van de gebruiker en gebruik een if/else."
+    ],
+    "solution": "$User = \"StudentUser\"\n$Groups = Get-LocalGroupMember -Group \"Administrators\"\n$IsAdmin = $Groups | Where-Object { $_.Name -like \"*$User*\" }\nif ($IsAdmin) { \"Gebruiker is beheerder\" } else { \"Geen admin-rechten\" }"
+  },
+  {
+    "id": "ps-labo-11",
+    "chapter": "H8 Systeem & netwerk",
+    "title": "IP- en MAC-adres tonen van netwerkadapter",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "netwerk",
+      "get-netadapter",
+      "get-netipaddress"
+    ],
+    "prompt": "Toon de naam, het MAC-adres en het IPv4-adres van alle actieve netwerkadapters.",
+    "acceptors": [
+      "Get-NetAdapter | Select-Object Name, MacAddress, @{N=\"IP\";E={($_ | Get-NetIPAddress).IPv4Address}}"
+    ],
+    "mustInclude": [
+      "get-netadapter",
+      "macaddress",
+      "get-netipaddress"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Name     MacAddress          IP",
+      "----     ----------          --",
+      "Ethernet 00-1A-2B-3C-4D-5E  192.168.1.10"
+    ],
+    "hints": [
+      "Gebruik Get-NetAdapter en piped dit naar Select-Object.",
+      "Voor het IP-adres kan je een berekende eigenschap gebruiken met een hashtabel: @{N='IP';E={...}}."
+    ],
+    "solution": "Get-NetAdapter | Select-Object Name, MacAddress, @{N=\"IP\";E={($_ | Get-NetIPAddress).IPv4Address}}"
+  },
+  {
+    "id": "ps-labo-12",
+    "chapter": "H8 Systeem & netwerk",
+    "title": "Vrije schijfruimte controleren",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "schijf",
+      "get-psdrive",
+      "filesystem"
+    ],
+    "prompt": "Controleer de vrije en gebruikte schijfruimte van alle bestandssysteemschijven.",
+    "acceptors": [
+      "Get-PSDrive -PSProvider FileSystem | Select-Object Name, Free, Used"
+    ],
+    "mustInclude": [
+      "get-psdrive",
+      "filesystem",
+      "select-object",
+      "free"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Name Free         Used",
+      "---- ----         ----",
+      "C    53687091200  80530636800"
+    ],
+    "hints": [
+      "Gebruik Get-PSDrive met de parameter -PSProvider FileSystem.",
+      "Selecteer de kolommen Name, Free en Used."
+    ],
+    "solution": "Get-PSDrive -PSProvider FileSystem | Select-Object Name, Free, Used"
+  },
+  {
+    "id": "ps-labo-13",
+    "chapter": "H8 Systeem & netwerk",
+    "title": "Naam en versie van het OS ophalen",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "systeem",
+      "get-computerinfo",
+      "os"
+    ],
+    "prompt": "Haal de naam, architectuur en versie van het besturingssysteem op.",
+    "acceptors": [
+      "Get-ComputerInfo | Select-Object OsName, OsArchitecture, WindowsVersion"
+    ],
+    "mustInclude": [
+      "get-computerinfo",
+      "osname",
+      "windowsversion"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "OsName                      OsArchitecture WindowsVersion",
+      "------                      -------------- --------------",
+      "Microsoft Windows 11 Home   64-bit         2009"
+    ],
+    "hints": [
+      "Gebruik Get-ComputerInfo en selecteer de juiste eigenschappen.",
+      "De relevante eigenschappen zijn OsName, OsArchitecture en WindowsVersion."
+    ],
+    "solution": "Get-ComputerInfo | Select-Object OsName, OsArchitecture, WindowsVersion"
+  },
+  {
+    "id": "ps-labo-14",
+    "chapter": "H8 Systeem & netwerk",
+    "title": "Geïnstalleerde updates van deze maand tonen",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "updates",
+      "get-hotfix",
+      "where-object",
+      "datum"
+    ],
+    "prompt": "Toon alle geïnstalleerde Windows-updates die in de laatste 30 dagen zijn geïnstalleerd.",
+    "acceptors": [
+      "Get-HotFix | Where-Object { $_.InstalledOn -ge (Get-Date).AddDays(-30) }"
+    ],
+    "mustInclude": [
+      "get-hotfix",
+      "where-object",
+      "installedon",
+      "adddays(-30)"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Source Description      HotFixID  InstalledBy InstalledOn",
+      "------ -----------      --------  ----------- -----------",
+      "PC     Security Update KB5034441 SYSTEM      5/15/2025"
+    ],
+    "hints": [
+      "Gebruik Get-HotFix en filter met Where-Object op InstalledOn.",
+      "Gebruik (Get-Date).AddDays(-30) als ondergrens voor de vergelijking."
+    ],
+    "solution": "Get-HotFix | Where-Object { $_.InstalledOn -ge (Get-Date).AddDays(-30) }"
+  },
+  {
+    "id": "ps-labo-15",
+    "chapter": "H8 Systeem & netwerk",
+    "title": "Status van Windows-service opvragen",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "services",
+      "get-service"
+    ],
+    "prompt": "Haal de naam en de huidige status op van de Windows-service 'Spooler' (printservice).",
+    "acceptors": [
+      "Get-Service -Name Spooler | Select-Object Name, Status"
+    ],
+    "mustInclude": [
+      "get-service",
+      "spooler",
+      "select-object",
+      "status"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Name    Status",
+      "----    ------",
+      "Spooler Running"
+    ],
+    "hints": [
+      "Gebruik Get-Service met de parameter -Name.",
+      "Selecteer de eigenschappen Name en Status met Select-Object."
+    ],
+    "solution": "Get-Service -Name Spooler | Select-Object Name, Status"
+  },
+  {
+    "id": "ps-labo-16",
+    "chapter": "H3 Loops & condities",
+    "title": "Logbestand bijwerken elke 10 seconden",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "scripting",
+      "while",
+      "out-file",
+      "start-sleep",
+      "logging"
+    ],
+    "prompt": "Schrijf een script dat in een oneindige lus elke 10 seconden de huidige datum en tijd toevoegt aan een logbestand 'log.txt' op je bureaublad.",
+    "acceptors": [],
+    "mustInclude": [
+      "while",
+      "get-date",
+      "out-file",
+      "-append",
+      "start-sleep"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik een while ($true) lus voor een oneindige herhaling.",
+      "Schrijf de datum weg met Out-File -Append zodat je niet overschrijft.",
+      "Pauzeer de lus met Start-Sleep -Seconds 10."
+    ],
+    "solution": "while ($true) {\n    Get-Date | Out-File -Append -FilePath \"$env:USERPROFILE\\Desktop\\log.txt\"\n    Start-Sleep -Seconds 10\n}"
+  },
+  {
+    "id": "ps-labo-17",
+    "chapter": "H3 Loops & condities",
+    "title": "Grootte van gebruikersmappen berekenen",
+    "difficulty": "hard",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "scripting",
+      "foreach",
+      "measure-object",
+      "pscustomobject",
+      "bestandsbeheer"
+    ],
+    "prompt": "Schrijf een script dat alle mappen in C:\\Users opsomt en voor elke map de totale grootte berekent en weergeeft in MB.",
+    "acceptors": [],
+    "mustInclude": [
+      "get-childitem",
+      "foreach-object",
+      "measure-object",
+      "-property length",
+      "pscustomobject"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Naam          Grootte_MB",
+      "----          ----------",
+      "student       1024.5",
+      "Default       12.3"
+    ],
+    "hints": [
+      "Gebruik Get-ChildItem -Path C:\\Users -Directory om de mappen op te halen.",
+      "Bereken de grootte per map met Get-ChildItem -Recurse -File | Measure-Object -Property Length -Sum.",
+      "Maak een [PSCustomObject] per map met de naam en de grootte in MB (deel door 1MB en rond af)."
+    ],
+    "solution": "$Folders = Get-ChildItem -Path \"C:\\Users\" -Directory\n$Folders | ForEach-Object {\n    $Size = (Get-ChildItem $_.FullName -Recurse -File | Measure-Object -Property Length -Sum).Sum\n    [PSCustomObject]@{Naam = $_.Name; Grootte_MB = [math]::Round($Size / 1MB, 2)}\n}"
+  },
+  {
+    "id": "ps-labo-18",
+    "chapter": "H7 Bestanden & data-opslag",
+    "title": "Backup-script: documenten kopiëren",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "scripting",
+      "copy-item",
+      "backup",
+      "bestandsbeheer"
+    ],
+    "prompt": "Schrijf een script dat alle bestanden uit je map Documenten kopieert naar D:\\Backup. Gebruik variabelen voor bron en bestemming.",
+    "acceptors": [],
+    "mustInclude": [
+      "copy-item",
+      "documents",
+      "d:\\backup",
+      "-recurse"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Sla het bronpad ($env:USERPROFILE\\Documents) en het doelpad (D:\\Backup) op in variabelen.",
+      "Gebruik Copy-Item met -Recurse en -Force om alles te kopiëren, ook submappen."
+    ],
+    "solution": "$Source = \"$env:USERPROFILE\\Documents\"\n$Destination = \"D:\\Backup\"\nCopy-Item -Path $Source\\* -Destination $Destination -Recurse -Force"
+  },
+  {
+    "id": "ps-labo-19",
+    "chapter": "H7 Bestanden & data-opslag",
+    "title": "Bestanden comprimeren naar zip",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "scripting",
+      "compress-archive",
+      "zip",
+      "bestandsbeheer"
+    ],
+    "prompt": "Comprimeer alle .log-bestanden uit de map C:\\Logs naar een zip-archief C:\\Backup\\Logs.zip.",
+    "acceptors": [
+      "Compress-Archive -Path \"C:\\Logs\\*.log\" -DestinationPath \"C:\\Backup\\Logs.zip\""
+    ],
+    "mustInclude": [
+      "compress-archive",
+      "*.log",
+      "logs.zip"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Compress-Archive met -Path voor de bronbestanden en -DestinationPath voor de uitvoer.",
+      "Je kan een wildcard *.log gebruiken als bronpad."
+    ],
+    "solution": "Compress-Archive -Path \"C:\\Logs\\*.log\" -DestinationPath \"C:\\Backup\\Logs.zip\""
+  },
+  {
+    "id": "ps-labo-20",
+    "chapter": "H8 Systeem & netwerk",
+    "title": "Computer afsluiten met waarschuwing",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "scripting",
+      "shutdown",
+      "systeem"
+    ],
+    "prompt": "Schrijf een commando dat de computer afsluit na een waarschuwing van 60 seconden met een gepaste melding.",
+    "acceptors": [
+      "Shutdown.exe /s /t 60 /c \"De computer wordt over 60 seconden afgesloten.\""
+    ],
+    "mustInclude": [
+      "shutdown.exe",
+      "/s",
+      "/t 60"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Shutdown.exe met de vlaggen /s (afsluiten), /t (tijd in seconden) en /c (commentaar).",
+      "De tijd staat in seconden: /t 60 geeft 60 seconden."
+    ],
+    "solution": "Shutdown.exe /s /t 60 /c \"De computer wordt over 60 seconden afgesloten.\""
+  },
+  {
+    "id": "ps-labo-21",
+    "chapter": "H8 Systeem & netwerk",
+    "title": "NumLock inschakelen via register",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "registry",
+      "set-itemproperty",
+      "numlock"
+    ],
+    "prompt": "Stel via PowerShell in dat NumLock automatisch ingeschakeld wordt bij het opstarten van Windows voor de huidige gebruiker. Pas hiervoor de registerwaarde InitialKeyboardIndicators aan in HKCU:\\Control Panel\\Keyboard.",
+    "acceptors": [
+      "Set-ItemProperty -Path \"HKCU:\\Control Panel\\Keyboard\" -Name InitialKeyboardIndicators -Value 2",
+      "Set-ItemProperty -Path \"HKCU:\\Control Panel\\Keyboard\" -Name \"InitialKeyboardIndicators\" -Value 2"
+    ],
+    "mustInclude": [
+      "set-itemproperty",
+      "initialkeyboardindicators",
+      "2"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Set-ItemProperty om een registerwaarde te wijzigen.",
+      "Het pad is HKCU:\\Control Panel\\Keyboard en de naam van de waarde is InitialKeyboardIndicators.",
+      "Stel de waarde in op 2 om NumLock in te schakelen bij het opstarten."
+    ],
+    "solution": "Set-ItemProperty -Path \"HKCU:\\Control Panel\\Keyboard\" -Name InitialKeyboardIndicators -Value 2"
+  },
+  {
+    "id": "ps-labo-22",
+    "chapter": "H4 Functies & scripting",
+    "title": "Opstartscript: schijfruimte, temp-cleanup, map aanmaken",
+    "difficulty": "hard",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "scripting",
+      "condities",
+      "schijf",
+      "temp",
+      "new-item"
+    ],
+    "prompt": "Schrijf een PowerShell-script met drie taken:\n1. Controleer bij opstart de vrije ruimte op de harde schijf; toon een waarschuwing als die minder dan 50 GB is.\n2. Verwijder de tijdelijke internetbestanden bij het afsluiten.\n3. Maak bij het opstarten een map 'Stove' aan op de C-schijf; als de map al bestaat, toon dan een melding.",
+    "acceptors": [],
+    "mustInclude": [
+      "get-psdrive",
+      "test-path",
+      "new-item",
+      "50gb"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik Get-PSDrive om de vrije ruimte op te halen en vergelijk met 50GB.",
+      "Test met Test-Path of C:\\Stove al bestaat voor je New-Item aanroept.",
+      "De tijdelijke internetbestanden staan in $env:LOCALAPPDATA\\Microsoft\\Windows\\INetCache."
+    ],
+    "solution": "# 1. Schijfruimte controleren\n$drive = Get-PSDrive -Name C\nif ($drive.Free -lt 50GB) {\n    Write-Warning \"Waarschuwing: minder dan 50 GB vrije ruimte op C:!\"\n}\n\n# 2. Tijdelijke internetbestanden verwijderen (bij afsluiten)\n$tempInet = \"$env:LOCALAPPDATA\\Microsoft\\Windows\\INetCache\"\nRemove-Item -Path \"$tempInet\\*\" -Recurse -Force -ErrorAction SilentlyContinue\n\n# 3. Map Stove aanmaken op C:\nif (Test-Path \"C:\\Stove\") {\n    Write-Host \"De map C:\\Stove bestaat al.\"\n} else {\n    New-Item -ItemType Directory -Path \"C:\\Stove\"\n    Write-Host \"Map C:\\Stove aangemaakt.\"\n}"
+  },
+  {
+    "id": "ps-labo-23",
+    "chapter": "H4 Functies & scripting",
+    "title": "Projectmapstructuur automatisch aanmaken",
+    "difficulty": "hard",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "scripting",
+      "foreach",
+      "new-item",
+      "test-path",
+      "rename-item",
+      "remove-item",
+      "bestandsbeheer"
+    ],
+    "prompt": "Schrijf een script dat een mapstructuur aanmaakt voor drie projecten (Project_Alpha, Project_Beta, Project_Gamma) onder C:\\Company\\Projects. Elke projectmap krijgt de submappen Docs, Scripts, Archive en Logs. Project_Beta moet hernoemd worden naar Project_Beta_ARCHIVED. Verwijder ook de mappen Project_Test en Project_Old als die bestaan.",
+    "acceptors": [],
+    "mustInclude": [
+      "test-path",
+      "new-item",
+      "foreach",
+      "rename-item",
+      "remove-item"
+    ],
+    "forbid": [],
+    "outputMock": [],
+    "hints": [
+      "Gebruik foreach-lussen voor zowel de projecten als de submappen.",
+      "Controleer steeds eerst met Test-Path of een map al bestaat voor je New-Item aanroept.",
+      "Gebruik Rename-Item voor archivering en Remove-Item -Recurse -Force voor het verwijderen."
+    ],
+    "solution": "$BasePath = \"C:\\Company\\Projects\"\n$Projects = @(\"Project_Alpha\", \"Project_Beta\", \"Project_Gamma\")\n$ArchivedProjects = @(\"Project_Beta\")\n$RemoveProjects = @(\"Project_Test\", \"Project_Old\")\n$SubFolders = @(\"Docs\",\"Scripts\",\"Archive\",\"Logs\")\n\nif (!(Test-Path -Path $BasePath)) {\n    New-Item -ItemType Directory -Path $BasePath\n    Write-Host \"Basispad aangemaakt:\" $BasePath\n} else {\n    Write-Host \"Basispad bestaat al:\" $BasePath\n}\n\nforeach ($project in $Projects) {\n    $projectPath = Join-Path $BasePath $project\n    if (!(Test-Path -Path $projectPath)) {\n        New-Item -ItemType Directory -Path $projectPath\n        Write-Host \"Projectmap aangemaakt:\" $project\n    } else {\n        Write-Host \"Projectmap bestaat al:\" $project\n    }\n    foreach ($sub in $SubFolders) {\n        $subPath = Join-Path $projectPath $sub\n        if (!(Test-Path -Path $subPath)) {\n            New-Item -ItemType Directory -Path $subPath\n            Write-Host \"  Submap aangemaakt:\" $sub\n        } else {\n            Write-Host \"  Submap bestaat al:\" $sub\n        }\n    }\n}\n\nforeach ($archived in $ArchivedProjects) {\n    $oldPath = Join-Path $BasePath $archived\n    $newPath = Join-Path $BasePath ($archived + \"_ARCHIVED\")\n    if (Test-Path -Path $oldPath) {\n        if (!(Test-Path -Path $newPath)) {\n            Rename-Item -Path $oldPath -NewName ($archived + \"_ARCHIVED\")\n            Write-Host \"Project gearchiveerd:\" $archived\n        } else {\n            Write-Host \"Gearchiveerde map bestaat al:\" $newPath\n        }\n    } else {\n        Write-Host \"Projectmap niet gevonden voor archivering:\" $archived\n    }\n}\n\nforeach ($remove in $RemoveProjects) {\n    $removePath = Join-Path $BasePath $remove\n    if (Test-Path -Path $removePath) {\n        Remove-Item -Path $removePath -Recurse -Force\n        Write-Host \"Project verwijderd:\" $remove\n    } else {\n        Write-Host \"Project niet gevonden voor verwijdering:\" $remove\n    }\n}\n\nWrite-Host \"Projectbeheer script uitgevoerd.\""
+  },
+  {
+    "id": "ps-labo-24",
+    "chapter": "H5 WMI & CIM",
+    "title": "Examen 1: Systeemrapport genereren",
+    "difficulty": "insane",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "examen",
+      "cim",
+      "wmi",
+      "get-process",
+      "out-file",
+      "messagebox",
+      "gui"
+    ],
+    "prompt": "Schrijf een PowerShell-script (examen1.ps1) dat de volgende informatie over de lokale computer verzamelt en opslaat in systeemrapport.txt:\n- Computernaam via Get-CimInstance Win32_ComputerSystem\n- Naam en versie van het besturingssysteem via Get-CimInstance Win32_OperatingSystem\n- Vrije ruimte per schijf via Get-PSDrive (FileSystem) met een foreach-lus\n- Naam en ID van alle actieve processen via Get-Process\n- Schrijf alles weg naar systeemrapport.txt met duidelijke secties via Out-File\n- Toon een message box (via Add-Type) met de melding dat het rapport gegenereerd is",
+    "acceptors": [],
+    "mustInclude": [
+      "get-ciminstance",
+      "win32_operatingsystem",
+      "get-psdrive",
+      "get-process",
+      "out-file",
+      "add-type"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Computer Naam: DESKTOP-ABC123",
+      "Besturingssysteem: Microsoft Windows 11 Home",
+      "Versie: 10.0.22621",
+      "Vrije Schijfruimte:",
+      "  C: 53 GB vrij",
+      "Processen:",
+      "  chrome  1234",
+      "  notepad 5678"
+    ],
+    "hints": [
+      "Gebruik Get-CimInstance Win32_ComputerSystem voor de computernaam en Get-CimInstance Win32_OperatingSystem voor het OS.",
+      "Itereer met foreach over de resultaten van Get-PSDrive -PSProvider FileSystem om de vrije ruimte per schijf te berekenen.",
+      "Gebruik Add-Type -AssemblyName PresentationFramework en [System.Windows.MessageBox]::Show(...) voor de message box.",
+      "Schijf elke sectie weg met Out-File -FilePath systeemrapport.txt -Append."
+    ],
+    "solution": "$ComputerName = (Get-CimInstance Win32_ComputerSystem).Name\n$OS = Get-CimInstance Win32_OperatingSystem\n$OSName = $OS.Caption\n$OSVersion = $OS.Version\n\n\"Computer Naam: $ComputerName\" | Out-File -FilePath systeemrapport.txt\n\"Besturingssysteem: $OSName\" | Out-File -FilePath systeemrapport.txt -Append\n\"Versie: $OSVersion\" | Out-File -FilePath systeemrapport.txt -Append\n\n\"Vrije Schijfruimte:\" | Out-File -FilePath systeemrapport.txt -Append\nforeach ($drive in (Get-PSDrive -PSProvider FileSystem)) {\n    $freeGB = [math]::Round($drive.Free / 1GB, 2)\n    \"  $($drive.Name): $freeGB GB vrij\" | Out-File -FilePath systeemrapport.txt -Append\n}\n\n\"Processen:\" | Out-File -FilePath systeemrapport.txt -Append\nGet-Process | ForEach-Object {\n    \"  $($_.ProcessName)  $($_.Id)\" | Out-File -FilePath systeemrapport.txt -Append\n}\n\nAdd-Type -AssemblyName PresentationFramework\n[System.Windows.MessageBox]::Show(\"Rapport succesvol gegenereerd!\", \"Systeemrapport\")"
+  },
+  {
+    "id": "ps-labo-25",
+    "chapter": "H5 WMI & CIM",
+    "title": "Examen 2: Gebruikersaccountbeheer met menu",
+    "difficulty": "insane",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "examen",
+      "cim",
+      "wmi",
+      "gebruikers",
+      "while",
+      "menu",
+      "condities"
+    ],
+    "prompt": "Schrijf een PowerShell-script (examen2.ps1) dat gebruikersaccounts beheert via een menu in een while-lus:\n1. Lijst alle gebruikersaccounts (naam + beschrijving via Win32_UserAccount)\n2. Toon details van een specifiek account (naam, beschrijving, AccountType, Disabled)\n3. Verwijder alle accounts met Disabled = True\n4. Exit\nGebruik Get-CimInstance Win32_UserAccount voor alle opzoekingen.",
+    "acceptors": [],
+    "mustInclude": [
+      "while",
+      "get-ciminstance",
+      "win32_useraccount",
+      "disabled",
+      "remove-localuser"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "1. Lijst alle gebruikersaccounts",
+      "2. Toon details van een specifiek gebruikersaccount",
+      "3. Verwijder een gebruikersaccount",
+      "4. Exit",
+      "Kies een optie: "
+    ],
+    "hints": [
+      "Gebruik een while ($true) lus en Read-Host om de keuze van de gebruiker op te vragen.",
+      "Gebruik Get-CimInstance Win32_UserAccount voor zowel het ophalen van de lijst als de details.",
+      "Filter voor optie 3 op de eigenschap Disabled -eq $true en gebruik Remove-LocalUser voor verwijdering.",
+      "Gebruik een switch of if/elseif-blok voor de menukeuzes."
+    ],
+    "solution": "while ($true) {\n    Write-Host \"1. Lijst alle gebruikersaccounts\"\n    Write-Host \"2. Toon details van een specifiek gebruikersaccount\"\n    Write-Host \"3. Verwijder een gebruikersaccount\"\n    Write-Host \"4. Exit\"\n    $choice = Read-Host \"Kies een optie\"\n\n    switch ($choice) {\n        \"1\" {\n            Get-CimInstance Win32_UserAccount | Select-Object Name, Description | Format-Table\n        }\n        \"2\" {\n            $name = Read-Host \"Geef de gebruikersnaam in\"\n            $user = Get-CimInstance Win32_UserAccount | Where-Object { $_.Name -eq $name }\n            if ($user) {\n                Write-Host \"Naam:        $($user.Name)\"\n                Write-Host \"Beschrijving: $($user.Description)\"\n                Write-Host \"AccountType: $($user.AccountType)\"\n                Write-Host \"Disabled:    $($user.Disabled)\"\n            } else {\n                Write-Host \"Gebruiker niet gevonden.\"\n            }\n        }\n        \"3\" {\n            $disabled = Get-CimInstance Win32_UserAccount | Where-Object { $_.Disabled -eq $true }\n            foreach ($u in $disabled) {\n                Remove-LocalUser -Name $u.Name\n                Write-Host \"Verwijderd: $($u.Name)\"\n            }\n        }\n        \"4\" { break }\n        default { Write-Host \"Ongeldige keuze.\" }\n    }\n    if ($choice -eq \"4\") { break }\n}"
+  },
+  {
+    "id": "ps-h3-01",
+    "chapter": "H3 Loops & condities",
+    "title": "Getal: negatief, nul of positief",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "if",
+      "elseif",
+      "else",
+      "vergelijking"
+    ],
+    "prompt": "Maak een variabele $n en ken er een getal aan toe. Gebruik if / elseif / else om te tonen of het getal negatief, nul of positief is.",
+    "acceptors": [],
+    "mustInclude": [
+      "if",
+      "elseif",
+      "else",
+      "-lt",
+      "-eq"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "negatief"
+    ],
+    "hints": [
+      "Gebruik -lt 0 om te controleren of het getal kleiner is dan nul.",
+      "Gebruik -eq 0 voor de nul-controle.",
+      "De else-tak vangt alle positieve getallen op."
+    ],
+    "solution": "$n = -5\nif ($n -lt 0) { 'negatief' }\nelseif ($n -eq 0) { 'nul' }\nelse { 'positief' }"
+  },
+  {
+    "id": "ps-h3-02",
+    "chapter": "H3 Loops & condities",
+    "title": "Leeftijdscontrole met Read-Host",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "if",
+      "else",
+      "read-host",
+      "cast"
+    ],
+    "prompt": "Vraag de gebruiker om een leeftijd in te voeren met Read-Host. Toon 'minderjarig' als de leeftijd onder 18 is, anders 'volwassen'. Vergeet de invoer niet te casten naar [int].",
+    "acceptors": [],
+    "mustInclude": [
+      "read-host",
+      "if",
+      "[int]",
+      "-lt"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "minderjarig"
+    ],
+    "hints": [
+      "Read-Host geeft altijd een string terug — cast naar [int] voor de vergelijking.",
+      "Gebruik -lt 18 als voorwaarde."
+    ],
+    "solution": "$leeftijd = Read-Host 'Leeftijd?'\nif ([int]$leeftijd -lt 18) {\n    'minderjarig'\n} else { 'volwassen' }"
+  },
+  {
+    "id": "ps-h3-03",
+    "chapter": "H3 Loops & condities",
+    "title": "Servicestatus controleren",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "if",
+      "else",
+      "get-service",
+      "status"
+    ],
+    "prompt": "Haal de service 'spooler' op met Get-Service. Als de Status gelijk is aan 'Running', toon dan 'OK', anders 'Niet actief'.",
+    "acceptors": [],
+    "mustInclude": [
+      "get-service",
+      "if",
+      "-eq",
+      "running"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "OK"
+    ],
+    "hints": [
+      "Sla het resultaat van Get-Service op in een variabele.",
+      "Gebruik $s.Status om de eigenschap te lezen.",
+      "Vergelijk met de string 'Running'."
+    ],
+    "solution": "$s = Get-Service spooler\nif ($s.Status -eq 'Running') {\n    'OK'\n} else { 'Niet actief' }"
+  },
+  {
+    "id": "ps-h3-04",
+    "chapter": "H3 Loops & condities",
+    "title": "Bestand of map controleren met Test-Path",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "if",
+      "else",
+      "test-path"
+    ],
+    "prompt": "Maak een variabele $pad met een pad naar een map (bijv. C:\\temp). Controleer met Test-Path of het pad bestaat. Toon 'Bestaat niet' als het pad er niet is, anders 'Bestaat wel'.",
+    "acceptors": [],
+    "mustInclude": [
+      "test-path",
+      "if",
+      "-not"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Bestaat wel"
+    ],
+    "hints": [
+      "Test-Path geeft $true of $false terug.",
+      "Gebruik -not (Test-Path $pad) om te controleren of het NIET bestaat."
+    ],
+    "solution": "$pad = 'C:\\temp'\nif (-not (Test-Path $pad)) {\n    'Bestaat niet'\n} else { 'Bestaat wel' }"
+  },
+  {
+    "id": "ps-h3-05",
+    "chapter": "H3 Loops & condities",
+    "title": "Rekenmachine met if/elseif",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "if",
+      "elseif",
+      "read-host",
+      "rekenen",
+      "cast"
+    ],
+    "prompt": "Schrijf een script dat:\n1. Twee getallen opvraagt via Read-Host.\n2. Een bewerking opvraagt: +, -, * of /.\n3. Het resultaat berekent en toont.\n4. Bij deling door nul een foutmelding geeft.\nGebruik if / elseif / else voor de bewerking-keuze.",
+    "acceptors": [],
+    "mustInclude": [
+      "read-host",
+      "if",
+      "elseif",
+      "[decimal]"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Resultaat: 3 + 4 = 7"
+    ],
+    "hints": [
+      "Cast de invoer naar [decimal] voor berekeningen.",
+      "Gebruik een geneste if in de tak voor deling om te controleren of de deler nul is.",
+      "Toon het resultaat met Write-Host en gebruik string-interpolatie."
+    ],
+    "solution": "$eersteGetal = Read-Host 'Voer het eerste getal in'\n$secondGetal = Read-Host 'Voer het tweede getal in'\n$bewerking = Read-Host 'Kies een bewerking: (+) optellen, (-) aftrekken, (*) vermenigvuldigen, (/) delen'\n\n$eersteGetal = [decimal]$eersteGetal\n$secondGetal = [decimal]$secondGetal\n\nif ($bewerking -eq '+') {\n    $resultaat = $eersteGetal + $secondGetal\n    Write-Host \"Resultaat: $eersteGetal + $secondGetal = $resultaat\"\n} elseif ($bewerking -eq '-') {\n    $resultaat = $eersteGetal - $secondGetal\n    Write-Host \"Resultaat: $eersteGetal - $secondGetal = $resultaat\"\n} elseif ($bewerking -eq '*') {\n    $resultaat = $eersteGetal * $secondGetal\n    Write-Host \"Resultaat: $eersteGetal * $secondGetal = $resultaat\"\n} elseif ($bewerking -eq '/') {\n    if ($secondGetal -eq 0) {\n        Write-Host 'Fout: Delen door nul is niet mogelijk!'\n    } else {\n        $resultaat = $eersteGetal / $secondGetal\n        Write-Host \"Resultaat: $eersteGetal / $secondGetal = $resultaat\"\n    }\n} else {\n    Write-Host 'Ongeldige bewerking gekozen. Kies (+), (-), (*), of (/).'\n}"
+  },
+  {
+    "id": "ps-h3-06",
+    "chapter": "H3 Loops & condities",
+    "title": "Wachtwoord-validator met while-loop",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "while",
+      "if",
+      "read-host",
+      "validatie",
+      "continue",
+      "break"
+    ],
+    "prompt": "Schrijf een script dat de gebruiker om een wachtwoord vraagt. Gebruik een while-loop die blijft herhalen totdat het wachtwoord aan alle eisen voldoet:\n- Minimaal 8 tekens lang.\n- Bevat minstens één cijfer.\n- Bevat minstens één speciaal teken.\nToon bij elke fout een duidelijke melding. Toon 'De sterkte van het wachtwoord is: sterk' als alles klopt.",
+    "acceptors": [],
+    "mustInclude": [
+      "while",
+      "read-host",
+      "-lt",
+      "-notmatch",
+      "break"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "De sterkte van het wachtwoord is: sterk"
+    ],
+    "hints": [
+      "Gebruik while ($true) met een break om de loop te stoppen zodra het wachtwoord geldig is.",
+      "Gebruik .Length om de lengte te controleren.",
+      "Gebruik -notmatch '\\d' om te controleren of er geen cijfer aanwezig is.",
+      "Gebruik -notmatch '[^a-zA-Z0-9]' voor speciale tekens."
+    ],
+    "solution": "$password = Read-Host 'Voer een wachtwoord in'\n\nwhile ($true) {\n    if ($password.Length -lt 8) {\n        Write-Host 'Het wachtwoord is te kort (minder dan 8 tekens). Probeer opnieuw.'\n        $password = Read-Host 'Voer een nieuw wachtwoord in'\n        continue\n    }\n\n    if ($password -notmatch '\\d') {\n        Write-Host 'Het wachtwoord bevat geen cijfers. Probeer opnieuw.'\n        $password = Read-Host 'Voer een nieuw wachtwoord in'\n        continue\n    }\n\n    if ($password -notmatch '[^a-zA-Z0-9]') {\n        Write-Host 'Het wachtwoord bevat geen speciale tekens. Probeer opnieuw.'\n        $password = Read-Host 'Voer een nieuw wachtwoord in'\n        continue\n    }\n\n    Write-Host 'De sterkte van het wachtwoord is: sterk'\n    break\n}"
+  },
+  {
+    "id": "ps-h3-07",
+    "chapter": "H3 Loops & condities",
+    "title": "Tekstbestanden in map weergeven met foreach",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "foreach",
+      "if",
+      "test-path",
+      "get-childitem",
+      "filter"
+    ],
+    "prompt": "Schrijf een script dat:\n1. De gebruiker vraagt om een mappad in te voeren.\n2. Controleert of de map bestaat met Test-Path.\n3. Als de map bestaat: haal alle .txt-bestanden op en toon hun naam in een foreach-loop.\n4. Als de map niet bestaat: toon een melding.",
+    "acceptors": [],
+    "mustInclude": [
+      "read-host",
+      "test-path",
+      "foreach",
+      "get-childitem"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "document.txt",
+      "notities.txt"
+    ],
+    "hints": [
+      "Gebruik Get-ChildItem -Filter *.txt om alleen tekstbestanden op te halen.",
+      "Loop door de resultaten met foreach ($file in $txtFiles).",
+      "Gebruik $file.Name om de bestandsnaam te tonen."
+    ],
+    "solution": "$folderPath = Read-Host 'Voer het pad van de map in'\n\nif (Test-Path $folderPath) {\n    $txtFiles = Get-ChildItem -Path $folderPath -Filter *.txt\n\n    foreach ($file in $txtFiles) {\n        Write-Host $file.Name\n    }\n} else {\n    Write-Host 'De opgegeven map bestaat niet.'\n}"
+  },
+  {
+    "id": "ps-h3-08",
+    "chapter": "H3 Loops & condities",
+    "title": "Projectmappen aanmaken met foreach",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "foreach",
+      "if",
+      "else",
+      "test-path",
+      "new-item",
+      "array"
+    ],
+    "prompt": "Schrijf een script dat:\n1. Een variabele $BasePath instelt op C:\\Company\\Projects.\n2. Een array $Projects maakt met namen: Project_Alpha, Project_Beta, Project_Gamma.\n3. Met foreach door de projecten loopt.\n4. Voor elk project controleert of de map al bestaat.\n5. De map aanmaakt als ze nog niet bestaat, anders een melding toont.\nHet script mag geen fouten geven als het meerdere keren uitgevoerd wordt.",
+    "acceptors": [],
+    "mustInclude": [
+      "foreach",
+      "test-path",
+      "if",
+      "new-item"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Map Project_Alpha aangemaakt.",
+      "Map Project_Beta bestaat al."
+    ],
+    "hints": [
+      "Gebruik een array: $Projects = @('Project_Alpha','Project_Beta','Project_Gamma')",
+      "Bouw het volledige pad op met: $path = \"$BasePath\\$project\"",
+      "Gebruik New-Item -ItemType Directory om een map aan te maken."
+    ],
+    "solution": "$BasePath = 'C:\\Company\\Projects'\n$Projects = @('Project_Alpha', 'Project_Beta', 'Project_Gamma')\n\nforeach ($project in $Projects) {\n    $path = \"$BasePath\\$project\"\n    if (Test-Path $path) {\n        Write-Host \"Map $project bestaat al.\"\n    } else {\n        New-Item -ItemType Directory -Path $path | Out-Null\n        Write-Host \"Map $project aangemaakt.\"\n    }\n}"
+  },
+  {
+    "id": "ps-h3-09",
+    "chapter": "H3 Loops & condities",
+    "title": "Geneste foreach: submappen per project",
+    "difficulty": "hard",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "foreach",
+      "genest",
+      "test-path",
+      "new-item",
+      "array"
+    ],
+    "prompt": "Breid het projectmappen-script uit. Elke projectmap moet ook vier submappen bevatten: Docs, Scripts, Archive, Logs. Gebruik een geneste foreach-loop. Maak een submap alleen aan als ze nog niet bestaat, en toon telkens een melding.",
+    "acceptors": [],
+    "mustInclude": [
+      "foreach",
+      "test-path",
+      "if",
+      "new-item"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Submap Docs aangemaakt in Project_Alpha.",
+      "Submap Scripts bestaat al in Project_Alpha."
+    ],
+    "hints": [
+      "Maak een tweede array $SubFolders = @('Docs','Scripts','Archive','Logs').",
+      "De binnenste foreach loopt over $SubFolders voor elke $project.",
+      "Bouw het subpad op: $subPath = \"$BasePath\\$project\\$sub\""
+    ],
+    "solution": "$BasePath = 'C:\\Company\\Projects'\n$Projects = @('Project_Alpha', 'Project_Beta', 'Project_Gamma')\n$SubFolders = @('Docs', 'Scripts', 'Archive', 'Logs')\n\nforeach ($project in $Projects) {\n    foreach ($sub in $SubFolders) {\n        $subPath = \"$BasePath\\$project\\$sub\"\n        if (Test-Path $subPath) {\n            Write-Host \"Submap $sub bestaat al in $project.\"\n        } else {\n            New-Item -ItemType Directory -Path $subPath | Out-Null\n            Write-Host \"Submap $sub aangemaakt in $project.\"\n        }\n    }\n}"
+  },
+  {
+    "id": "ps-h3-10",
+    "chapter": "H3 Loops & condities",
+    "title": "Schijfruimte controleren met foreach + if",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "foreach",
+      "if",
+      "get-psdrive",
+      "logbestand",
+      "add-content"
+    ],
+    "prompt": "Schrijf een script dat alle FileSystem-schijven ophaalt met Get-PSDrive. Loop met foreach door elke schijf. Bereken het percentage vrije ruimte. Als minder dan 10% vrij is: toon een waarschuwing in rood en schrijf een logmelding naar disk_space_log.txt. Toon voor elke schijf ook de vrije ruimte in GB.",
+    "acceptors": [],
+    "mustInclude": [
+      "foreach",
+      "get-psdrive",
+      "if",
+      "-lt",
+      "add-content"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "C: Vrije ruimte: 45.3 GB (30%)",
+      "WAARSCHUWING: Schijf D heeft minder dan 10% vrije ruimte!"
+    ],
+    "hints": [
+      "Gebruik Get-PSDrive -PSProvider FileSystem | Where-Object { $_.Used -gt 0 }.",
+      "Bereken freeGB met [math]::Round($disk.Free / 1GB, 2).",
+      "Schrijf naar het logbestand met Add-Content -Path 'disk_space_log.txt' -Value \"...\"."
+    ],
+    "solution": "$disks = Get-PSDrive -PSProvider FileSystem | Where-Object { $_.Used -gt 0 }\n\nforeach ($disk in $disks) {\n    $freeGB = [math]::Round($disk.Free / 1GB, 2)\n    $totalGB = [math]::Round($disk.Used / 1GB + $freeGB, 2)\n    $percentageFree = ($freeGB / $totalGB) * 100\n\n    Write-Host \"$($disk.Name): Vrije ruimte: $freeGB GB ($([math]::Round($percentageFree, 2))%)\"\n\n    if ($percentageFree -lt 10) {\n        Write-Host \"WAARSCHUWING: Schijf $($disk.Name) heeft minder dan 10% vrije ruimte!\" -ForegroundColor Red\n        Add-Content -Path 'disk_space_log.txt' -Value \"$(Get-Date): $($disk.Name) heeft minder dan 10% vrije ruimte.\"\n    }\n}"
+  },
+  {
+    "id": "ps-h4-01",
+    "chapter": "H4 Functies & scripting",
+    "title": "Back-up script met Robocopy",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "read-host",
+      "test-path",
+      "new-item",
+      "robocopy",
+      "logbestand",
+      "back-up"
+    ],
+    "prompt": "Schrijf een script dat:\n1. De gebruiker vraagt om een bronmap en een doelmap.\n2. Controleert of de doelmap bestaat; zo niet, maakt het die aan.\n3. Alle bestanden kopieert inclusief submappen met Robocopy, met behoud van metadata, en logt naar backup_log.txt.\n4. Toont 'Back-up voltooid! Logbestand: backup_log.txt' na afloop.",
+    "acceptors": [],
+    "mustInclude": [
+      "read-host",
+      "test-path",
+      "new-item",
+      "robocopy"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Back-up voltooid! Logbestand: backup_log.txt"
+    ],
+    "hints": [
+      "Gebruik Test-Path om de doelmap te controleren en New-Item -ItemType Directory om ze aan te maken.",
+      "Robocopy-syntax: Robocopy $source $destination /E /COPY:DAT /LOG:backup_log.txt",
+      "Voeg | Out-Null toe bij New-Item om overbodige uitvoer te verbergen."
+    ],
+    "solution": "$source = Read-Host 'Voer het pad van de bronmap in'\n$destination = Read-Host 'Voer het pad van de doelmap in'\n\nif (!(Test-Path $destination)) {\n    New-Item -ItemType Directory -Path $destination | Out-Null\n}\n\nRobocopy $source $destination /E /COPY:DAT /LOG:backup_log.txt\n\nWrite-Host 'Back-up voltooid! Logbestand: backup_log.txt'"
+  },
+  {
+    "id": "ps-h4-02",
+    "chapter": "H4 Functies & scripting",
+    "title": "Lokale gebruiker aanmaken",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "read-host",
+      "if",
+      "else",
+      "get-localuser",
+      "new-localuser",
+      "add-localgroupmember"
+    ],
+    "prompt": "Schrijf een script dat:\n1. Een gebruikersnaam en wachtwoord opvraagt.\n2. Controleert of de gebruiker al bestaat met Get-LocalUser.\n3. Als de gebruiker al bestaat: toon een melding.\n4. Anders: maak de gebruiker aan met New-LocalUser en voeg ze toe aan de groep 'Gebruikers' met Add-LocalGroupMember.",
+    "acceptors": [],
+    "mustInclude": [
+      "read-host",
+      "get-localuser",
+      "if",
+      "new-localuser",
+      "add-localgroupmember"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Gebruiker jan aangemaakt en toegevoegd aan de groep 'Gebruikers'."
+    ],
+    "hints": [
+      "Gebruik -AsSecureString bij het opvragen van het wachtwoord.",
+      "Gebruik -ErrorAction SilentlyContinue bij Get-LocalUser zodat het script geen fout geeft als de gebruiker niet bestaat.",
+      "Add-LocalGroupMember -Group 'Gebruikers' -Member $username voegt de gebruiker toe aan de standaardgroep."
+    ],
+    "solution": "$username = Read-Host 'Voer de nieuwe gebruikersnaam in'\n$password = Read-Host 'Voer een wachtwoord in' -AsSecureString\n\nif (Get-LocalUser -Name $username -ErrorAction SilentlyContinue) {\n    Write-Host \"De gebruiker $username bestaat al!\"\n} else {\n    New-LocalUser -Name $username -Password $password -FullName $username -Description 'Aangemaakt via PowerShell'\n    Add-LocalGroupMember -Group 'Gebruikers' -Member $username\n    Write-Host \"Gebruiker $username aangemaakt en toegevoegd aan de groep 'Gebruikers'.\"\n}"
+  },
+  {
+    "id": "ps-h4-03",
+    "chapter": "H4 Functies & scripting",
+    "title": "Geïnstalleerde programma's exporteren naar CSV",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "get-itemproperty",
+      "register",
+      "select-object",
+      "export-csv",
+      "sort"
+    ],
+    "prompt": "Schrijf een script dat:\n1. Alle geïnstalleerde programma's ophaalt via het register (HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*).\n2. De naam, versie en installatiedatum selecteert.\n3. Het resultaat exporteert naar installed_programs.csv.\n4. Toont dat het bestand opgeslagen is.",
+    "acceptors": [],
+    "mustInclude": [
+      "get-itemproperty",
+      "select-object",
+      "export-csv",
+      "-notypeinformation"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Lijst van geïnstalleerde programma's is opgeslagen in installed_programs.csv"
+    ],
+    "hints": [
+      "Gebruik Get-ItemProperty HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* om alle programma's op te halen.",
+      "Selecteer de kolommen DisplayName, DisplayVersion, InstallDate met Select-Object.",
+      "Gebruik Export-Csv -NoTypeInformation om de typelijn bovenaan te vermijden."
+    ],
+    "solution": "$programs = Get-ItemProperty HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* |\n    Select-Object DisplayName, DisplayVersion, InstallDate\n\n$programs | Export-Csv -Path 'installed_programs.csv' -NoTypeInformation\n\nWrite-Host \"Lijst van geïnstalleerde programma's is opgeslagen in installed_programs.csv\""
+  },
+  {
+    "id": "ps-h4-04",
+    "chapter": "H4 Functies & scripting",
+    "title": "Systeemrapport genereren als HTML",
+    "difficulty": "hard",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "get-ciminstance",
+      "get-psdrive",
+      "get-netipaddress",
+      "out-file",
+      "start-process",
+      "html",
+      "foreach"
+    ],
+    "prompt": "Schrijf een script dat een HTML-rapport genereert met:\n- Computernaam, OS-versie, CPU-naam\n- RAM totaal en vrij (in GB)\n- IP-adres (IPv4, niet loopback)\n- Een tabel met alle schijven en hun vrije ruimte\nSla het op als system_report.html en open het automatisch in de browser. Gebruik een foreach-loop voor de schijfentabel.",
+    "acceptors": [],
+    "mustInclude": [
+      "get-ciminstance",
+      "foreach",
+      "out-file",
+      "start-process"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Rapport gegenereerd: system_report.html"
+    ],
+    "hints": [
+      "Gebruik Get-CimInstance Win32_OperatingSystem voor OS- en RAM-info.",
+      "Gebruik Get-CimInstance Win32_Processor voor de CPU-naam.",
+      "Gebruik Get-NetIPAddress -AddressFamily IPv4 gefilterd op niet-loopback voor het IP-adres.",
+      "Bouw de HTML op als een here-string (@\"...\"@) en voeg schijfrijen toe in de foreach-loop."
+    ],
+    "solution": "$computerName = $env:COMPUTERNAME\n$os = Get-CimInstance Win32_OperatingSystem\n$cpu = Get-CimInstance Win32_Processor\n$ram = [math]::Round($os.TotalVisibleMemorySize / 1MB, 2)\n$freeRam = [math]::Round($os.FreePhysicalMemory / 1MB, 2)\n$disks = Get-PSDrive -PSProvider FileSystem | Select-Object Name, @{Name='FreeGB';Expression={[math]::Round($_.Free / 1GB, 2)}}\n$ip = (Get-NetIPAddress -AddressFamily IPv4 | Where-Object {$_.InterfaceAlias -notlike 'Loopback*'}).IPAddress\n\n$html = @\"\n<html>\n<head><title>Systeemrapport</title></head>\n<body>\n<h2>Systeeminformatie</h2>\n<ul>\n<li><b>Computernaam:</b> $computerName</li>\n<li><b>OS:</b> $($os.Caption) ($($os.Version))</li>\n<li><b>CPU:</b> $($cpu.Name)</li>\n<li><b>RAM:</b> $ram GB (Vrij: $freeRam GB)</li>\n<li><b>IP-adres:</b> $ip</li>\n</ul>\n<h2>Opslagruimte</h2>\n<table border='1'><tr><th>Schijf</th><th>Vrije ruimte (GB)</th></tr>\n\"@\n\nforeach ($disk in $disks) {\n    $html += \"<tr><td>$($disk.Name)</td><td>$($disk.FreeGB) GB</td></tr>\"\n}\n$html += '</table></body></html>'\n\n$html | Out-File -FilePath 'system_report.html' -Encoding utf8\nStart-Process 'system_report.html'\nWrite-Host 'Rapport gegenereerd: system_report.html'"
+  },
+  {
+    "id": "ps-h4-05",
+    "chapter": "H4 Functies & scripting",
+    "title": "Volledig beheerscript: mappen + archiveren + opruimen",
+    "difficulty": "hard",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "foreach",
+      "if",
+      "test-path",
+      "new-item",
+      "rename-item",
+      "remove-item",
+      "genest"
+    ],
+    "prompt": "Schrijf één volledig beheerscript dat:\n1. Controleert of C:\\Company\\Projects bestaat en het aanmaakt indien nodig.\n2. Projectmappen aanmaakt voor Project_Alpha, Project_Beta, Project_Gamma (als ze nog niet bestaan).\n3. Submappen Docs, Scripts, Archive en Logs aanmaakt in elk project (als ze nog niet bestaan) via een geneste foreach.\n4. Project_Beta hernoemt naar Project_Beta_ARCHIVED (alleen als de map bestaat).\n5. Project_Test en Project_Old verwijdert (alleen als ze bestaan).\nGebruik Write-Host meldingen voor elke stap.",
+    "acceptors": [],
+    "mustInclude": [
+      "foreach",
+      "test-path",
+      "if",
+      "new-item",
+      "rename-item",
+      "remove-item"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Map Project_Alpha aangemaakt.",
+      "Submap Docs aangemaakt in Project_Alpha.",
+      "Project_Beta gearchiveerd als Project_Beta_ARCHIVED.",
+      "Project_Test bestaat niet, niets te verwijderen."
+    ],
+    "hints": [
+      "Gebruik New-Item -ItemType Directory -Force voor het basispad.",
+      "Gebruik Rename-Item -Path $src -NewName 'Project_Beta_ARCHIVED' om te hernoemen.",
+      "Gebruik Remove-Item -Recurse -Force om een map en inhoud te verwijderen.",
+      "Wikkel elke destructieve actie in een if (Test-Path ...) controle."
+    ],
+    "solution": "$BasePath = 'C:\\Company\\Projects'\n$Projects = @('Project_Alpha', 'Project_Beta', 'Project_Gamma')\n$SubFolders = @('Docs', 'Scripts', 'Archive', 'Logs')\n\n# Stap 1: basispad\nif (!(Test-Path $BasePath)) {\n    New-Item -ItemType Directory -Path $BasePath | Out-Null\n    Write-Host 'Basispad aangemaakt.'\n} else {\n    Write-Host 'Basispad bestaat al.'\n}\n\n# Stap 2 & 3: projectmappen + submappen\nforeach ($project in $Projects) {\n    $projectPath = \"$BasePath\\$project\"\n    if (!(Test-Path $projectPath)) {\n        New-Item -ItemType Directory -Path $projectPath | Out-Null\n        Write-Host \"Map $project aangemaakt.\"\n    } else {\n        Write-Host \"Map $project bestaat al.\"\n    }\n\n    foreach ($sub in $SubFolders) {\n        $subPath = \"$projectPath\\$sub\"\n        if (!(Test-Path $subPath)) {\n            New-Item -ItemType Directory -Path $subPath | Out-Null\n            Write-Host \"Submap $sub aangemaakt in $project.\"\n        } else {\n            Write-Host \"Submap $sub bestaat al in $project.\"\n        }\n    }\n}\n\n# Stap 4: archiveren\n$betaPath = \"$BasePath\\Project_Beta\"\nif (Test-Path $betaPath) {\n    Rename-Item -Path $betaPath -NewName 'Project_Beta_ARCHIVED'\n    Write-Host 'Project_Beta gearchiveerd als Project_Beta_ARCHIVED.'\n} else {\n    Write-Host 'Project_Beta niet gevonden, archivering overgeslagen.'\n}\n\n# Stap 5: opruimen\nforeach ($old in @('Project_Test', 'Project_Old')) {\n    $oldPath = \"$BasePath\\$old\"\n    if (Test-Path $oldPath) {\n        Remove-Item -Path $oldPath -Recurse -Force\n        Write-Host \"$old verwijderd.\"\n    } else {\n        Write-Host \"$old bestaat niet, niets te verwijderen.\"\n    }\n}"
+  },
+  {
+    "id": "ps-h5-01",
+    "chapter": "H5 WMI & CIM",
+    "title": "Processornaam ophalen via WMI",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "wmi",
+      "cpu",
+      "Win32_Processor",
+      "Get-WmiObject"
+    ],
+    "prompt": "Haal de naam van de processor op via WMI met behulp van de klasse Win32_Processor.",
+    "acceptors": [
+      "Get-WmiObject Win32_Processor | Select-Object Name",
+      "Get-WmiObject -ClassName Win32_Processor | Select-Object Name",
+      "gwmi Win32_Processor | Select-Object Name",
+      "gwmi -ClassName Win32_Processor | Select-Object Name",
+      "Get-WmiObject Win32_Processor | Select Name"
+    ],
+    "mustInclude": [
+      "get-wmiobject",
+      "win32_processor"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Name\n----\nIntel(R) Core(TM) i7-10750H CPU @ 2.60GHz"
+    ],
+    "hints": [
+      "Gebruik Get-WmiObject met de klasse Win32_Processor.",
+      "Pipe het resultaat naar Select-Object om alleen de eigenschap Name te tonen.",
+      "Get-WmiObject Win32_Processor | Select-Object Name"
+    ],
+    "solution": "Get-WmiObject Win32_Processor | Select-Object Name"
+  },
+  {
+    "id": "ps-h5-02",
+    "chapter": "H5 WMI & CIM",
+    "title": "OS-informatie ophalen via CIM",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "cim",
+      "os",
+      "Win32_OperatingSystem",
+      "Get-CimInstance"
+    ],
+    "prompt": "Haal de naam (Caption) en versie van het besturingssysteem op via CIM.",
+    "acceptors": [
+      "Get-CimInstance Win32_OperatingSystem | Select-Object Caption, Version",
+      "Get-CimInstance -ClassName Win32_OperatingSystem | Select-Object Caption, Version",
+      "gcim Win32_OperatingSystem | Select-Object Caption, Version",
+      "gcim -ClassName Win32_OperatingSystem | Select-Object Caption, Version",
+      "Get-CimInstance Win32_OperatingSystem | Select Caption, Version"
+    ],
+    "mustInclude": [
+      "get-ciminstance",
+      "win32_operatingsystem"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Caption                           Version\n-------                           -------\nMicrosoft Windows 11 Pro          10.0.22621"
+    ],
+    "hints": [
+      "Gebruik Get-CimInstance met de klasse Win32_OperatingSystem.",
+      "Pipe naar Select-Object en geef de properties Caption en Version op.",
+      "Get-CimInstance Win32_OperatingSystem | Select-Object Caption, Version"
+    ],
+    "solution": "Get-CimInstance Win32_OperatingSystem | Select-Object Caption, Version"
+  },
+  {
+    "id": "ps-h5-03",
+    "chapter": "H5 WMI & CIM",
+    "title": "Totaal RAM ophalen en omrekenen naar GB",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "wmi",
+      "ram",
+      "Win32_ComputerSystem",
+      "Get-WmiObject"
+    ],
+    "prompt": "Haal het totale fysieke geheugen op via WMI (klasse Win32_ComputerSystem) en toon het afgerond in GB.",
+    "acceptors": [
+      "Get-WmiObject Win32_ComputerSystem | Select-Object @{Name='RAM_GB';Expression={[math]::Round($_.TotalPhysicalMemory / 1GB, 2)}}",
+      "Get-WmiObject -ClassName Win32_ComputerSystem | Select-Object @{Name='RAM_GB';Expression={[math]::Round($_.TotalPhysicalMemory / 1GB, 2)}}",
+      "gwmi Win32_ComputerSystem | Select-Object @{Name='RAM_GB';Expression={[math]::Round($_.TotalPhysicalMemory / 1GB, 2)}}"
+    ],
+    "mustInclude": [
+      "get-wmiobject",
+      "win32_computersystem",
+      "totalphysicalmemory"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "RAM_GB\n------\n  16"
+    ],
+    "hints": [
+      "Gebruik Get-WmiObject Win32_ComputerSystem.",
+      "De eigenschap TotalPhysicalMemory is in bytes. Deel door 1GB om naar gigabytes te gaan.",
+      "Gebruik [math]::Round(..., 2) om af te ronden: Select-Object @{Name='RAM_GB';Expression={[math]::Round($_.TotalPhysicalMemory / 1GB, 2)}}"
+    ],
+    "solution": "Get-WmiObject Win32_ComputerSystem | Select-Object @{Name='RAM_GB';Expression={[math]::Round($_.TotalPhysicalMemory / 1GB, 2)}}"
+  },
+  {
+    "id": "ps-h5-04",
+    "chapter": "H5 WMI & CIM",
+    "title": "Vrije schijfruimte controleren via CIM",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "cim",
+      "disk",
+      "Win32_LogicalDisk",
+      "Get-CimInstance",
+      "filter"
+    ],
+    "prompt": "Gebruik Get-CimInstance om de vrije ruimte van schijf C: op te halen. Filter direct op DeviceID='C:'.",
+    "acceptors": [
+      "Get-CimInstance Win32_LogicalDisk -Filter \"DeviceID='C:'\"",
+      "Get-CimInstance -ClassName Win32_LogicalDisk -Filter \"DeviceID='C:'\"",
+      "gcim Win32_LogicalDisk -Filter \"DeviceID='C:'\""
+    ],
+    "mustInclude": [
+      "get-ciminstance",
+      "win32_logicaldisk",
+      "deviceid='c:'"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "DeviceID FreeSpace   Size\n-------- ---------   ----\nC:       53687091200 512110190592"
+    ],
+    "hints": [
+      "Gebruik Get-CimInstance Win32_LogicalDisk.",
+      "Voeg de parameter -Filter toe zodat enkel schijf C: wordt opgehaald.",
+      "Get-CimInstance Win32_LogicalDisk -Filter \"DeviceID='C:'\""
+    ],
+    "solution": "Get-CimInstance Win32_LogicalDisk -Filter \"DeviceID='C:'\""
+  },
+  {
+    "id": "ps-h5-05",
+    "chapter": "H5 WMI & CIM",
+    "title": "BIOS-informatie ophalen via CIM",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "cim",
+      "bios",
+      "Win32_BIOS",
+      "Get-CimInstance"
+    ],
+    "prompt": "Haal de naam en versie van het BIOS op via CIM.",
+    "acceptors": [
+      "Get-CimInstance Win32_BIOS | Select-Object Name, SMBIOSBIOSVersion",
+      "Get-CimInstance -ClassName Win32_BIOS | Select-Object Name, SMBIOSBIOSVersion",
+      "gcim Win32_BIOS | Select-Object Name, SMBIOSBIOSVersion",
+      "Get-WmiObject Win32_BIOS | Select-Object Name, SMBIOSBIOSVersion",
+      "gwmi Win32_BIOS | Select-Object Name, SMBIOSBIOSVersion"
+    ],
+    "mustInclude": [
+      "win32_bios"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Name              SMBIOSBIOSVersion\n----              -----------------\nV1.12.0           V1.12.0"
+    ],
+    "hints": [
+      "Gebruik Get-CimInstance met de klasse Win32_BIOS.",
+      "De eigenschappen Name en SMBIOSBIOSVersion bevatten de BIOS-info.",
+      "Get-CimInstance Win32_BIOS | Select-Object Name, SMBIOSBIOSVersion"
+    ],
+    "solution": "Get-CimInstance Win32_BIOS | Select-Object Name, SMBIOSBIOSVersion"
+  },
+  {
+    "id": "ps-h5-06",
+    "chapter": "H5 WMI & CIM",
+    "title": "Services controleren via WMI",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "wmi",
+      "services",
+      "Win32_Service",
+      "Get-WmiObject",
+      "filter"
+    ],
+    "prompt": "Gebruik Get-WmiObject om alle services op te halen die momenteel actief ('Running') zijn. Toon enkel de naam en status.",
+    "acceptors": [
+      "Get-WmiObject Win32_Service | Where-Object { $_.State -eq 'Running' } | Select-Object Name, State",
+      "gwmi Win32_Service | Where-Object { $_.State -eq 'Running' } | Select-Object Name, State",
+      "Get-WmiObject -ClassName Win32_Service | Where-Object { $_.State -eq 'Running' } | Select-Object Name, State",
+      "Get-WmiObject Win32_Service | Where-Object State -eq 'Running' | Select-Object Name, State"
+    ],
+    "mustInclude": [
+      "get-wmiobject",
+      "win32_service",
+      "running"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Name         State\n----         -----\nAudioSrv     Running\nBrokerInfr   Running"
+    ],
+    "hints": [
+      "Gebruik Get-WmiObject Win32_Service om alle services op te halen.",
+      "Filter met Where-Object op de eigenschap State gelijk aan 'Running'.",
+      "Pipe daarna naar Select-Object Name, State voor een overzichtelijk resultaat."
+    ],
+    "solution": "Get-WmiObject Win32_Service | Where-Object { $_.State -eq 'Running' } | Select-Object Name, State"
+  },
+  {
+    "id": "ps-h5-07",
+    "chapter": "H5 WMI & CIM",
+    "title": "Alle processen tonen via CIM met filter",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "cim",
+      "processes",
+      "Win32_Process",
+      "Get-CimInstance",
+      "filter"
+    ],
+    "prompt": "Gebruik Get-CimInstance om het proces 'notepad.exe' op te zoeken. Gebruik de -Filter parameter.",
+    "acceptors": [
+      "Get-CimInstance Win32_Process -Filter \"Name='notepad.exe'\"",
+      "Get-CimInstance -ClassName Win32_Process -Filter \"Name='notepad.exe'\"",
+      "gcim Win32_Process -Filter \"Name='notepad.exe'\""
+    ],
+    "mustInclude": [
+      "get-ciminstance",
+      "win32_process",
+      "notepad.exe"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "ProcessId Name         HandleCount\n--------- ----         -----------\n     4728 notepad.exe          242"
+    ],
+    "hints": [
+      "Gebruik Get-CimInstance Win32_Process.",
+      "Voeg -Filter toe met de WQL-syntax: Name='notepad.exe'.",
+      "Get-CimInstance Win32_Process -Filter \"Name='notepad.exe'\""
+    ],
+    "solution": "Get-CimInstance Win32_Process -Filter \"Name='notepad.exe'\""
+  },
+  {
+    "id": "ps-h5-08",
+    "chapter": "H5 WMI & CIM",
+    "title": "Fysieke schijven ophalen via WMI",
+    "difficulty": "easy",
+    "shell": "powershell",
+    "type": "command",
+    "tags": [
+      "wmi",
+      "disk",
+      "Win32_DiskDrive",
+      "Get-WmiObject"
+    ],
+    "prompt": "Haal de modelnaam en status van alle fysieke schijven op via WMI.",
+    "acceptors": [
+      "Get-WmiObject Win32_DiskDrive | Select-Object Model, Status",
+      "Get-WmiObject -ClassName Win32_DiskDrive | Select-Object Model, Status",
+      "gwmi Win32_DiskDrive | Select-Object Model, Status",
+      "Get-CimInstance Win32_DiskDrive | Select-Object Model, Status",
+      "gcim Win32_DiskDrive | Select-Object Model, Status"
+    ],
+    "mustInclude": [
+      "win32_diskdrive"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Model                        Status\n-----                        ------\nSAMSUNG MZNLN256HAJQ-000H1   OK"
+    ],
+    "hints": [
+      "Gebruik Get-WmiObject Win32_DiskDrive.",
+      "Pipe naar Select-Object en selecteer de properties Model en Status.",
+      "Get-WmiObject Win32_DiskDrive | Select-Object Model, Status"
+    ],
+    "solution": "Get-WmiObject Win32_DiskDrive | Select-Object Model, Status"
+  },
+  {
+    "id": "ps-h5-09",
+    "chapter": "H5 WMI & CIM",
+    "title": "Systeeminformatie ophalen via WMI (CPU, RAM, OS)",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "wmi",
+      "cpu",
+      "ram",
+      "os",
+      "Win32_Processor",
+      "Win32_ComputerSystem",
+      "Win32_OperatingSystem"
+    ],
+    "prompt": "Schrijf een script dat via WMI de processornaam, het totale RAM (in GB, afgerond op 2 decimalen) en de OS-naam + versie ophaalt en netjes toont met Write-Output.",
+    "acceptors": [],
+    "mustInclude": [
+      "get-wmiobject",
+      "win32_processor",
+      "win32_computersystem",
+      "win32_operatingsystem",
+      "write-output"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Processor: Intel(R) Core(TM) i7-10750H CPU @ 2.60GHz",
+      "RAM: 16 GB",
+      "OS: Microsoft Windows 11 Pro (versie 10.0.22621)"
+    ],
+    "hints": [
+      "Je hebt drie Get-WmiObject-aanroepen nodig: Win32_Processor, Win32_ComputerSystem en Win32_OperatingSystem.",
+      "Sla elke query op in een variabele ($CPU, $RAM, $OS) en gebruik dan Write-Output met string-interpolatie.",
+      "Reken het geheugen om: [math]::Round($RAM.TotalPhysicalMemory / 1GB, 2)"
+    ],
+    "solution": "# Haal processorinformatie op\n$CPU = Get-WmiObject Win32_Processor | Select-Object Name\n\n# Haal RAM op en converteer naar GB\n$RAM = Get-WmiObject Win32_ComputerSystem | Select-Object @{Name='RAM_GB';Expression={[math]::Round($_.TotalPhysicalMemory / 1GB, 2)}}\n\n# Haal OS-informatie op\n$OS = Get-WmiObject Win32_OperatingSystem | Select-Object Caption, Version\n\n# Resultaat tonen\nWrite-Output \"Processor: $($CPU.Name)\"\nWrite-Output \"RAM: $($RAM.RAM_GB) GB\"\nWrite-Output \"OS: $($OS.Caption) (versie $($OS.Version))\""
+  },
+  {
+    "id": "ps-h5-10",
+    "chapter": "H5 WMI & CIM",
+    "title": "Schijfgezondheid en vrije ruimte controleren",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "wmi",
+      "disk",
+      "Win32_LogicalDisk",
+      "Win32_DiskDrive",
+      "foreach"
+    ],
+    "prompt": "Schrijf een script dat via WMI alle logische schijven van type 3 (lokale schijf) ophaalt met hun vrije en totale ruimte in MB, en daarna de status van alle fysieke schijven toont.",
+    "acceptors": [],
+    "mustInclude": [
+      "get-wmiobject",
+      "win32_logicaldisk",
+      "win32_diskdrive",
+      "foreach",
+      "drivetype"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Schijf C: (NTFS) - Vrij: 51200 MB van 488386 MB",
+      "Schijfmodel: SAMSUNG MZNLN256HAJQ-000H1 - Status: OK"
+    ],
+    "hints": [
+      "Gebruik Get-WmiObject Win32_LogicalDisk en filter op DriveType -eq 3 voor lokale schijven.",
+      "Gebruik een berekende eigenschap met @{Name='Vrij_MB';Expression={[math]::Round($_.FreeSpace / 1MB, 2)}} voor de vrije ruimte.",
+      "Gebruik daarna Get-WmiObject Win32_DiskDrive en loop er met foreach overheen om Model en Status te tonen."
+    ],
+    "solution": "# Haal info op over logische schijven\n$Disks = Get-WmiObject Win32_LogicalDisk | Where-Object { $_.DriveType -eq 3 } |\n    Select-Object DeviceID, FileSystem,\n        @{Name='Vrij_MB';Expression={[math]::Round($_.FreeSpace / 1MB, 2)}},\n        @{Name='Totaal_MB';Expression={[math]::Round($_.Size / 1MB, 2)}}\n\n# Haal schijfgezondheid op\n$Health = Get-WmiObject Win32_DiskDrive | Select-Object Model, Status\n\n# Toon resultaten\nforeach ($disk in $Disks) {\n    Write-Output \"Schijf $($disk.DeviceID) ($($disk.FileSystem)) - Vrij: $($disk.Vrij_MB) MB van $($disk.Totaal_MB) MB\"\n}\nforeach ($hdd in $Health) {\n    Write-Output \"Schijfmodel: $($hdd.Model) - Status: $($hdd.Status)\"\n}"
+  },
+  {
+    "id": "ps-h5-11",
+    "chapter": "H5 WMI & CIM",
+    "title": "Services controleren en starten via WMI",
+    "difficulty": "hard",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "wmi",
+      "services",
+      "Win32_Service",
+      "foreach",
+      "Start-Service",
+      "if-else"
+    ],
+    "prompt": "Schrijf een script dat de status controleert van de services 'wuauserv', 'Spooler' en 'WinDefend' via WMI. Als een service gestopt is, start je deze automatisch op.",
+    "acceptors": [],
+    "mustInclude": [
+      "get-wmiobject",
+      "win32_service",
+      "foreach",
+      "start-service",
+      "state"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Service 'wuauserv' draait",
+      "Service 'Spooler' draait niet - Start service...",
+      "Service 'Spooler' is gestart"
+    ],
+    "hints": [
+      "Sla de drie servicenamen op in een array: $Services = @('wuauserv', 'Spooler', 'WinDefend').",
+      "Loop met foreach over de array en gebruik Get-WmiObject Win32_Service | Where-Object { $_.Name -eq $service } om elke service op te zoeken.",
+      "Controleer de eigenschap State: als die niet 'Running' is, gebruik dan Start-Service -Name $service."
+    ],
+    "solution": "# Lijst van te controleren services\n$Services = @('wuauserv', 'Spooler', 'WinDefend')\n\n# Controleer de status van elke service\nforeach ($service in $Services) {\n    $ServiceStatus = Get-WmiObject Win32_Service | Where-Object { $_.Name -eq $service }\n\n    if ($ServiceStatus.State -eq 'Running') {\n        Write-Output \"Service '$($ServiceStatus.Name)' draait\"\n    } else {\n        Write-Output \"Service '$($ServiceStatus.Name)' draait niet - Start service...\"\n        Start-Service -Name $service\n        Write-Output \"Service '$service' is gestart\"\n    }\n}"
+  },
+  {
+    "id": "ps-h5-12",
+    "chapter": "H5 WMI & CIM",
+    "title": "Systeemvereisten controleren en updates installeren",
+    "difficulty": "insane",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "wmi",
+      "Win32_Processor",
+      "Win32_ComputerSystem",
+      "Win32_LogicalDisk",
+      "PSWindowsUpdate",
+      "if-else",
+      "system-check"
+    ],
+    "prompt": "Schrijf een script dat via WMI controleert of het systeem aan de volgende minimale vereisten voldoet: minimaal 4 CPU-cores, minimaal 16 GB RAM en minimaal 100 GB vrije schijfruimte op C:. Als het systeem voldoet, installeer dan Windows-updates via de PSWindowsUpdate-module. Als het systeem niet voldoet, toon een gedetailleerd overzicht van wat ontbreekt.",
+    "acceptors": [],
+    "mustInclude": [
+      "get-wmiobject",
+      "win32_processor",
+      "win32_computersystem",
+      "win32_logicaldisk",
+      "if",
+      "-ge"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Systeem voldoet aan de vereisten. Updates worden geïnstalleerd...",
+      "Systeem voldoet niet aan de vereisten:\n- Onvoldoende CPU cores: 2 (minimaal 4 vereist)"
+    ],
+    "hints": [
+      "Haal CPU-cores op via $cpu.NumberOfCores (Win32_Processor), RAM via $ram.TotalPhysicalMemory (Win32_ComputerSystem) en vrije ruimte via $disk.FreeSpace (Win32_LogicalDisk met filter op C:).",
+      "Gebruik één grote if-conditie met -and om alle drie de voorwaarden tegelijk te controleren.",
+      "Als het systeem voldoet: Install-Module PSWindowsUpdate -Force -SkipPublisherCheck, daarna Import-Module PSWindowsUpdate en Get-WindowsUpdate -AcceptAll -Install -AutoReboot."
+    ],
+    "solution": "# Controleer het aantal cores en de hoeveelheid RAM met WMI\n$cpu = Get-WmiObject Win32_Processor\n$ram = Get-WmiObject Win32_ComputerSystem\n$disk = Get-WmiObject Win32_LogicalDisk -Filter \"DeviceID='C:'\"\n\n# Minimale vereisten\n$minCores = 4\n$minRAM = 16GB\n$minDiskSpace = 100GB\n\n$freeDiskSpace = $disk.FreeSpace\n\nif ($cpu.NumberOfCores -ge $minCores -and\n    $ram.TotalPhysicalMemory -ge $minRAM -and\n    $freeDiskSpace -ge $minDiskSpace) {\n\n    Write-Output 'Systeem voldoet aan de vereisten. Updates worden geïnstalleerd...'\n\n    Install-Module PSWindowsUpdate -Force -SkipPublisherCheck\n    Import-Module PSWindowsUpdate\n    Get-WindowsUpdate -AcceptAll -Install -AutoReboot\n\n} else {\n    Write-Output 'Systeem voldoet niet aan de vereisten:'\n    if ($cpu.NumberOfCores -lt $minCores) { Write-Output \"- Onvoldoende CPU cores: $($cpu.NumberOfCores) (minimaal $minCores vereist)\" }\n    if ($ram.TotalPhysicalMemory -lt $minRAM) { Write-Output \"- Onvoldoende RAM: $(($ram.TotalPhysicalMemory / 1GB) -as [int]) GB (minimaal 16 GB vereist)\" }\n    if ($freeDiskSpace -lt $minDiskSpace) { Write-Output \"- Onvoldoende vrije schijfruimte: $(($freeDiskSpace / 1GB) -as [int]) GB (minimaal 100 GB vereist)\" }\n}"
+  },
+  {
+    "id": "ps-h5-13",
+    "chapter": "H5 WMI & CIM",
+    "title": "CPU-temperatuur uitlezen en waarschuwing tonen",
+    "difficulty": "hard",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "wmi",
+      "MSAcpi_ThermalZoneTemperature",
+      "temperature",
+      "namespace",
+      "if-else"
+    ],
+    "prompt": "Schrijf een script dat de CPU-temperatuur uitleest via de WMI-namespace 'root\\WMI' (klasse MSAcpi_ThermalZoneTemperature). Reken de waarde om van Kelvin×10 naar Celsius en toon een waarschuwing als de temperatuur boven 75°C is.",
+    "acceptors": [],
+    "mustInclude": [
+      "get-wmiobject",
+      "msacpi_thermalzonetemperature",
+      "273",
+      "if"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Huidige CPU-temperatuur: 54.85°C (Normaal)",
+      "Waarschuwing: CPU-temperatuur is 82.35°C!"
+    ],
+    "hints": [
+      "Gebruik Get-WmiObject -Namespace 'root\\WMI' -Class MSAcpi_ThermalZoneTemperature.",
+      "De waarde CurrentTemperature is Kelvin×10: deel door 10 en trek 273.15 af om naar Celsius te gaan.",
+      "Gebruik een if-else om te bepalen of de temperatuur boven 75°C ligt."
+    ],
+    "solution": "# Haal de temperatuur op via WMI\n$Temp = Get-WmiObject -Namespace 'root\\WMI' -Class MSAcpi_ThermalZoneTemperature | Select-Object CurrentTemperature\n\n# Omrekenen van Kelvin*10 naar Celsius\n$CPUtempC = ($Temp.CurrentTemperature / 10) - 273.15\n\n# Controleer of de temperatuur te hoog is\nif ($CPUtempC -gt 75) {\n    Write-Output \"Waarschuwing: CPU-temperatuur is $CPUtempC°C!\"\n} else {\n    Write-Output \"Huidige CPU-temperatuur: $CPUtempC°C (Normaal)\"\n}"
+  },
+  {
+    "id": "ps-h5-14",
+    "chapter": "H5 WMI & CIM",
+    "title": "Geïnstalleerde software opslaan naar bestand via WMI",
+    "difficulty": "medium",
+    "shell": "powershell",
+    "type": "script",
+    "tags": [
+      "wmi",
+      "Win32_Product",
+      "Get-WmiObject",
+      "Out-File",
+      "ForEach-Object"
+    ],
+    "prompt": "Schrijf een script dat alle geïnstalleerde software ophaalt via WMI (Win32_Product) en de naam en versie opslaat in een tekstbestand op het bureaublad (softwarelist.txt). Let op: Win32_Product is traag.",
+    "acceptors": [],
+    "mustInclude": [
+      "get-wmiobject",
+      "win32_product",
+      "out-file",
+      "softwarelist.txt"
+    ],
+    "forbid": [],
+    "outputMock": [
+      "Lijst van geïnstalleerde software opgeslagen in softwarelist.txt"
+    ],
+    "hints": [
+      "Gebruik Get-WmiObject Win32_Product | Select-Object Name, Version.",
+      "Loop met ForEach-Object over de resultaten en formatteer elke regel als 'Naam - Versie X'.",
+      "Sla op met Out-File -FilePath \"$env:USERPROFILE\\Desktop\\softwarelist.txt\""
+    ],
+    "solution": "# Haal alle geïnstalleerde software op\n$SoftwareList = Get-WmiObject Win32_Product | Select-Object Name, Version\n\n# Resultaten opslaan in een bestand\n$SoftwareList | ForEach-Object { \"$($_.Name) - Versie $($_.Version)\" } | Out-File -FilePath \"$env:USERPROFILE\\Desktop\\softwarelist.txt\"\n\nWrite-Output 'Lijst van geïnstalleerde software opgeslagen in softwarelist.txt'"
+  }
+]

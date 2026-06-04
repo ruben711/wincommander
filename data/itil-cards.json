@@ -1,0 +1,242 @@
+{
+  "topics": [
+    {
+      "id": "guiding-principles",
+      "title": "De 7 Leidende Principes",
+      "icon": "🧭",
+      "intro": "ITIL 4 heeft 7 leidende principes die altijd gelden, ongeacht project of situatie. Ze helpen je beter beslissen, beter samenwerken en continu verbeteren.",
+      "cards": [
+        {
+          "front": "Focus op waarde",
+          "back": "Alle activiteiten moeten waarde opleveren — voor klanten, gebruikers én de organisatie. Begrijp waarom de klant een dienst gebruikt en betrek waarde bij élke stap van verbetering.",
+          "example": "WiFi dat overal op school werkt, of een snelle helpdesk — dat is wat de student (gebruiker) écht wil."
+        },
+        {
+          "front": "Start waar je bent",
+          "back": "Ga niet alles opnieuw bouwen. Evalueer eerst wat er al bestaat, observeer hoe processen écht lopen (niet hoe ze op papier horen te lopen) en gebruik bestaande tools en kennis.",
+          "example": "De helpdesk werkt al met een Excel. Bekijk eerst of je die kunt uitbreiden met extra kolommen of filters, vóór je een duur ticketsysteem koopt."
+        },
+        {
+          "front": "Werk iteratief met feedback",
+          "back": "Doe verbeteringen stap voor stap in kleine, haalbare updates. Verzamel feedback vóór, tijdens en na elke iteratie. Kleine stappen = sneller resultaat, minder risico en makkelijker bijsturen.",
+          "example": "Nieuwe loginflow? Eerst testen met 10 studenten, feedback verwerken, daarna pas uitrollen naar iedereen."
+        },
+        {
+          "front": "Samenwerken & zichtbaarheid bevorderen",
+          "back": "Goede samenwerking levert betere resultaten. Vermijd silo's (teams die niet communiceren). Maak zichtbaar wat er gebeurt, waarom, en wat de voortgang is.",
+          "example": "Een dashboard 'IT-onderhoud' op het intranet zodat studenten weten dat het netwerk plat ligt voor onderhoud — helpdesk krijgt geen onnodige oproepen."
+        },
+        {
+          "front": "Holistisch denken & werken",
+          "back": "Diensten werken nooit op zichzelf. Je moet altijd het geheel begrijpen: processen, mensen, technologie én partners. Zoek naar patronen en gebruik automatisatie waar mogelijk.",
+          "example": "Office 365-loginproblemen leken technisch, maar de echte oorzaak was een te ingewikkeld wachtwoordbeleid op school — het probleem zat niet bij Microsoft."
+        },
+        {
+          "front": "Hou het simpel en praktisch",
+          "back": "Eenvoud is kracht. Schrap alles wat geen waarde toevoegt. Vraag bij elke stap: 'Draagt dit bij aan waarde?' Zo niet → weglaten.",
+          "example": "Wachtwoord resetten via 8 schermen is te complex. Beter: 1 pagina met een duidelijke knop, stap-voor-stap uitleg en een korte video."
+        },
+        {
+          "front": "Optimaliseer en automatiseer",
+          "back": "Automatiseer pas nadat je een proces begrijpt én geoptimaliseerd hebt. Nooit slechte processen automatiseren — dan automatiseer je de chaos. Stap 1: optimaliseren, stap 2: automatiseren.",
+          "example": "Helpdesk werkt via e-mail? E-mails automatisch filteren lost de onderliggende chaos niet op. Zet eerst een goed ticketproces op, daarna pas automatisch routeren."
+        }
+      ]
+    },
+    {
+      "id": "service-value-system",
+      "title": "Service Value System (SVS)",
+      "icon": "⚙️",
+      "intro": "Het ITIL SVS is het overkoepelende systeem dat beschrijft wat er binnenkomt (vraag + kansen), hoe de organisatie werkt en wat eruit komt (waarde). Het heeft vijf onderdelen.",
+      "cards": [
+        {
+          "front": "Wat is het Service Value System (SVS)?",
+          "back": "Het SVS beschrijft hoe een organisatie van input (incidenten, vragen, verbeteringen) via interne processen en teams tot output komt: stabiele, veilige en performante IT-diensten.",
+          "example": "Vergelijk het met een fabriek: input = problemen/wensen, productie = IT-teams & tools, output = oplossingen/diensten."
+        },
+        {
+          "front": "SVS: Leidende Principes (Guiding Principles)",
+          "back": "Algemene, tijdloze regels die richting geven aan alle beslissingen en acties, ongeacht veranderingen in doelstellingen, strategie of managementstructuur.",
+          "example": "Focus op waarde, Start waar je bent, Werk iteratief met feedback, Samenwerking en zichtbaarheid."
+        },
+        {
+          "front": "SVS: Governance",
+          "back": "Governance bepaalt wie beslist, hoe risico's beheerd worden, wie welke verantwoordelijkheden heeft en hoe prioriteiten worden gesteld. Het maakt acties controleerbaar en veilig.",
+          "example": "Bij een firewallwijziging: security officer keurt goed, netwerkbeheerder voert uit, change manager documenteert, servicedesk communiceert."
+        },
+        {
+          "front": "SVS: Service Value Chain (SVC)",
+          "back": "Het operationele model binnen het SVS dat beschrijft hoe waarde wordt gecreëerd via zes activiteiten: Plan, Improve, Engage, Design & Transition, Obtain/Build, Deliver & Support.",
+          "example": "Elke IT-dienst doorloopt één of meerdere van deze activiteiten om van vraag naar waarde te gaan."
+        },
+        {
+          "front": "SVS: Voortdurende Verbetering (Continual Improvement)",
+          "back": "Geen enkel IT-team is 'af'. Elke dienst, elk proces en elk systeem moet continu verbeteren via een gestructureerde aanpak: huidige situatie → doel → stappen → meten → bijsturen.",
+          "example": "Back-ups duren te lang, netwerk is slecht gedocumenteerd, te veel incidenten met dezelfde oorzaak — allemaal input voor verbetering."
+        },
+        {
+          "front": "SVS: Practices",
+          "back": "Reeksen organisatorische middelen (processen, tools, mensen, vaardigheden, documentatie) ontworpen om werk uit te voeren of een doelstelling te bereiken.",
+          "example": "Incidentmanagement, Change Control, Problem Management en Service Desk zijn voorbeelden van ITIL-practices."
+        }
+      ]
+    },
+    {
+      "id": "service-value-chain",
+      "title": "Service Value Chain",
+      "icon": "🔗",
+      "intro": "De Service Value Chain (SVC) beschrijft hoe je van vraag naar waarde gaat via zes activiteiten. Elke situatie heeft zijn eigen pad door deze activiteiten.",
+      "cards": [
+        {
+          "front": "SVC: Plan",
+          "back": "Zorgt voor een gedeeld begrip van de visie, de huidige status en verbeteringsrichting in de hele organisatie. Je bepaalt waar je naartoe wil, wat prioritair is en hoeveel middelen je hebt (tijd, geld, personeel).",
+          "example": "Hogeschool plant een datacentermigratie: inventaris opmaken, afhankelijkheden bepalen, budget plannen, risico's inschatten en communicatieplan opstellen."
+        },
+        {
+          "front": "SVC: Improve",
+          "back": "Zorgt voor voortdurende verbetering van producten, diensten en practices in alle activiteiten van de waardeketen. Alles wat beter kan, moet beter worden gemaakt.",
+          "example": "VPN valt regelmatig uit. Na analyse: oude softwareversie, te lage capaciteit, configuratiefout. Verbetering ingepland → getest → uitgerold → geëvalueerd."
+        },
+        {
+          "front": "SVC: Engage",
+          "back": "Zorgt voor goed inzicht in de behoeften van stakeholders, transparantie en goede relaties. Alle interacties met gebruikers, klanten, leveranciers en andere stakeholders.",
+          "example": "Servicedeskmeldingen, klacht over wifi, gebruikers die nieuwe accounts vragen, leverancier die nieuwe switches levert, securityteam dat policy wijzigt."
+        },
+        {
+          "front": "SVC: Design & Transition",
+          "back": "Ervoor zorgen dat producten en diensten voortdurend voldoen aan verwachtingen voor kwaliteit, kosten en time-to-market. Nieuwe diensten ontwerpen en klaarzetten voor productie.",
+          "example": "Nieuwe Windows-image uitwerken, nieuwe switch-configuratie ontwerpen, migratie van Exchange naar Microsoft 365 testen."
+        },
+        {
+          "front": "SVC: Obtain/Build",
+          "back": "Ervoor zorgen dat servicecomponenten beschikbaar zijn wanneer en waar ze nodig zijn, conform de overeengekomen specificaties. Componenten worden aangekocht, gebouwd of geconfigureerd.",
+          "example": "Fysieke servers bestellen, VM-templates bouwen, PowerShell-scripts schrijven, nieuwe access points configureren."
+        },
+        {
+          "front": "SVC: Deliver & Support",
+          "back": "Zorgt dat diensten worden geleverd en ondersteund volgens overeengekomen specificaties. De dagelijkse werking: incidenten oplossen, gebruikers ondersteunen, monitoring opvolgen.",
+          "example": "Student meldt 'Ik kan niet op Eduroam' → ticket geopend → netwerkbeheerder vindt verkeerde RADIUS-instellingen → opgelost → ticket afgesloten."
+        }
+      ]
+    },
+    {
+      "id": "vier-dimensies",
+      "title": "De 4 Dimensies",
+      "icon": "🧩",
+      "intro": "ITIL 4 beschrijft vier dimensies van dienstenbeheer die samen bepalen hoe goed een organisatie IT-diensten kan ontwerpen, beheren en verbeteren. Als één dimensie fout loopt, kan de volledige IT-dienst in gevaar komen.",
+      "cards": [
+        {
+          "front": "Dimensie 1: Organisaties & mensen",
+          "back": "Hoe een IT-afdeling is opgebouwd, wie welke rol heeft en welke vaardigheden mensen nodig hebben. Denk aan besluitvorming, communicatie tussen teams en een cultuur van openheid en samenwerking.",
+          "example": "Supporttechniekers registreren incidenten, netwerkbeheerders houden documentatie bij, systeembeheerders volgen cloud en security op — iedereen weet zijn rol."
+        },
+        {
+          "front": "Dimensie 2: Informatie & technologie",
+          "back": "Alle tools, technologieën en informatie die nodig zijn om IT-diensten te leveren en te beheren. Foutieve, onvolledige of slecht beveiligde informatie kan diensten laten falen of een datalek veroorzaken.",
+          "example": "Monitoringtools (Zabbix, PRTG), service management tools (TOPdesk, ServiceNow), cloudomgevingen (Azure, AWS), netwerkdiagrammen, logs en de CMDB."
+        },
+        {
+          "front": "Dimensie 3: Partners & leveranciers",
+          "back": "Bijna geen enkele IT-dienst wordt volledig intern beheerd. Je moet in kaart brengen wat je zelf doet, wat je uitbesteedt, wat de risico's van afhankelijkheden zijn en welke SLA's gelden.",
+          "example": "Microsoft (Office 365, Azure), Cisco-partners voor netwerkapparatuur, ISP's voor internetconnectiviteit, securitybedrijven voor audits of penetratietests."
+        },
+        {
+          "front": "Dimensie 4: Waardestromen & processen",
+          "back": "Hoe werk gestructureerd wordt en welke stappen je volgt om een dienst te leveren of te verbeteren. Waardestroom = alle stappen om een dienst te leveren. Proces = de logica achter die stappen.",
+          "example": "Nieuwe laptop klaarzetten: ticket aanmaken → hardware kiezen → OS installeren → security configureren → software installeren → gebruiker informeren → documenteren → ticket afsluiten."
+        }
+      ]
+    },
+    {
+      "id": "kernbegrippen",
+      "title": "Kernbegrippen",
+      "icon": "📚",
+      "intro": "ITIL 4 werkt met een aantal kernbegrippen die je moet kennen om de rest van het raamwerk te begrijpen. Ze vormen de basis van hoe diensten en waarde gedefinieerd worden.",
+      "cards": [
+        {
+          "front": "Waarde (Value)",
+          "back": "Waarde is wat de klant écht belangrijk vindt. Het kan financieel zijn (lagere kosten) of operationeel (hogere productiviteit). Alle ITIL-activiteiten moeten waarde opleveren voor klanten, gebruikers of de organisatie zelf.",
+          "example": "WiFi dat overal werkt, een duidelijke helpdesk, digitale leerplatformen die niet crashen — dat zijn concrete voorbeelden van waarde voor studenten."
+        },
+        {
+          "front": "Service (dienst)",
+          "back": "Een manier om waarde te leveren aan klanten zonder dat klanten zelf de kosten en risico's hoeven te beheren. De serviceprovider neemt die verantwoordelijkheid op zich.",
+          "example": "Een schoolnetwerk dat studenten kunnen gebruiken zonder dat ze zelf servers of routers moeten beheren."
+        },
+        {
+          "front": "Outcome vs. Output",
+          "back": "Output = het concrete resultaat van een activiteit (bv. een werkende printer). Outcome = het gevolg of de impact voor de gebruiker (bv. de student kan zijn werk indienen). ITIL focust op outcomes, niet enkel outputs.",
+          "example": "Output: de printer werkt en papier komt eruit. Outcome: de student heeft zijn opdracht op tijd kunnen afprinten en inleveren."
+        },
+        {
+          "front": "Kosten (Cost)",
+          "back": "De hoeveelheid geld die wordt besteed om een dienst te leveren. Klanten willen kosten vermijden of beheersen. De serviceprovider moet kosten transparant en voorspelbaar maken.",
+          "example": "Een school betaalt voor cloudopslag zodat docenten niet zelf servers hoeven te kopen of te beheren."
+        },
+        {
+          "front": "Risico (Risk)",
+          "back": "Een mogelijke gebeurtenis die schade kan veroorzaken of doelstellingen kan bedreigen. Klanten willen risico's vermijden. Serviceproviders helpen risico's te beheersen of over te nemen.",
+          "example": "Als een leverancier uitvalt (cloudstoring, trage firewallsupport), kan de volledige IT-dienst stilliggen — dat is een risico door leveranciersafhankelijkheid."
+        },
+        {
+          "front": "Utility (nut) vs. Warranty (garantie)",
+          "back": "Utility = wat een dienst doet, de functionaliteit (fit for purpose). Warranty = zekerheid dat de dienst goed werkt: beschikbaar, veilig en betrouwbaar genoeg (fit for use). Beide zijn nodig om waarde te leveren.",
+          "example": "Utility: de WiFi laat studenten internetten. Warranty: de WiFi werkt 99% van de tijd, is beveiligd en snel genoeg voor videolessen."
+        },
+        {
+          "front": "Serviceconsument: gebruiker, klant en sponsor",
+          "back": "Gebruiker = wie de dienst werkelijk gebruikt. Klant = wie beslist en betaalt. Sponsor = wie middelen ter beschikking stelt. Een organisatie moet weten voor wie ze waarde creëert.",
+          "example": "Student = gebruiker (surft op het netwerk), schooldirectie = klant (beslist en betaalt), gemeente = sponsor (stelt budget ter beschikking)."
+        }
+      ]
+    },
+    {
+      "id": "practices",
+      "title": "Practices",
+      "icon": "🛠️",
+      "intro": "ITIL-practices zijn reeksen organisatorische middelen (processen, tools, mensen, vaardigheden) om werk uit te voeren. Hieronder de belangrijkste practices uit de cursus.",
+      "cards": [
+        {
+          "front": "Incidentmanagement",
+          "back": "Doel: een storing zo snel mogelijk oplossen en de dienst herstellen. Workflow: registratie → classificatie → prioriteit bepalen → diagnose → oplossing & testen → afsluiting.",
+          "example": "'Mijn printer werkt niet', 'VPN maakt geen verbinding', 'Server CPU op 100%' — incidenten die zo snel mogelijk opgelost moeten worden."
+        },
+        {
+          "front": "Problem Management",
+          "back": "Doel: de onderliggende oorzaak (root cause) vinden van terugkerende incidenten, zodat het probleem niet terugkomt. Known Error Database (KEDB) bijhouden voor bekende fouten.",
+          "example": "20 gebruikers melden elke maandag 'internet is traag'. RCA toont dat een switch poortflapping heeft → switch vervangen zodat het definitief opgelost is."
+        },
+        {
+          "front": "Change Enablement (Wijzigingsbeheer)",
+          "back": "Doel: wijzigingen veilig en gecontroleerd uitvoeren. Elke change krijgt een risico-analyse, planning en goedkeuring via CAB (Change Advisory Board).",
+          "example": "Server patches installeren, nieuwe firewallregels implementeren, migratie naar Microsoft 365, VLAN-structuur aanpassen — allemaal changes die goedgekeurd moeten worden."
+        },
+        {
+          "front": "Continual Improvement (Voortdurende verbetering)",
+          "back": "Een terugkerende activiteit op alle niveaus om de prestaties continu af te stemmen op de verwachtingen van stakeholders. Stappenplan: wat is de visie → waar zijn we nu → waar willen we zijn → hoe komen we er → actie ondernemen → zijn we er geraakt → momentum bewaren.",
+          "example": "40% van incidenten door foutieve printerdriver → driver vervangen. Of: evaluatie na een migratie → wat ging goed, wat kan beter?"
+        },
+        {
+          "front": "Service Desk",
+          "back": "Het centrale aanspreekpunt (single point of contact) voor alle meldingen, vragen en aanvragen van gebruikers. De service desk registreert, classificeert en stuurt door naar de juiste teams.",
+          "example": "Student belt met 'Ik kan niet inloggen op Eduroam' → service desk opent ticket → doorgestuurd naar netwerkbeheerder → opgelost → student verwittigd."
+        },
+        {
+          "front": "Release Management (Vrijgavebeheer)",
+          "back": "Doel: nieuwe of gewijzigde hardware, software, documentatie of processen gestructureerd uitrollen naar de productieomgeving (of test/staging).",
+          "example": "Windows Updates uitrollen via WSUS, een nieuwe versie van een intern portaal installeren, firmwareupdates voor switches — allemaal releases."
+        },
+        {
+          "front": "Configuratiebeheer (SACM)",
+          "back": "Doel: nauwkeurige en betrouwbare informatie bijhouden over de configuratie van diensten en configuratie-items (CI's) in de CMDB. Cruciaal voor troubleshooting.",
+          "example": "CMDB bijhoudt: welke server draait welke applicatie, welke printer zit op welk VLAN, welke switch heeft welke uplink."
+        },
+        {
+          "front": "Service Request Management",
+          "back": "Doel: standaardaanvragen afhandelen via een servicecatalogus. Geen incidenten, maar vooraf gedefinieerde, routinematige aanvragen.",
+          "example": "Nieuwe laptop aanvragen, extra mailbox aanmaken, toegang tot een applicatie vragen, nieuw wifi-toestel registreren."
+        }
+      ]
+    }
+  ]
+}

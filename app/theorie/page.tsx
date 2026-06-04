@@ -5,7 +5,8 @@ import { getTheory, theoryChapters } from "@/lib/theorie";
 
 export default function TheoriePage() {
   const all = getTheory();
-  const chapters = theoryChapters();
+  // ITIL heeft een eigen tab (/itil) — hier tonen we de overige theorie.
+  const chapters = theoryChapters().filter((c) => c !== "ITIL 4 Foundation");
   const [chapter, setChapter] = useState(chapters[0] ?? "");
   const [subtopic, setSubtopic] = useState("");
 
@@ -36,8 +37,8 @@ export default function TheoriePage() {
         <p className="text-2xs text-fg-dim">Oefen-toetsen in study-mode — directe feedback, geen XP.</p>
       </div>
 
-      {/* Hoofdstuk-keuze */}
-      <div className="flex flex-wrap gap-2">
+      {/* Hoofdstuk-keuze (enkel tonen bij meerdere hoofdstukken) */}
+      <div className={`flex flex-wrap gap-2 ${chapters.length <= 1 ? "hidden" : ""}`}>
         {chapters.map((c) => (
           <button
             key={c}

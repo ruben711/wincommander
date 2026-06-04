@@ -8,6 +8,7 @@ const tabs = [
   { href: "/sandbox", label: "Sandbox" },
   { href: "/cmdlets", label: "Cmdlets" },
   { href: "/theorie", label: "Theorie" },
+  { href: "/itil", label: "ITIL" },
   { href: "/examen", label: "Examen" },
   { href: "/leaderboard", label: "Leaderboard" },
   { href: "/cheatsheet", label: "Cheat-sheet" },
